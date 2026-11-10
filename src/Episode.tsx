@@ -1,7 +1,7 @@
 // One country episode: globe intro -> narrated map chapters with infographics -> outro. 1920x1080.
 import React, { useEffect, useState } from 'react';
 import { AbsoluteFill, continueRender, delayRender, useCurrentFrame, useVideoConfig } from 'remotion';
-import { EP, W, H, GOLD, TITLE, BODY, cl, pr, eBack, eOut, segIndexAt, spokenAt, E } from './lib/core';
+import { EP, W, H, GOLD, TITLE, BODY, cl, pr, eBack, eOut, segIndexAt, spokenAt, E, INTRO_END } from './lib/core';
 import { MapLayer } from './scenes/MapLayer';
 import { Globe, usePreload } from './scenes/Three';
 import { Stats, BigChips, Timeline, Cards, BigNum, Bars, Outro, Captions, Chapter } from './scenes/Panels';
@@ -14,7 +14,7 @@ const useFonts = () => {
   }, [h]);
 };
 
-const FIRST_MAP = EP.segments.find((s) => s.scene.view)!;
+const FIRST_MAP = { start: INTRO_END };
 const INTRO = EP.segments[0];
 const DIM: Record<string, number> = { timeline: 0.62, cards: 0.6, bignum: 0.66, bars: 0.62 };
 

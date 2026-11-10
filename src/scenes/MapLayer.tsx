@@ -5,7 +5,7 @@ import { staticFile } from 'remotion';
 import { geoMercator, geoPath, geoGraticule10, geoArea, geoBounds } from 'd3-geo';
 import { feature } from 'topojson-client';
 import world from 'world-atlas/countries-50m.json';
-import { EP, W, H, GOLD, TITLE, BODY, Seg, View, cl, pr, lerp, eExpoIO, eBack, eOut, cue, segWindow, fadeWin } from '../lib/core';
+import { EP, W, H, GOLD, TITLE, BODY, Seg, View, cl, pr, lerp, eExpoIO, eBack, eOut, cue, segWindow, fadeWin, INTRO_END } from '../lib/core';
 
 const FC: any = feature(world as any, (world as any).objects.countries);
 const FEATS: any[] = FC.features;
@@ -28,8 +28,8 @@ const FIRST: View = VIEWS[0]?.v ?? { lon: EP.country.lon, lat: EP.country.lat, s
 export const camera = (t: number): View => {
   if (!VIEWS.length) return FIRST;
   // intro: arrive from a wide view
-  if (t < VIEWS[0].t + 1.6) {
-    const p = eExpoIO(cl((t - (VIEWS[0].t - 0.4)) / 2.0));
+  if (t < Math.min(VIEWS[0].t, INTRO_END - 0.6) + 1.6) {
+    const p = eExpoIO(cl((t - (INTRO_END - 1.0)) / 2.0));
     return { lon: lerp(FIRST.lon + 4, FIRST.lon, p), lat: FIRST.lat, span: Math.exp(lerp(Math.log(FIRST.span * 3.2), Math.log(FIRST.span), p)) };
   }
   let k = 0; for (let i = 0; i < VIEWS.length; i++) if (t >= VIEWS[i].t) k = i;
@@ -81,8 +81,7 @@ export const MapLayer: React.FC<{ t: number; seg: Seg; segIdx: number }> = ({ t,
   const tgtD = TARGET ? path(TARGET) || '' : '';
   const mb = MAIN ? path.bounds(MAIN) : [[0, 0], [0, 0]];
   const fw = mb[1][0] - mb[0][0], fh = mb[1][1] - mb[0][1];
-  const firstMap = EP.segments.find((s) => s.scene.view);
-  const fillP = firstMap ? pr(t, firstMap.start + 0.6, 1.4, eOut) : 1;
+  const fillP = pr(t, INTRO_END + 0.6, 1.4, eOut);
   const glow = 0.55 + 0.2 * Math.sin(t * 2.4);
 
   // overlays from the active segment (labels, markers, river) + capital

@@ -12,6 +12,8 @@ export type Scene = { type: string; chapter?: string; view?: View; [k: string]: 
 export type Seg = { id: string; text: string; scene: Scene; start: number; end: number; words: Word[] };
 export type Ep = { id: string; country: { name: string; iso2: string; isoNum: string; lon: number; lat: number; capital: string }; segments: Seg[]; duration: number; voiceDuration: number };
 export const EP = EPJ as unknown as Ep;
+// the globe intro hands over to the map when the second segment starts
+export const INTRO_END = EP.segments[1]?.start ?? 6;
 
 export const E = (n: string) => gsap.parseEase(n) as (x: number) => number;
 export const eOut = E('power3.out'), eIO = E('power2.inOut'), eExpoIO = E('expo.inOut'), eBack = E('back.out(1.8)'), eExpo = E('expo.out');
