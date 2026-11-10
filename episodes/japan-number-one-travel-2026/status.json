@@ -1,0 +1,26 @@
+{
+ "episode": "japan-number-one-travel-2026",
+ "status": "success",
+ "size_bytes": 35001410,
+ "video_url": "https://github.com/applay101/world-countries-motion/releases/download/ep-japan-number-one-travel-2026/japan-number-one-travel-2026.mp4",
+ "run": "https://github.com/applay101/world-countries-motion/actions/runs/42920642229",
+ "log_tail": [
+  "\u001b[0;93m2026-11-10 23:08:14.074371878 [W:onnxruntime:Default, device_discovery.cc:95 GetPciBusId] Skipping pci_bus_id for PCI path at \"/sys/devices/LNXSYSTM:00/LNXSYBUS:00/ACPI0004:00/MSFT1000:00/5620e0c7-8062-4dce-aeb7-520c7ef76171\" because filename \"5620e0c7-8062-4dce-aeb7-520c7ef76171\" did not match expected pattern of [0-9a-f]+:[0-9a-f]+:[0-9a-f]+[.][0-9a-f]+\u001b[m",
+  "tts intro 11.0",
+  "tts rank 28.2",
+  "tts where 39.5",
+  "tts stats 54.9",
+  "tts islands 66.9",
+  "tts geo 85.6",
+  "tts history 109.3",
+  "tts cities 125.4",
+  "tts culture 140.7",
+  "tts growth 157.2",
+  "tts change 174.5",
+  "tts future 185.9",
+  "tts outro 197.3",
+  "voice ok 198.3 s",
+  "prepared japan-number-one-travel-2026 duration 201.29",
+  "mix ok 48 sfx"
+ ]
+}
