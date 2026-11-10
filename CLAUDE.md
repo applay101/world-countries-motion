@@ -25,9 +25,11 @@ Pick a country that people are talking about **right now**: news of the last 7 d
     - `stats`: like map plus `capital` [name, lon, lat] and `cards` [{label, value, suffix, fmt: int|1dp|2dp, note} or {label, text}]. Set the view lon about 0.15×span east of the country so it sits left of the panel.
     - `cities`: `view`, `cities` [[name, lon, lat]]
     - `timeline`: `events` [[year label, short text]] (3 to 5)
-    - `cards`: `cards` [[icon, title, subtitle]] (icons: flamenco, clock, bull, tomato; any other name shows no icon, so it's fine to omit)
-    - `bignum`: `value`, `suffix`, `label`, `note`, `chips` []
-    - `bars`: `kpis` [{label, value, prefix, suffix, fmt}] and `bars` {title, items [[label, value]]}, `note`
+    - `cards`: `cards` [[icon, title, subtitle, cueWord?]] (icons: flamenco, clock, bull, tomato, flower, train, torii, bowl, mountain, star)
+    - `bignum`: `value`, `fmt`, `suffix`, `label`, `note`, `chips` [], `cue` (spoken word that starts the count)
+    - `bars`: `kpis` [{label, value, prefix, suffix, fmt, cue}] and `bars` {title, items [[label, value]], cue}, `note`
+    - stats `cards` also take `cue` (the spoken word that reveals the card)
+  - A `cue` is the first spoken word of a phrase in that segment's text (e.g. "forty-two", "census"). Elements appear when it's spoken; without one they are staggered.
   - Labels and markers appear when their first word is spoken, so use the exact spoken name.
 - Check the map coordinates. Render previews before pushing if you can: `python pipeline/prepare.py` needs `build/timing.json`, so usually just push and check the stills from the finished video.
 
