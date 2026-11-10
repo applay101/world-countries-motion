@@ -1,0 +1,27 @@
+{
+ "episode": "spain",
+ "status": "success",
+ "size_bytes": 51845703,
+ "video_url": "https://github.com/applay101/world-countries-motion/releases/download/ep-spain/spain.mp4",
+ "run": "https://github.com/applay101/world-countries-motion/actions/runs/42914801876",
+ "log_tail": [
+  "\u001b[0;93m2026-11-10 22:28:39.087381142 [W:onnxruntime:Default, device_discovery.cc:95 GetPciBusId] Skipping pci_bus_id for PCI path at \"/sys/devices/LNXSYSTM:00/LNXSYBUS:00/ACPI0004:00/MSFT1000:00/5620e0c7-8062-4dce-aeb7-520c7ef76171\" because filename \"5620e0c7-8062-4dce-aeb7-520c7ef76171\" did not match expected pattern of [0-9a-f]+:[0-9a-f]+:[0-9a-f]+[.][0-9a-f]+\u001b[m",
+  "tts intro 7.5",
+  "tts where 24.9",
+  "tts stats 42.5",
+  "tts regions 61.2",
+  "tts geo 87.2",
+  "tts history 116.0",
+  "tts modern 133.3",
+  "tts cities 154.7",
+  "tts culture 176.4",
+  "tts language 193.4",
+  "tts economy 213.2",
+  "tts heritage 225.3",
+  "tts outro 236.3",
+  "Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.",
+  "voice ok 237.3 s",
+  "prepared spain duration 240.31",
+  "mix ok 55 sfx"
+ ]
+}
