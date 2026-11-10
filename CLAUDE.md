@@ -7,6 +7,7 @@ Push `episodes/<id>/script.json` to `main`, and GitHub Actions (`.github/workflo
 Check progress without auth: `curl -s https://api.github.com/repos/applay101/world-countries-motion/actions/runs?per_page=3`.
 
 ## Choosing a topic (trending episodes)
+First check `ideas.md`: if it has an unchecked `- [ ]` idea, use the first one (it may be in Persian), and mark it `- [x]` in the same commit. Otherwise:
 Pick a country that people are talking about **right now**: news of the last 7 days, viral social posts, a major event, travel trends, a record or a festival. Search the web for it and confirm the story is real and current, from at least two reputable sources.
 - Choose a different country from the last 5 episodes (`ls episodes/`).
 - The episode id is a lowercase slug: `<country>` or `<country>-<topic>` (e.g. `japan-cherry-blossom-2027`).
