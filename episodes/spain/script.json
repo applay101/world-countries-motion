@@ -95,7 +95,8 @@
       "label": "Area",
       "value": 506000,
       "suffix": " km²",
-      "fmt": "int"
+      "fmt": "int",
+      "cue": "covers"
      },
      {
       "label": "Capital",
@@ -106,7 +107,8 @@
       "value": 49.8,
       "suffix": " million",
       "fmt": "1dp",
-      "note": "INE, July 2026"
+      "note": "INE, July 2026",
+      "cue": "population"
      }
     ]
    }
@@ -348,22 +350,26 @@
      [
       "flamenco",
       "Flamenco",
-      "UNESCO intangible heritage"
+      "UNESCO intangible heritage",
+      "flamenco"
      ],
      [
       "clock",
       "Late dinners",
-      "often after 9 pm"
+      "often after 9 pm",
+      "dinner"
      ],
      [
       "bull",
       "San Fermín",
-      "Pamplona"
+      "Pamplona",
+      "running"
      ],
      [
       "tomato",
       "La Tomatina",
-      "Buñol"
+      "Buñol",
+      "tomatina"
      ]
     ]
    }
@@ -382,7 +388,8 @@
      "Catalan",
      "Galician",
      "Basque"
-    ]
+    ],
+    "cue": "six"
    }
   },
   {
@@ -397,13 +404,15 @@
       "value": 1.69,
       "prefix": "€",
       "suffix": " trillion",
-      "fmt": "2dp"
+      "fmt": "2dp",
+      "cue": "economy"
      },
      {
       "label": "Growth 2025",
       "value": 2.8,
       "suffix": "%",
-      "fmt": "1dp"
+      "fmt": "1dp",
+      "cue": "grew"
      }
     ],
     "bars": {
@@ -421,7 +430,8 @@
        "2025",
        96.8
       ]
-     ]
+     ],
+     "cue": "tourism"
     },
     "note": "INE"
    }

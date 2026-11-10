@@ -1,0 +1,392 @@
+{
+ "id": "japan-number-one-travel-2026",
+ "country": {
+  "name": "Japan",
+  "iso2": "jp",
+  "isoNum": "392",
+  "lon": 138.25,
+  "lat": 36.2,
+  "capital": "Tokyo"
+ },
+ "voice": "af_heart",
+ "speed": 0.96,
+ "music": "ambient",
+ "segments": [
+  {
+   "id": "intro",
+   "text": "Ancient temples. Bullet trains. Neon cities and quiet mountain villages. Right now, it is officially the best travel country on Earth. This is Japan.",
+   "scene": {
+    "type": "globe"
+   }
+  },
+  {
+   "id": "rank",
+   "text": "In its latest Travel and Tourism Development Index, the World Economic Forum ranked Japan number one in the world, taking the top spot from the United States. The reason? A record forty-two point seven million international visitors in twenty twenty-five.",
+   "scene": {
+    "type": "bignum",
+    "chapter": "World's number one",
+    "value": 42.7,
+    "suffix": " million",
+    "label": "international visitors in 2025 · a record",
+    "note": "JNTO; World Economic Forum TTDI 2026",
+    "chips": [
+     "#1 WEF Travel Index 2026"
+    ],
+    "cue": "forty-two",
+    "fmt": "1dp"
+   }
+  },
+  {
+   "id": "where",
+   "text": "Japan is an island nation in East Asia, stretched along the edge of the Pacific Ocean. Its nearest neighbours are South Korea, China and Russia, across the Sea of Japan.",
+   "scene": {
+    "type": "map",
+    "chapter": "Where is Japan?",
+    "view": {
+     "lon": 134.0,
+     "lat": 37.0,
+     "span": 58
+    },
+    "labels": [
+     [
+      "South Korea",
+      127.8,
+      36.4
+     ],
+     [
+      "China",
+      116.0,
+      36.0
+     ],
+     [
+      "Russia",
+      134.0,
+      47.5
+     ],
+     [
+      "Pacific Ocean",
+      151.0,
+      31.0,
+      "sea"
+     ],
+     [
+      "Sea of Japan",
+      134.5,
+      40.0,
+      "sea"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "stats",
+   "text": "Japan covers about three hundred and seventy-eight thousand square kilometres. Its capital is Tokyo. The latest census counted around one hundred and twenty-three million people, and almost a third of them live in the Greater Tokyo area.",
+   "scene": {
+    "type": "stats",
+    "chapter": "Japan in numbers",
+    "view": {
+     "lon": 141.5,
+     "lat": 36.5,
+     "span": 32
+    },
+    "capital": [
+     "Tokyo",
+     139.69,
+     35.69
+    ],
+    "cards": [
+     {
+      "label": "Area",
+      "value": 378000,
+      "suffix": " km²",
+      "fmt": "int",
+      "cue": "covers"
+     },
+     {
+      "label": "Capital",
+      "text": "Tokyo"
+     },
+     {
+      "label": "Population",
+      "value": 123.05,
+      "suffix": " million",
+      "fmt": "2dp",
+      "note": "2025 Census, Statistics Bureau of Japan",
+      "cue": "census"
+     }
+    ]
+   }
+  },
+  {
+   "id": "islands",
+   "text": "Japan is made of thousands of islands. Four big ones carry most of the country: Honshu, Hokkaido, Kyushu and Shikoku. Far to the south-west, Okinawa feels almost tropical.",
+   "scene": {
+    "type": "map",
+    "chapter": "An island nation",
+    "view": {
+     "lon": 135.0,
+     "lat": 34.5,
+     "span": 40
+    },
+    "markers": [
+     [
+      "Honshu",
+      138.5,
+      36.8,
+      "dot"
+     ],
+     [
+      "Hokkaido",
+      142.8,
+      43.4,
+      "dot"
+     ],
+     [
+      "Kyushu",
+      130.8,
+      32.6,
+      "dot"
+     ],
+     [
+      "Shikoku",
+      133.5,
+      33.7,
+      "dot"
+     ],
+     [
+      "Okinawa",
+      127.8,
+      26.3,
+      "dot"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "geo",
+   "text": "Most of the land is mountainous and covered in forest. The highest point is Mount Fuji, a volcano that rises three thousand seven hundred and seventy-six metres above the sea. Japan also sits on the Pacific Ring of Fire, so earthquakes and hot springs are part of everyday life.",
+   "scene": {
+    "type": "map",
+    "chapter": "Geography",
+    "view": {
+     "lon": 139.5,
+     "lat": 36.2,
+     "span": 18
+    },
+    "markers": [
+     [
+      "Mount Fuji · 3,776 m",
+      138.73,
+      35.36,
+      "peak"
+     ],
+     [
+      "Japanese Alps",
+      137.6,
+      36.3,
+      "peak"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "history",
+   "text": "Japan's history is long and unique. Kyoto became the imperial capital in seven ninety-four and stayed so for more than a thousand years. In sixteen oh three, the Tokugawa shoguns began over two centuries of peace. The Meiji Restoration of eighteen sixty-eight opened Japan to the world, and in nineteen sixty-four, the first bullet train raced into the future.",
+   "scene": {
+    "type": "timeline",
+    "chapter": "History",
+    "events": [
+     [
+      "794",
+      "Kyoto becomes capital"
+     ],
+     [
+      "1603",
+      "Tokugawa era begins"
+     ],
+     [
+      "1868",
+      "Meiji Restoration"
+     ],
+     [
+      "1964",
+      "First bullet train"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "cities",
+   "text": "Tokyo is one of the largest metropolitan areas on the planet. Osaka is famous for street food, Kyoto for its temples, and Nara for its friendly deer. Hiroshima is a city of peace, while Sapporo and Fukuoka anchor the north and the south.",
+   "scene": {
+    "type": "cities",
+    "chapter": "Great cities",
+    "view": {
+     "lon": 138.5,
+     "lat": 37.0,
+     "span": 26
+    },
+    "cities": [
+     [
+      "Tokyo",
+      139.69,
+      35.69
+     ],
+     [
+      "Osaka",
+      135.5,
+      34.69
+     ],
+     [
+      "Kyoto",
+      135.77,
+      35.01
+     ],
+     [
+      "Nara",
+      135.8,
+      34.69
+     ],
+     [
+      "Hiroshima",
+      132.46,
+      34.39
+     ],
+     [
+      "Sapporo",
+      141.35,
+      43.06
+     ],
+     [
+      "Fukuoka",
+      130.4,
+      33.59
+     ]
+    ]
+   }
+  },
+  {
+   "id": "culture",
+   "text": "Visitors come for experiences you cannot find anywhere else: cherry blossoms in spring, shrines and temples, hot spring baths, and some of the best food in the world. And the bullet trains connect it all, fast and famously on time.",
+   "scene": {
+    "type": "cards",
+    "chapter": "Why people go",
+    "cards": [
+     [
+      "flower",
+      "Cherry blossoms",
+      "spring · sakura",
+      "cherry"
+     ],
+     [
+      "torii",
+      "Shrines & temples",
+      "Kyoto · Nara",
+      "shrines"
+     ],
+     [
+      "mountain",
+      "Hot springs",
+      "onsen culture",
+      "hot"
+     ],
+     [
+      "train",
+      "Bullet trains",
+      "Shinkansen",
+      "bullet"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "growth",
+   "text": "The boom has been fast. Japan welcomed about twenty-five million visitors in twenty twenty-three, nearly thirty-seven million in twenty twenty-four, and a record forty-two point seven million in twenty twenty-five. Visitors spent around nine and a half trillion yen.",
+   "scene": {
+    "type": "bars",
+    "chapter": "The tourism boom",
+    "kpis": [
+     {
+      "label": "Visitor spending 2025",
+      "value": 9.5,
+      "prefix": "¥",
+      "suffix": " trillion",
+      "fmt": "1dp",
+      "cue": "spent"
+     }
+    ],
+    "bars": {
+     "title": "International visitors (millions)",
+     "items": [
+      [
+       "2023",
+       25.1
+      ],
+      [
+       "2024",
+       36.9
+      ],
+      [
+       "2025",
+       42.7
+      ]
+     ],
+     "cue": "welcomed"
+    },
+    "note": "JNTO"
+   }
+  },
+  {
+   "id": "change",
+   "text": "Twenty twenty-six looks different. After Beijing advised its citizens against travelling to Japan, visitors from mainland China fell by more than half in the first months of the year. But South Korea and Taiwan sent record numbers, and July brought the busiest July ever.",
+   "scene": {
+    "type": "bignum",
+    "chapter": "2026: a new mix",
+    "value": 56,
+    "suffix": "% fewer",
+    "label": "visitors from mainland China, Jan–Jul 2026",
+    "note": "JNTO",
+    "chips": [
+     "South Korea: record",
+     "Taiwan: record",
+     "July: all-time high"
+    ],
+    "cue": "more"
+   }
+  },
+  {
+   "id": "future",
+   "text": "The government's goal is sixty million visitors a year by twenty thirty, while cities like Kyoto look for ways to manage the crowds and spread travellers to quieter regions.",
+   "scene": {
+    "type": "map",
+    "chapter": "What's next",
+    "view": {
+     "lon": 141.5,
+     "lat": 36.5,
+     "span": 32
+    },
+    "big": [
+     [
+      "60 million",
+      "visitor goal for 2030"
+     ]
+    ],
+    "markers": [
+     [
+      "Kyoto",
+      135.77,
+      35.01,
+      "star"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "outro",
+   "text": "Ancient and futuristic, calm and electric. Japan is a place that rewards every kind of traveller. Subscribe, and join us for the next country on our journey around the world.",
+   "scene": {
+    "type": "outro"
+   }
+  }
+ ]
+}

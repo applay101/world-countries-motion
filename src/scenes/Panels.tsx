@@ -25,7 +25,7 @@ export const Stats: React.FC<{ t: number; seg: Seg; i: number }> = ({ t, seg, i 
         <div style={{ position: 'absolute', left: 26, bottom: 18, fontFamily: TITLE, fontWeight: 800, fontSize: 44, color: '#fff', textShadow: '0 4px 18px rgba(0,0,0,.8)', letterSpacing: 2 }}>{EP.country.name.toUpperCase()}</div>
       </div>
       {cards.map((c, k) => {
-        const kw = c.label === 'Population' ? 'population' : c.label === 'Capital' ? (c.text as string) : 'covers';
+        const kw = c.cue ?? (c.label === 'Capital' ? (c.text as string) : (c.label as string));
         const at = Math.max(seg.start + 0.4 + k * 0.5, cue(seg, kw, k, cards.length) - 0.2);
         const p = pr(t, at, 0.8, eBack); const n = pr(t, at + 0.1, 1.8, (x) => x);
         return (
@@ -103,6 +103,12 @@ export const Timeline: React.FC<{ t: number; seg: Seg; i: number }> = ({ t, seg,
 
 // ---------- culture cards ----------
 const ICON: Record<string, (s: number) => React.ReactNode> = {
+  flower: (s) => <svg width={s} height={s} viewBox="0 0 64 64">{[0, 72, 144, 216, 288].map((a) => <ellipse key={a} cx="32" cy="17" rx="9" ry="14" fill="#ffb7d0" transform={`rotate(${a} 32 32)`} />)}<circle cx="32" cy="32" r="6" fill={GOLD} /></svg>,
+  train: (s) => <svg width={s} height={s} viewBox="0 0 64 64"><path d="M8 40 C10 22 26 16 56 18 V40 Z" fill="#e8eef6" /><path d="M8 40 H56 V46 H8 Z" fill="#2e7fc0" /><path d="M22 24 H52 V30 H18 Z" fill="#1a2a44" /><circle cx="18" cy="50" r="4" fill={GOLD} /><circle cx="46" cy="50" r="4" fill={GOLD} /></svg>,
+  torii: (s) => <svg width={s} height={s} viewBox="0 0 64 64"><path d="M6 14 Q32 8 58 14 L56 20 Q32 15 8 20 Z" fill="#e2412f" /><rect x="10" y="26" width="44" height="5" fill="#e2412f" /><rect x="16" y="18" width="6" height="40" fill="#e2412f" /><rect x="42" y="18" width="6" height="40" fill="#e2412f" /></svg>,
+  bowl: (s) => <svg width={s} height={s} viewBox="0 0 64 64"><path d="M8 30 H56 C56 44 46 52 32 52 C18 52 8 44 8 30 Z" fill={GOLD} /><path d="M22 12 L30 30 M34 10 L38 30" stroke="#e8eef6" strokeWidth="3" strokeLinecap="round" /><path d="M14 30 Q32 22 50 30" stroke="#fff" strokeWidth="3" fill="none" /></svg>,
+  mountain: (s) => <svg width={s} height={s} viewBox="0 0 64 64"><path d="M4 54 L28 14 L40 32 L46 24 L60 54 Z" fill="#5a7fa8" /><path d="M22 24 L28 14 L34 24 L30 22 L26 26 Z" fill="#fff" /></svg>,
+  star: (s) => <svg width={s} height={s} viewBox="0 0 64 64"><path d="M32 6 L39 24 L58 24 L43 36 L49 56 L32 44 L15 56 L21 36 L6 24 L25 24 Z" fill={GOLD} /></svg>,
   flamenco: (s) => <svg width={s} height={s} viewBox="0 0 64 64"><path d="M32 52 L8 22 A30 30 0 0 1 56 22 Z" fill={GOLD} /><path d="M32 52 L14 20 M32 52 L22 14 M32 52 L32 12 M32 52 L42 14 M32 52 L50 20" stroke="#3a2600" strokeWidth="2.5" /><circle cx="32" cy="52" r="4" fill="#3a2600" /></svg>,
   clock: (s) => <svg width={s} height={s} viewBox="0 0 64 64"><circle cx="32" cy="32" r="24" fill="none" stroke={GOLD} strokeWidth="5" /><path d="M32 18 V32 L42 40" stroke={GOLD} strokeWidth="5" strokeLinecap="round" fill="none" /></svg>,
   bull: (s) => <svg width={s} height={s} viewBox="0 0 64 64"><path d="M6 16 C10 28 18 30 22 28 L24 44 C26 54 38 54 40 44 L42 28 C46 30 54 28 58 16 C52 22 46 22 42 20 L22 20 C18 22 12 22 6 16 Z" fill={GOLD} /><circle cx="27" cy="34" r="2.5" fill="#3a2600" /><circle cx="37" cy="34" r="2.5" fill="#3a2600" /></svg>,
@@ -111,12 +117,11 @@ const ICON: Record<string, (s: number) => React.ReactNode> = {
 export const Cards: React.FC<{ t: number; seg: Seg; i: number }> = ({ t, seg, i }) => {
   const [a, b] = segWindow(i); const vis = fadeWin(t, a, b, 0.5, 0.45);
   if (vis <= 0) return null;
-  const cards = seg.scene.cards as [string, string, string][];
-  const kws = ['flamenco', 'dinner', 'running', 'tomatina'];
+  const cards = seg.scene.cards as [string, string, string, string?][];
   return (
     <div style={{ position: 'absolute', left: 160, right: 160, top: 250, display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 30, opacity: vis }}>
       {cards.map(([icon, title, sub], k) => {
-        const at = cue(seg, kws[k] ?? title, k, cards.length); const p = pr(t, at, 0.8, eBack);
+        const at = cue(seg, cards[k][3] ?? title, k, cards.length); const p = pr(t, at, 0.8, eBack);
         return (
           <div key={k} style={{ ...glass, height: 420, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 22, padding: 24,
             transform: `translateY(${(1 - p) * 120}px) rotate(${(1 - p) * (k % 2 ? 6 : -6)}deg)`, opacity: cl(p * 2) }}>
@@ -134,12 +139,12 @@ export const Cards: React.FC<{ t: number; seg: Seg; i: number }> = ({ t, seg, i 
 export const BigNum: React.FC<{ t: number; seg: Seg; i: number }> = ({ t, seg, i }) => {
   const [a, b] = segWindow(i); const vis = fadeWin(t, a, b, 0.5, 0.45);
   if (vis <= 0) return null;
-  const sc = seg.scene; const at = cue(seg, 'six', 0, 1) - 0.3; const p = pr(t, at, 2.2, (x) => x); const s = pr(t, at - 0.2, 0.8, eBack);
+  const sc = seg.scene; const at = (sc.cue ? cue(seg, sc.cue, 0, 1) : seg.start + 0.6) - 0.3; const p = pr(t, at, 2.2, (x) => x); const s = pr(t, at - 0.2, 0.8, eBack);
   const chips = (sc.chips as string[]) ?? [];
   return (
     <div style={{ position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', opacity: vis, paddingBottom: 120 }}>
       <div style={{ fontFamily: TITLE, fontWeight: 800, fontSize: 210, color: GOLD, lineHeight: 1, transform: `scale(${0.6 + 0.4 * s})`, textShadow: '0 20px 60px rgba(0,0,0,.6)' }}>
-        <Count v={sc.value} p={p} suffix="" /><span style={{ fontSize: 90, color: '#fff' }}>{sc.suffix}</span>
+        <Count v={sc.value} p={p} fmt={sc.fmt} suffix="" /><span style={{ fontSize: 90, color: '#fff' }}>{sc.suffix}</span>
       </div>
       <div style={{ fontFamily: BODY, fontWeight: 500, fontSize: 44, color: '#e6eef8', marginTop: 10, opacity: cl(s * 2) }}>{sc.label}</div>
       <div style={{ display: 'flex', gap: 22, marginTop: 50 }}>
@@ -155,12 +160,12 @@ export const BigNum: React.FC<{ t: number; seg: Seg; i: number }> = ({ t, seg, i
 export const Bars: React.FC<{ t: number; seg: Seg; i: number }> = ({ t, seg, i }) => {
   const [a, b] = segWindow(i); const vis = fadeWin(t, a, b, 0.5, 0.45);
   if (vis <= 0) return null;
-  const sc = seg.scene; const kpis = sc.kpis as any[]; const bars = sc.bars as { title: string; items: [string, number][] };
-  const bt = cue(seg, 'tourism', 0, 1); const max = Math.max(...bars.items.map((x) => x[1]));
+  const sc = seg.scene; const kpis = sc.kpis as any[]; const bars = sc.bars as { title: string; items: [string, number][]; cue?: string };
+  const bt = bars.cue ? cue(seg, bars.cue, 0, 1) : seg.start + (seg.end - seg.start) * 0.35; const max = Math.max(...bars.items.map((x) => x[1]));
   return (
     <div style={{ position: 'absolute', left: 140, right: 140, top: 170, display: 'flex', gap: 60, opacity: vis }}>
       <div style={{ width: 560, display: 'flex', flexDirection: 'column', gap: 30 }}>
-        {kpis.map((k, j) => { const at = cue(seg, j === 0 ? 'economy' : 'grew', j, kpis.length); const p = pr(t, at, 0.8, eBack); const n = pr(t, at, 1.8, (x) => x);
+        {kpis.map((k, j) => { const at = k.cue ? cue(seg, k.cue, j, kpis.length) : seg.start + 0.4 + j * 0.8; const p = pr(t, at, 0.8, eBack); const n = pr(t, at, 1.8, (x) => x);
           return (<div key={j} style={{ ...glass, padding: '30px 36px', transform: `translateX(${(1 - p) * -300}px)`, opacity: cl(p * 2) }}>
             <div style={{ fontFamily: BODY, fontWeight: 500, fontSize: 26, color: '#a9bcd6', letterSpacing: 2, textTransform: 'uppercase' }}>{k.label}</div>
             <div style={{ fontFamily: TITLE, fontWeight: 800, fontSize: 70, color: GOLD, lineHeight: 1.1, whiteSpace: 'nowrap' }}><Count v={k.value} p={n} fmt={k.fmt} prefix={k.prefix} suffix={k.suffix} /></div>

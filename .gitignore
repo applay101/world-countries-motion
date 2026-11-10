@@ -6,3 +6,4 @@ src/data/episode.json
 public/flag.png
 public/flag.svg
 out/
+__pycache__/
