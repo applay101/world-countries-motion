@@ -488,5 +488,11 @@
     "type": "outro"
    }
   }
- ]
+ ],
+ "thumb": {
+  "top": "EXPLAINED",
+  "big": "SPAIN",
+  "sub": "in 4 minutes",
+  "badge": "96.8M tourists"
+ }
 }

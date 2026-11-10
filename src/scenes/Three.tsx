@@ -89,3 +89,63 @@ export const FlagWave: React.FC<{ t: number; w: number; h: number; amp?: number 
   </ThreeCanvas>
 );
 export { eOut };
+
+// ---------- gold dust + burst particles ----------
+const dustVS = `
+attribute vec3 aSeed; uniform float uTime; uniform float uBurst; uniform float uPx;
+varying float vA;
+void main(){
+  vec3 p = position;
+  p.y = mod(p.y + uTime*(0.25 + aSeed.x*0.5) + 14.0, 28.0) - 14.0;
+  p.x += sin(uTime*0.6 + aSeed.y*6.28)*0.4;
+  // burst: fly outward from center
+  vec3 dir = normalize(vec3(aSeed.y-0.5, aSeed.z-0.5, (aSeed.x-0.5)*0.6) + 1e-4);
+  float bt = max(uBurst, 0.0);
+  vec3 bp = dir * (bt * (6.0 + aSeed.z*14.0)) * (1.0 - 0.25*bt) + vec3(0.0, -bt*bt*1.5, 0.0);
+  p = mix(p, bp, step(0.0001, uBurst) * step(aSeed.x, 0.55));
+  vec4 mv = modelViewMatrix * vec4(p, 1.0);
+  gl_PointSize = (2.0 + aSeed.z*7.0) * uPx / -mv.z;
+  vA = (0.35 + 0.65*aSeed.y) * (0.6 + 0.4*sin(uTime*3.0 + aSeed.z*20.0));
+  gl_Position = projectionMatrix * mv;
+}`;
+const dustFS = `
+uniform vec3 uColor; uniform float uOpacity; varying float vA;
+void main(){
+  float d = length(gl_PointCoord - 0.5);
+  float a = smoothstep(0.5, 0.0, d); a = a*a;
+  gl_FragColor = vec4(uColor * (1.0 + a), a * vA * uOpacity);
+}`;
+
+const Dust: React.FC<{ t: number; burst: number; opacity: number }> = ({ t, burst, opacity }) => {
+  const geo = useMemo(() => {
+    const n = 420, pos = new Float32Array(n * 3), seed = new Float32Array(n * 3);
+    let s = 1234567;
+    const r = () => ((s = (s * 16807) % 2147483647) / 2147483647);
+    for (let i = 0; i < n; i++) {
+      pos[i * 3] = (r() - 0.5) * 30; pos[i * 3 + 1] = (r() - 0.5) * 28; pos[i * 3 + 2] = (r() - 0.6) * 8;
+      seed[i * 3] = r(); seed[i * 3 + 1] = r(); seed[i * 3 + 2] = r();
+    }
+    const g = new THREE.BufferGeometry();
+    g.setAttribute('position', new THREE.BufferAttribute(pos, 3)); g.setAttribute('aSeed', new THREE.BufferAttribute(seed, 3));
+    return g;
+  }, []);
+  const mat = useMemo(() => new THREE.ShaderMaterial({
+    vertexShader: dustVS, fragmentShader: dustFS, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending,
+    uniforms: { uTime: { value: 0 }, uBurst: { value: 0 }, uPx: { value: 28 }, uColor: { value: new THREE.Color('#ffc24a') }, uOpacity: { value: 1 } },
+  }), []);
+  mat.uniforms.uTime.value = t; mat.uniforms.uBurst.value = burst; mat.uniforms.uOpacity.value = opacity;
+  return <points geometry={geo} material={mat} />;
+};
+
+export const DustLayer: React.FC<{ t: number; burstAt: number }> = ({ t, burstAt }) => {
+  const burst = t > burstAt ? Math.min(1.6, (t - burstAt) / 1.6) : 0;
+  const op = Math.min(1, t / 1.0) * (t > burstAt ? 1.2 : 0.32);
+  const w = 960, h = 540;
+  return (
+    <div style={{ position: 'absolute', left: 0, top: 0, width: w, height: h, transform: 'scale(2)', transformOrigin: '0 0', pointerEvents: 'none' }}>
+      <ThreeCanvas width={w} height={h} camera={{ fov: 60, position: [0, 0, 12] }} gl={{ antialias: false, alpha: true, preserveDrawingBuffer: true }}>
+        <Dust t={t} burst={burst} opacity={op} />
+      </ThreeCanvas>
+    </div>
+  );
+};

@@ -228,13 +228,74 @@ const CHUNKS: Chunk[] = (() => {
 export const Captions: React.FC<{ t: number }> = ({ t }) => {
   const c = CHUNKS.find((x) => t >= x.t0 - 0.12 && t < x.t1);
   if (!c) return null;
-  const p = pr(t, c.t0 - 0.12, 0.25);
+  const p = pr(t, c.t0 - 0.12, 0.2);
   return (
-    <div style={{ position: 'absolute', left: 0, right: 0, bottom: 70, display: 'flex', justifyContent: 'center', opacity: cl(p * 1.5) }}>
-      <div style={{ padding: '12px 30px 16px', borderRadius: 18, background: 'rgba(4,8,16,.62)', display: 'flex', gap: 14, flexWrap: 'wrap', justifyContent: 'center', maxWidth: 1500 }}>
-        {c.words.map((w, k) => { const on = t >= w.t - 0.04 && t < (k + 1 < c.words.length ? c.words[k + 1].t : c.t1);
-          const seen = t >= w.t - 0.04;
-          return <span key={k} style={{ fontFamily: BODY, fontWeight: 700, fontSize: 46, color: on ? GOLD : seen ? '#fff' : 'rgba(255,255,255,.45)', display: 'inline-block' }}>{w.w}</span>; })}
+    <div style={{ position: 'absolute', left: 0, right: 0, bottom: 64, display: 'flex', justifyContent: 'center', opacity: cl(p * 1.5) }}>
+      <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', justifyContent: 'center', maxWidth: 1560 }}>
+        {c.words.map((w, k) => {
+          const end = k + 1 < c.words.length ? c.words[k + 1].t : c.t1;
+          const on = t >= w.t - 0.04 && t < end; const q = pr(t, w.t - 0.08, 0.28, eBack);
+          return <span key={k} style={{ fontFamily: TITLE, fontWeight: 800, fontSize: 54, lineHeight: 1.25, display: 'inline-block', padding: '2px 12px 6px', borderRadius: 12,
+            color: on ? INK : '#fff', background: on ? GOLD : 'transparent', opacity: cl(q * 2) * (t >= w.t - 0.08 ? 1 : 0.0),
+            transform: `translateY(${(1 - q) * 18}px) scale(${0.85 + 0.15 * q})`,
+            textShadow: on ? 'none' : '0 4px 0 rgba(0,0,0,.6), 0 0 24px rgba(0,0,0,.9), 0 0 4px rgba(0,0,0,1)' }}>{w.w}</span>;
+        })}
+      </div>
+    </div>
+  );
+};
+
+// ---------- tutorial: numbered steps (revealed as spoken) ----------
+export const Steps: React.FC<{ t: number; seg: Seg; i: number }> = ({ t, seg, i }) => {
+  const [a, b] = segWindow(i); const vis = fadeWin(t, a, b, 0.5, 0.45);
+  if (vis <= 0) return null;
+  const steps = seg.scene.steps as [string, string, string?][];
+  const url = seg.scene.url as string | undefined;
+  return (
+    <div style={{ position: 'absolute', left: 150, right: 150, top: 150, opacity: vis }}>
+      {url ? <div style={{ ...glass, borderRadius: 18, display: 'flex', alignItems: 'center', gap: 16, padding: '14px 24px', marginBottom: 26, opacity: cl(pr(t, seg.start, 0.6) * 2) }}>
+        <div style={{ display: 'flex', gap: 8 }}>{['#ff5f57', '#febc2e', '#28c840'].map((c) => <div key={c} style={{ width: 16, height: 16, borderRadius: 16, background: c }} />)}</div>
+        <div style={{ flex: 1, fontFamily: BODY, fontWeight: 700, fontSize: 30, color: '#cfe0f4', background: 'rgba(255,255,255,.06)', borderRadius: 12, padding: '8px 18px' }}>https://{url}</div>
+      </div> : null}
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 18 }}>
+        {steps.map(([title, sub, kw], k) => {
+          const at = cue(seg, kw ?? title, k, steps.length); const p = pr(t, at, 0.7, eBack); const done = t > at + 0.6;
+          return (
+            <div key={k} style={{ ...glass, display: 'flex', alignItems: 'center', gap: 28, padding: '20px 30px', transform: `translateX(${(1 - p) * -500}px)`, opacity: cl(p * 2),
+              borderColor: done ? 'rgba(255,201,74,.8)' : 'rgba(255,201,74,.35)' }}>
+              <div style={{ width: 74, height: 74, flex: 'none', borderRadius: 74, background: GOLD, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: TITLE, fontWeight: 800, fontSize: 40, color: INK }}>{k + 1}</div>
+              <div style={{ flex: 1 }}>
+                <div style={{ fontFamily: TITLE, fontWeight: 800, fontSize: 40, color: '#fff' }}>{title}</div>
+                <div style={{ fontFamily: BODY, fontWeight: 500, fontSize: 27, color: '#a9bcd6', marginTop: 4 }}>{sub}</div>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+};
+
+// ---------- tutorial: document checklist ----------
+export const Checklist: React.FC<{ t: number; seg: Seg; i: number }> = ({ t, seg, i }) => {
+  const [a, b] = segWindow(i); const vis = fadeWin(t, a, b, 0.5, 0.45);
+  if (vis <= 0) return null;
+  const items = seg.scene.items as [string, string?][];
+  const title = seg.scene.title as string | undefined;
+  return (
+    <div style={{ position: 'absolute', left: 360, right: 360, top: 140, opacity: vis }}>
+      <div style={{ ...glass, padding: '34px 44px' }}>
+        {title ? <div style={{ fontFamily: TITLE, fontWeight: 800, fontSize: 46, color: GOLD, marginBottom: 18 }}>{title}</div> : null}
+        {items.map(([label, kw], k) => {
+          const at = cue(seg, kw ?? label, k, items.length); const p = pr(t, at, 0.5, eBack); const tick = pr(t, at + 0.25, 0.4, eOut);
+          return (
+            <div key={k} style={{ display: 'flex', alignItems: 'center', gap: 22, padding: '12px 0', borderBottom: k < items.length - 1 ? '1px solid rgba(255,255,255,.08)' : 'none', opacity: cl(p * 2), transform: `translateX(${(1 - p) * 60}px)` }}>
+              <svg width={44} height={44} viewBox="0 0 44 44"><rect x="2" y="2" width="40" height="40" rx="10" fill="none" stroke={GOLD} strokeWidth="3" />
+                <path d="M11 23 L19 31 L34 13" fill="none" stroke={GOLD} strokeWidth="5" strokeLinecap="round" strokeLinejoin="round" pathLength={1} strokeDasharray={`${tick} 1`} /></svg>
+              <div style={{ fontFamily: BODY, fontWeight: 700, fontSize: 34, color: '#fff' }}>{label}</div>
+            </div>
+          );
+        })}
       </div>
     </div>
   );

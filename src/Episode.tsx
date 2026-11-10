@@ -3,8 +3,9 @@ import React, { useEffect, useState } from 'react';
 import { AbsoluteFill, continueRender, delayRender, useCurrentFrame, useVideoConfig } from 'remotion';
 import { EP, W, H, GOLD, TITLE, BODY, cl, pr, eBack, eOut, segIndexAt, spokenAt, E, INTRO_END } from './lib/core';
 import { MapLayer } from './scenes/MapLayer';
-import { Globe, usePreload } from './scenes/Three';
-import { Stats, BigChips, Timeline, Cards, BigNum, Bars, Outro, Captions, Chapter } from './scenes/Panels';
+import { Globe, usePreload, DustLayer } from './scenes/Three';
+import { ChapterHero, LightSweep, Progress, shake } from './scenes/Fx';
+import { Stats, BigChips, Timeline, Cards, BigNum, Bars, Outro, Captions, Chapter, Steps, Checklist } from './scenes/Panels';
 
 const useFonts = () => {
   const [h] = useState(() => delayRender('fonts'));
@@ -16,7 +17,7 @@ const useFonts = () => {
 
 const FIRST_MAP = { start: INTRO_END };
 const INTRO = EP.segments[0];
-const DIM: Record<string, number> = { timeline: 0.62, cards: 0.6, bignum: 0.66, bars: 0.62 };
+const DIM: Record<string, number> = { timeline: 0.55, cards: 0.55, bignum: 0.6, bars: 0.55, steps: 0.6, checklist: 0.6 };
 
 export const Episode: React.FC = () => {
   useFonts();
@@ -36,6 +37,7 @@ export const Episode: React.FC = () => {
   const sideShade = ['stats', 'map', 'cities'].includes(seg.scene.type) && (seg.scene.cards || seg.scene.big) ? 1 : 0;
   return (
     <AbsoluteFill style={{ background: '#02050c', overflow: 'hidden' }}>
+      <AbsoluteFill style={{ transform: shake(t) }}>
       {t > FIRST_MAP.start - 1.2 ? <AbsoluteFill style={{ opacity: mapIn }}><MapLayer t={t} seg={seg} segIdx={i} /></AbsoluteFill> : null}
       {globeOn && ready ? <AbsoluteFill style={{ opacity: 1 - mapIn }}><Globe t={t} t0={0} t1={FIRST_MAP.start - 0.6} /></AbsoluteFill> : null}
 
@@ -65,12 +67,19 @@ export const Episode: React.FC = () => {
             {ty === 'cards' ? <Cards t={t} seg={s} i={k} /> : null}
             {ty === 'bignum' ? <BigNum t={t} seg={s} i={k} /> : null}
             {ty === 'bars' ? <Bars t={t} seg={s} i={k} /> : null}
+            {ty === 'steps' ? <Steps t={t} seg={s} i={k} /> : null}
+            {ty === 'checklist' ? <Checklist t={t} seg={s} i={k} /> : null}
             <Chapter t={t} seg={s} i={k} />
           </React.Fragment>
         );
       })}
       {ready ? <Outro t={t} seg={last} /> : null}
+      </AbsoluteFill>
+      {ready ? <DustLayer t={t} burstAt={(spokenAt(last, 'subscribe') ?? last.start + 4) - 0.1} /> : null}
+      <LightSweep t={t} />
+      <ChapterHero t={t} />
       <Captions t={t} />
+      <Progress t={t} />
       <AbsoluteFill style={{ background: '#fff7e0', opacity: flash, mixBlendMode: 'screen' }} />
       <AbsoluteFill style={{ background: '#000', opacity: pr(t, EP.duration - 0.8, 0.8, (x) => x) }} />
     </AbsoluteFill>

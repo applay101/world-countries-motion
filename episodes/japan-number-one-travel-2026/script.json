@@ -9,8 +9,8 @@
   "capital": "Tokyo"
  },
  "voice": "af_heart",
- "speed": 0.96,
- "music": "ambient",
+ "speed": 1.0,
+ "music": "pulse",
  "segments": [
   {
    "id": "intro",
@@ -389,5 +389,11 @@
    }
   }
  ],
- "rev": 2
+ "rev": 3,
+ "thumb": {
+  "top": "WORLD'S #1",
+  "big": "JAPAN",
+  "sub": "Why everyone goes now",
+  "badge": "42.7M visitors"
+ }
 }

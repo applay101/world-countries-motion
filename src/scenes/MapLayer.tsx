@@ -5,7 +5,7 @@ import { staticFile } from 'remotion';
 import { geoMercator, geoPath, geoGraticule10, geoArea, geoBounds } from 'd3-geo';
 import { feature } from 'topojson-client';
 import world from 'world-atlas/countries-50m.json';
-import { EP, W, H, GOLD, TITLE, BODY, Seg, View, cl, pr, lerp, eExpoIO, eBack, eOut, cue, segWindow, fadeWin, INTRO_END } from '../lib/core';
+import { EP, W, H, GOLD, TITLE, BODY, Seg, View, cl, pr, lerp, eExpoIO, eBack, eOut, cue, segWindow, fadeWin, INTRO_END, spokenAt } from '../lib/core';
 
 const FC: any = feature(world as any, (world as any).objects.countries);
 const FEATS: any[] = FC.features;
@@ -20,30 +20,54 @@ const MAIN: any = (() => {
   return best;
 })();
 const GRAT = geoGraticule10();
+const DIMMED = new Set(['timeline', 'cards', 'bignum', 'bars', 'steps', 'checklist']);
 
-// ---------- camera ----------
-const VIEWS: { t: number; v: View }[] = [];
-EP.segments.forEach((s) => { if (s.scene.view) VIEWS.push({ t: s.start - 0.6, v: s.scene.view }); });
-const FIRST: View = VIEWS[0]?.v ?? { lon: EP.country.lon, lat: EP.country.lat, span: 30 };
+// ---------- camera: shot list built from the narration ----------
+// Each map segment opens on its view, then the camera flies in to every place as it is spoken, and pulls back out.
+type Key = { t: number; v: View; d: number };
+const SHOT_TYPES = new Set(['map', 'cities']);
+const KEYS: Key[] = (() => {
+  const ks: Key[] = [];
+  const first = EP.segments.find((s) => s.scene.view)?.scene.view as View | undefined ?? { lon: EP.country.lon, lat: EP.country.lat, span: 30 };
+  ks.push({ t: -10, v: { ...first, span: first.span * 3.4, lon: first.lon + 6 }, d: 0.01 });
+  ks.push({ t: INTRO_END - 1.0, v: first, d: 2.2 });
+  EP.segments.forEach((s) => {
+    const base = s.scene.view as View | undefined; if (!base) return;
+    ks.push({ t: s.start - 0.55, v: base, d: 1.5 });
+    if (!SHOT_TYPES.has(s.scene.type)) return;
+    const pts = ((s.scene.markers ?? []) as any[]).concat(s.scene.cities ?? []).map((m) => ({ name: m[0] as string, lon: m[1] as number, lat: m[2] as number }));
+    let last = -1;
+    pts.map((m) => ({ ...m, at: cueTime(s, m.name) })).filter((m) => m.at !== null).sort((a, b) => a.at! - b.at!).forEach((m) => {
+      const at = m.at!; if (at < last + 1.2) return;
+      ks.push({ t: at - 0.45, v: { lon: m.lon, lat: m.lat, span: Math.max(3, base.span * 0.45) }, d: 1.1 });
+      last = at;
+    });
+    if (last > 0 && last + 2.0 < s.end) ks.push({ t: last + 1.9, v: base, d: 1.3 });
+  });
+  return ks.sort((a, b) => a.t - b.t);
+})();
+function cueTime(s: Seg, name: string): number | null { const sp = spokenAt(s, name); return sp === null ? null : sp - 0.15; }
+const mixV = (a: View, b: View, p: number): View => ({ lon: lerp(a.lon, b.lon, p), lat: lerp(a.lat, b.lat, p), span: Math.exp(lerp(Math.log(a.span), Math.log(b.span), p)) });
 export const camera = (t: number): View => {
-  if (!VIEWS.length) return FIRST;
-  // intro: arrive from a wide view
-  if (t < Math.min(VIEWS[0].t, INTRO_END - 0.6) + 1.6) {
-    const p = eExpoIO(cl((t - (INTRO_END - 1.0)) / 2.0));
-    return { lon: lerp(FIRST.lon + 4, FIRST.lon, p), lat: FIRST.lat, span: Math.exp(lerp(Math.log(FIRST.span * 3.2), Math.log(FIRST.span), p)) };
+  let cur = KEYS[0].v;
+  for (let i = 1; i < KEYS.length; i++) {
+    const k = KEYS[i]; if (t < k.t) break;
+    const nextT = i + 1 < KEYS.length ? Math.min(KEYS[i + 1].t, t) : t;
+    // state at the moment this transition is interrupted (or now)
+    const p = eExpoIO(cl((nextT - k.t) / k.d));
+    cur = mixV(cur, k.v, p);
   }
-  let k = 0; for (let i = 0; i < VIEWS.length; i++) if (t >= VIEWS[i].t) k = i;
-  const a = VIEWS[Math.max(0, k - 1)].v, b = VIEWS[k].v;
-  const p = k === 0 ? 1 : eExpoIO(cl((t - VIEWS[k].t) / 1.8));
-  // slow drift so the map never feels frozen
-  const d = t - VIEWS[k].t;
+  // living camera: drift, breathing zoom, punch-in at every segment change, slow pull-back in the outro
+  let span = cur.span * (1 + 0.035 * Math.sin(t * 0.45));
+  for (const s of EP.segments) { const d = t - s.start + 0.35; if (d > 0 && d < 0.7) span *= 1 - 0.1 * Math.sin((Math.PI * d) / 0.7); }
   const outro = EP.segments[EP.segments.length - 1];
-  let span = Math.exp(lerp(Math.log(a.span), Math.log(b.span), p)) * (1 - 0.0035 * Math.min(d, 20));
-  if (t > outro.start) span *= 1 + 0.5 * eExpoIO(cl((t - outro.start) / 6));
-  return { lon: lerp(a.lon, b.lon, p) + 0.02 * d, lat: lerp(a.lat, b.lat, p), span };
+  if (t > outro.start) span *= 1 + 0.6 * eExpoIO(cl((t - outro.start) / 7));
+  return { lon: cur.lon + span * 0.012 * Math.sin(t * 0.21), lat: cur.lat + span * 0.006 * Math.cos(t * 0.17), span };
 };
 
-const proj = (v: View) => geoMercator().center([v.lon, v.lat]).scale(W / ((v.span * Math.PI) / 180)).translate([W / 2, H / 2]).clipExtent([[-60, -60], [W + 60, H + 60]]);
+// the SVG canvas is larger than the frame so the 3D tilt never shows an edge
+export const CW = 2600, CH = 1700;
+const proj = (v: View) => geoMercator().center([v.lon, v.lat]).scale(W / ((v.span * Math.PI) / 180)).translate([CW / 2, CH / 2]).clipExtent([[-60, -60], [CW + 60, CH + 60]]);
 
 type Mk = [string, number, number, string?];
 const Marker: React.FC<{ x: number; y: number; name: string; kind: string; p: number; side?: number }> = ({ x, y, name, kind, p, side = 1 }) => {
@@ -73,8 +97,8 @@ const Marker: React.FC<{ x: number; y: number; name: string; kind: string; p: nu
   );
 };
 
-export const MapLayer: React.FC<{ t: number; seg: Seg; segIdx: number }> = ({ t, seg, segIdx }) => {
-  const v = camera(t);
+export const MapLayer: React.FC<{ t: number; seg: Seg; segIdx: number; view?: View }> = ({ t, seg, segIdx, view }) => {
+  const v = view ?? camera(t);
   const P = proj(v);
   const path = geoPath(P);
   const land = useMemo(() => FEATS, []);
@@ -83,6 +107,11 @@ export const MapLayer: React.FC<{ t: number; seg: Seg; segIdx: number }> = ({ t,
   const fw = mb[1][0] - mb[0][0], fh = mb[1][1] - mb[0][1];
   const fillP = pr(t, INTRO_END + 0.6, 1.4, eOut);
   const glow = 0.55 + 0.2 * Math.sin(t * 2.4);
+  const tiltBase = seg.scene.type === 'stats' ? 14 : DIMMED.has(seg.scene.type) ? 30 : 24;
+  const tilt = tiltBase + 4 * Math.sin(t * 0.13) - 14 * (1 - pr(t, INTRO_END - 0.4, 2.4));
+  const rz = 1.4 * Math.sin(t * 0.09);
+  let blur = 0; for (const s of EP.segments) { const d = t - s.start + 0.35; if (d > 0 && d < 0.5) blur = Math.max(blur, 7 * Math.sin((Math.PI * d) / 0.5)); }
+  const draw = pr(t, INTRO_END - 0.3, 2.2, eOut);
 
   // overlays from the active segment (labels, markers, river) + capital
   const sc = seg.scene;
@@ -101,7 +130,7 @@ export const MapLayer: React.FC<{ t: number; seg: Seg; segIdx: number }> = ({ t,
   const mks = ((sc.markers as Mk[] | undefined) ?? []).concat(sc.cities ? (sc.cities as Mk[]).map((c) => [c[0], c[1], c[2], 'dot'] as Mk) : []);
   mks.forEach(([name, lon, lat, kind], i, arr) => {
     const c = cue(seg, name, i, arr.length); const p = pr(t, c, 0.7, (x) => x) * vis; const [x, y] = pt(lon, lat);
-    items.push(<Marker key={'m' + i} x={x} y={y} name={name} kind={kind ?? 'dot'} p={p} side={x > W * 0.78 ? -1 : 1} />);
+    items.push(<Marker key={'m' + i} x={x} y={y} name={name} kind={kind ?? 'dot'} p={p} side={x > CW / 2 + W * 0.28 ? -1 : 1} />);
   });
   if (sc.capital) {
     const [name, lon, lat] = sc.capital as Mk; const c = cue(seg, name, 0, 1); const [x, y] = pt(lon, lat);
@@ -121,7 +150,10 @@ export const MapLayer: React.FC<{ t: number; seg: Seg; segIdx: number }> = ({ t,
   }
 
   return (
-    <svg width={W} height={H} style={{ position: 'absolute', inset: 0 }}>
+    <div style={{ position: 'absolute', inset: 0, perspective: 1500, perspectiveOrigin: '50% 30%' }}>
+    <div style={{ position: 'absolute', left: (W - CW) / 2, top: (H - CH) / 2 + 40, width: CW, height: CH, transformOrigin: '50% 55%',
+      transform: `rotateX(${tilt}deg) rotateZ(${rz}deg)`, filter: blur > 0.3 ? `blur(${blur}px)` : undefined }}>
+    <svg width={CW} height={CH} style={{ position: 'absolute', inset: 0 }}>
       <defs>
         <radialGradient id="ocean" cx="50%" cy="45%" r="75%"><stop offset="0" stopColor="#0f3a66" /><stop offset="0.6" stopColor="#0a2546" /><stop offset="1" stopColor="#050f20" /></radialGradient>
         <linearGradient id="land" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stopColor="#4a6380" /><stop offset="1" stopColor="#33495f" /></linearGradient>
@@ -130,7 +162,7 @@ export const MapLayer: React.FC<{ t: number; seg: Seg; segIdx: number }> = ({ t,
         <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%"><feDropShadow dx="0" dy="10" stdDeviation="12" floodColor="#000" floodOpacity="0.55" /></filter>
         <clipPath id="tgt"><path d={tgtD} /></clipPath>
       </defs>
-      <rect width={W} height={H} fill="url(#ocean)" />
+      <rect width={CW} height={CH} fill="url(#ocean)" />
       <path d={path(GRAT) || ''} fill="none" stroke="rgba(140,190,255,.08)" strokeWidth={1} />
       <g filter="url(#shadow)">
         {land.map((f, i) => (f === TARGET ? null : <path key={i} d={path(f) || ''} fill="url(#land)" stroke="rgba(200,220,240,.45)" strokeWidth={1.1} />))}
@@ -141,12 +173,15 @@ export const MapLayer: React.FC<{ t: number; seg: Seg; segIdx: number }> = ({ t,
           <path d={tgtD} fill="#3a4f63" />
           <g clipPath="url(#tgt)" opacity={fillP}>
             <image href={staticFile('flag.svg')} x={mb[0][0] - fw * 0.04} y={mb[0][1] - fh * 0.04} width={fw * 1.08} height={fh * 1.08} preserveAspectRatio="xMidYMid slice" />
-            <rect x={0} y={0} width={W} height={H} fill="url(#ocean)" opacity={0.12} />
+            <rect x={0} y={0} width={CW} height={CH} fill="url(#ocean)" opacity={0.12} />
           </g>
-          <path d={tgtD} fill="none" stroke="#FFE6A0" strokeWidth={2.6} opacity={fillP} strokeLinejoin="round" />
+          <path d={tgtD} fill="none" stroke="#FFE6A0" strokeWidth={3} strokeLinejoin="round" pathLength={1000} strokeDasharray={`${1000 * draw} 1000`} />
+          <path d={tgtD} fill="none" stroke="#fff" strokeWidth={4} strokeLinejoin="round" pathLength={1000} strokeDasharray="60 940" strokeDashoffset={-((t * 140) % 1000)} opacity={0.75 * fillP} filter="url(#soft)" />
         </g>
       ) : null}
       {items}
     </svg>
+    </div>
+    </div>
   );
 };

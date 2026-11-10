@@ -78,6 +78,9 @@ jobs:
           npx remotion render src/index.ts Episode build/video.mp4 --gl=swangle --concurrency=4 --codec=h264 --crf=18 \
             --image-format=jpeg --jpeg-quality=92 --log=error 2>&1 | tee -a build.log
 
+      - name: Render thumbnail
+        run: npx remotion still src/index.ts Thumbnail build/thumb.jpg --gl=swangle --image-format=jpeg --jpeg-quality=92 --log=error 2>&1 | tee -a build.log
+
       - name: Mux and compress for upload (<= 290 MB)
         id: out
         run: |
@@ -92,7 +95,8 @@ jobs:
         run: |
           ID=${{ steps.ep.outputs.id }}
           gh release view ep-$ID >/dev/null 2>&1 || gh release create ep-$ID --title "Episode: $ID" --notes "Rendered by GitHub Actions."
-          gh release upload ep-$ID out/$ID.mp4 --clobber
+          cp build/thumb.jpg out/$ID-thumb.jpg
+          gh release upload ep-$ID out/$ID.mp4 out/$ID-thumb.jpg --clobber
 
       - name: Write status back to the repo
         if: always()
@@ -106,7 +110,7 @@ jobs:
           import json, sys, os
           ep, status, size, url = sys.argv[1:5]
           log = open('build.log').read().splitlines()[-80:] if os.path.exists('build.log') else []
-          json.dump({'episode': ep, 'status': status, 'size_bytes': int(size), 'video_url': url if int(size) else None,
+          json.dump({'episode': ep, 'status': status, 'size_bytes': int(size), 'video_url': url if int(size) else None, 'thumbnail_url': url.replace('.mp4', '-thumb.jpg') if int(size) else None,
                      'run': '${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}', 'log_tail': log},
                     open(f'episodes/{ep}/status.json', 'w'), indent=1)
           PY
