@@ -1,0 +1,8 @@
+node_modules/
+build/
+models/
+episodes/*/build/
+src/data/episode.json
+public/flag.png
+public/flag.svg
+out/

@@ -1,0 +1,28 @@
+{
+  "name": "world-countries-motion",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Automated English motion-graphics videos about every country (Remotion + Three.js + GSAP).",
+  "scripts": {
+    "studio": "remotion studio src/index.ts",
+    "render": "remotion render src/index.ts Episode build/video.mp4"
+  },
+  "dependencies": {
+    "@fontsource/inter": "^5.1.0",
+    "@fontsource/montserrat": "^5.1.0",
+    "@react-three/fiber": "^8.17.10",
+    "@remotion/bundler": "4.0.542",
+    "@remotion/cli": "4.0.542",
+    "@remotion/renderer": "4.0.542",
+    "@remotion/three": "4.0.542",
+    "d3-geo": "^3.1.1",
+    "flag-icons": "^7.2.3",
+    "gsap": "^3.12.5",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "remotion": "4.0.542",
+    "three": "0.170.0",
+    "topojson-client": "^3.1.0",
+    "world-atlas": "^2.0.2"
+  }
+}
