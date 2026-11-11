@@ -574,5 +574,9 @@
       }
     }
   ],
-  "rev": 2
+  "rev": 3,
+  "short": {
+    "title": "JAPAN",
+    "sub": "World's #1. Why?"
+  }
 }
