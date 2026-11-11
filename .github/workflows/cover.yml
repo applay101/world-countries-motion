@@ -1,0 +1,47 @@
+name: Fetch AI cover
+
+# Downloads an AI cover (e.g. a vidIQ imageUrl) written to episodes/<id>/cover.url,
+# converts it to a 1280x720 JPEG under 2 MB and commits it as episodes/<id>/thumb.jpg.
+# Sessions cannot reach the image host directly; GitHub can. Use the raw URL with the commit SHA afterwards.
+on:
+  push:
+    branches: [main]
+    paths: ['episodes/*/cover.url']
+
+permissions:
+  contents: write
+
+concurrency:
+  group: cover
+  cancel-in-progress: false
+
+jobs:
+  cover:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - name: Download and convert changed covers
+        run: |
+          set -e
+          sudo apt-get install -y -qq imagemagick >/dev/null
+          git config user.name "cover-bot"
+          git config user.email "cover-bot@users.noreply.github.com"
+          for f in $(git diff --name-only HEAD~1 HEAD -- 'episodes/*/cover.url'); do
+            [ -f "$f" ] || continue
+            dir=$(dirname "$f")
+            url=$(head -n1 "$f" | tr -d '[:space:]')
+            curl -sSfL "$url" -o /tmp/cover_src
+            convert /tmp/cover_src -resize 1280x720^ -gravity center -extent 1280x720 -strip -quality 90 "$dir/thumb.jpg"
+            q=88
+            while [ $(stat -c%s "$dir/thumb.jpg") -gt 1900000 ] && [ $q -gt 50 ]; do
+              convert /tmp/cover_src -resize 1280x720^ -gravity center -extent 1280x720 -strip -quality $q "$dir/thumb.jpg"; q=$((q-8))
+            done
+            ls -la "$dir/thumb.jpg"
+            git add "$dir/thumb.jpg"
+          done
+          git diff --cached --quiet && exit 0
+          git commit -q -m "cover: AI thumbnail [skip ci]"
+          for i in 1 2 3 4 5; do git pull -q --rebase origin main && git push -q origin HEAD:main && break; sleep $((i*5)); done
