@@ -92,6 +92,16 @@ AUTO = [  # (spoken word prefixes, icon)
 ]
 _3D = set(json.load(open(os.path.join(ROOT, 'library', 'fluent-3d', 'index.json'))))
 POP_TYPES = {'map', 'cities', 'stats'}
+# ---- upgrade every flat emoji to its glossy 3D version where one exists (cards, pops, era/split/journey icons, thumb),
+# but keep small map markers and route heads flat so they stay crisp ----
+def _up3d(o, key=None):
+    if key in ('markers', 'routes'): return o
+    if isinstance(o, str) and o.startswith('fluent-emoji-flat:') and o.split(':', 1)[1] in _3D: return 'fluent-3d:' + o.split(':', 1)[1]
+    if isinstance(o, list): return [_up3d(x) for x in o]
+    if isinstance(o, dict): return {k: _up3d(v, k) for k, v in o.items()}
+    return o
+for sg in segs: sg['scene'] = _up3d(sg['scene'])
+if isinstance(data.get('thumb'), dict): data['thumb'] = _up3d(data['thumb'])
 _wn = lambda w: _re.sub(r'[^a-z]', '', w.lower())
 for k, sg in enumerate(segs):
     sc = sg['scene']
@@ -124,7 +134,7 @@ json.dump(data, open(os.path.join(ROOT, 'src', 'data', 'episode.json'), 'w'), en
 import re
 SETS = {'fluent-emoji-flat', 'circle-flags', 'lucide', 'fluent-3d', 'lib'}
 PNG_SETS = {'fluent-3d': 'library/fluent-3d', 'lib': 'library/stickers'}  # PNG icons: Microsoft Fluent 3D emoji (MIT) and Hossein's own stickers
-refs = set(re.findall(r'"((?:%s):[a-z0-9-]+)"' % '|'.join(SETS), json.dumps(ep)))
+refs = set(re.findall(r'"((?:%s):[a-z0-9-]+)"' % '|'.join(SETS), json.dumps([ep, data])))
 refs.add('circle-flags:' + iso)
 refs.update('circle-flags:' + k for k in json.load(open(os.path.join(ROOT, 'node_modules', '@iconify-json', 'circle-flags', 'icons.json')))['icons'])
 refs.update(['fluent-emoji-flat:crossed-swords', 'fluent-emoji-flat:crown', 'fluent-emoji-flat:sailboat', 'fluent-emoji-flat:horse', 'fluent-emoji-flat:classical-building', 'fluent-emoji-flat:scroll'])

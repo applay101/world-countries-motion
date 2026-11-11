@@ -5,6 +5,16 @@ Channel: **Zoom World Travel** (@zoomworldtravel), English. Every video is about
 ## YouTube agent checklist (Hossein: apply in EVERY video)
 docs/youtube-agent.md is Hossein's YouTube agent skill (also installed as the `youtube-agent` skill). Every episode run goes through its steps, on top of all rules below: /yt-viral (pick a proven format) → /yt-script → /yt-hook (write 5 openings, keep the best) → /yt-title (10 titles, pick the best) → /yt-thumbnail (style different from the last 3) → render → /yt-edit (frame review, fix before publishing) → /yt-seo + /yt-package (description, chapters, tags, Short) → publish. In the Persian message, mention the chosen hook and title.
 
+## Full toolbox in EVERY video (Hossein, 11 Nov 2026: "apply everything we gave you")
+Every episode uses the whole kit, not just maps and captions:
+- **Icons:** 4+ hand-picked `scene.pops` on the key moments, 3D (`fluent-3d:`) for cards, era icons and big beats. Flat emoji that have a 3D twin are upgraded to 3D automatically by `pipeline/prepare.py` (map markers and route heads stay flat).
+- **Hossein's stickers:** history, travel, visa and residency episodes use 3+ `lib:` stickers (open the preview sheets in `library/stickers/previews/` and pick by number: passports, suitcases, money, landmarks, kings, soldiers, palaces…).
+- **Data graphics:** at least one map with highlighted `countries`, `arcs`, `bubbles`, `columns`, `routes` or `areas`.
+- **Rankings and countdowns of countries:** a `morph` scene (silhouettes morphing #5→#1) or a `race`.
+- **Looks:** rotate the map look, including `blueprint` for explainers and "why" videos; transitions rotate by themselves.
+- **History:** era cards, a `frames` timelapse, `routes`, and a `street` or `crowd` scene.
+- **Before pushing a script, run `python3 pipeline/check_script.py episodes/<id>/script.json` and fix every ✗** (it checks length, hook, energy rules, icons, stickers, data graphics, format extras, official tutorial URLs and variety against the last 3 episodes).
+
 ## Plugin skills (installed by Hossein, Nov 2026; use them when they are listed)
 - Topic choice: `manifold:find-youtube-video-ideas` and `manifold:analyze-viral-youtube-video` (live YouTube data; only if the Manifold tools `mcp__manifold__*` are available), and `social-media-skills:viral-reverse-engineering`. Manifold has about 250 free credits a month shared by all runs, so spend at most 3 per episode: e.g. one `youtube_search_videos` (sort popular, since month or year, max_credits 1) to confirm the topic pulls views, read the top titles and hooks, and stop. Never use leads_, ads_ or monitoring tools.
 - Script and packaging: `social-media-skills:youtube-long-form`, `social-media-skills:hook-writer`, `social-media-skills:youtube-publishing-and-metadata` (title, description, chapters, tags), `social-media-skills:youtube-shorts` (the Short's title and caption).
