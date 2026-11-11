@@ -31,7 +31,7 @@ const THEMES: Record<string, { o: [string, string, string]; l: [string, string];
 };
 const MT = THEMES[MAP_STYLE] ?? THEMES.navy;
 const FLAG_ON_MAP = (EP as any).flagOnMap !== false; // history episodes: plain accent fill instead of today's flag
-const DIMMED = new Set(['timeline', 'cards', 'bignum', 'bars', 'steps', 'checklist', 'era', 'split', 'journey', 'crowd', 'street']);
+const DIMMED = new Set(['timeline', 'cards', 'bignum', 'bars', 'steps', 'checklist', 'era', 'split', 'journey', 'crowd', 'street', 'race']);
 
 // ---------- camera: shot list built from the narration ----------
 // Each map segment opens on its view, then the camera flies in to every place as it is spoken, and pulls back out.
@@ -50,7 +50,7 @@ const KEYS: Key[] = (() => {
   EP.segments.forEach((s) => {
     const base = s.scene.view as View | undefined; if (!base) return;
     ks.push({ t: s.start - 0.55, v: base, d: 1.5 });
-    if (!SHOT_TYPES.has(s.scene.type)) return;
+    if (!SHOT_TYPES.has(s.scene.type) || s.scene.arcs || s.scene.bubbles || s.scene.columns || s.scene.frames) return; // data maps keep the whole view
     const pts = ((s.scene.markers ?? []) as any[]).concat(s.scene.cities ?? []).map((m) => ({ name: m[0] as string, lon: m[1] as number, lat: m[2] as number }));
     let last = -1;
     pts.map((m) => ({ ...m, at: cueTime(s, m.name) })).filter((m) => m.at !== null).sort((a, b) => a.at! - b.at!).forEach((m) => {
@@ -126,7 +126,7 @@ export const MapLayer: React.FC<{ t: number; seg: Seg; segIdx: number; view?: Vi
   const fw = mb[1][0] - mb[0][0], fh = mb[1][1] - mb[0][1];
   const fillP = INTRO_TYPE === 'dive' ? pr(t, INTRO_END - 2.0, 1.4, eOut) : pr(t, INTRO_END + 0.6, 1.4, eOut);
   const glow = 0.55 + 0.2 * Math.sin(t * 2.4);
-  const tiltBase = seg.scene.type === 'stats' ? 14 : DIMMED.has(seg.scene.type) ? 30 : 24;
+  const tiltBase = seg.scene.columns ? 4 : seg.scene.type === 'stats' ? 14 : DIMMED.has(seg.scene.type) ? 30 : 24;
   const tilt = tiltBase + 4 * Math.sin(t * 0.13) - 14 * (1 - pr(t, INTRO_TYPE === 'dive' ? 0 : INTRO_END - 0.4, INTRO_TYPE === 'dive' ? INTRO_END : 2.4));
   const rz = 1.4 * Math.sin(t * 0.09);
   let blur = 0; for (const s of EP.segments) { const d = t - s.start + 0.35; if (d > 0 && d < 0.5) blur = Math.max(blur, 7 * Math.sin((Math.PI * d) / 0.5)); }
@@ -151,6 +151,50 @@ export const MapLayer: React.FC<{ t: number; seg: Seg; segIdx: number; view?: Vi
     const c = cue(seg, name, i, arr.length); const p = pr(t, c, 0.7, (x) => x) * vis; const [x, y] = pt(lon, lat);
     items.push(<Marker key={'m' + i} x={x} y={y} name={name} kind={kind ?? 'dot'} p={p} side={x > CW / 2 + W * 0.28 ? -1 : 1} />);
   });
+  // arcs: glowing curved flight/trade lines between two points with a travelling light
+  ((sc.arcs as { from: [number, number]; to: [number, number]; label?: string; cue?: string; color?: string }[] | undefined) ?? []).forEach((r, ri, arr) => {
+    const c = cue(seg, r.cue ?? r.label ?? '', ri, arr.length); const p = pr(t, c - 0.1, 1.4, eOut) * vis;
+    if (p <= 0) return;
+    const [x0, y0] = pt(r.from[0], r.from[1]), [x1, y1] = pt(r.to[0], r.to[1]); const dx = x1 - x0, dy = y1 - y0, dist = Math.hypot(dx, dy);
+    const cx = (x0 + x1) / 2 - (dy / dist) * dist * 0.28 - 0, cy = (y0 + y1) / 2 + (dx / dist) * dist * 0.28 * (dx > 0 ? -1 : 1) - dist * 0.12;
+    const col = r.color ?? GOLD; const d = `M${x0},${y0} Q${cx},${cy} ${x1},${y1}`;
+    const q = (t * 0.45 + ri * 0.3) % 1; const bx = (1 - q) * (1 - q) * x0 + 2 * (1 - q) * q * cx + q * q * x1, by = (1 - q) * (1 - q) * y0 + 2 * (1 - q) * q * cy + q * q * y1;
+    items.push(<g key={'arc' + ri}>
+      <path d={d} fill="none" stroke={col} strokeWidth={14} opacity={0.25} pathLength={1000} strokeDasharray={`${1000 * p} 1000`} filter="url(#soft)" />
+      <path d={d} fill="none" stroke={col} strokeWidth={4} pathLength={1000} strokeDasharray={`${1000 * p} 1000`} strokeLinecap="round" />
+      {p > 0.98 ? <><circle cx={bx} cy={by} r={9} fill="#fff" /><circle cx={bx} cy={by} r={22} fill={col} opacity={0.35} filter="url(#soft)" /></> : null}
+      {[[x0, y0], [x1, y1]].map(([px, py], k) => <g key={k}><circle cx={px} cy={py} r={8} fill={col} stroke="#fff" strokeWidth={3} /><circle cx={px} cy={py} r={14 + ((t * 30 + k * 10) % 30)} fill="none" stroke={col} strokeWidth={2} opacity={1 - ((t * 30 + k * 10) % 30) / 30} /></g>)}
+      {r.label ? <text x={cx} y={cy + (y0 + y1) / 2 * 0 + 0} dy={((y0 + y1) / 2 - cy) * 0.45} textAnchor="middle" fontFamily={HIST ? DISPLAY : TITLE} fontWeight={700} fontSize={28} fill="#fff" stroke="rgba(5,10,20,.85)" strokeWidth={7} paintOrder="stroke" opacity={cl((p - 0.5) * 3)}>{r.label}</text> : null}
+    </g>);
+  });
+  // bubbles: countries as round flags sized by a value ("countries resized by population")
+  { const bs = (sc.bubbles as [string, number, number, number, string?, string?][] | undefined) ?? []; const mx = Math.max(1, ...bs.map((b) => b[3]));
+    // place circles at their countries, then push overlapping ones apart (a quick Dorling-style relaxation)
+    const P = bs.map(([, lon, lat, val]) => { const [x, y] = pt(lon, lat); return { x, y, r: 30 + 150 * Math.sqrt(val / mx) }; });
+    for (let it = 0; it < 80; it++) for (let m = 0; m < P.length; m++) for (let n = m + 1; n < P.length; n++) {
+      const dx = P[n].x - P[m].x, dy = P[n].y - P[m].y, d = Math.hypot(dx, dy) || 1, need = P[m].r + P[n].r + 95;
+      if (d < need) { const push = (need - d) / 2, ux = dx / d, uy = dy / d; P[m].x -= ux * push; P[m].y -= uy * push; P[n].x += ux * push; P[n].y += uy * push; } }
+    bs.forEach(([name, lon, lat, val, iso, cw], bi) => { const c = cue(seg, cw ?? name, bi, bs.length); const p = pr(t, c - 0.1, 0.7, eBack) * vis; if (p <= 0) return;
+      const { x, y, r } = P[bi];
+      items.push(<g key={'b' + bi} transform={`translate(${x},${y}) scale(${p})`}>
+        <circle r={r + 8} fill="rgba(0,0,0,.35)" filter="url(#soft)" /><circle r={r + 5} fill="#fff" />
+        {iso ? <SvgIcon name={'circle-flags:' + iso} x={0} y={0} size={r * 2} /> : <circle r={r} fill={GOLD} />}
+        <text y={r + 40} textAnchor="middle" fontFamily={TITLE} fontWeight={800} fontSize={Math.max(24, r * 0.32)} fill="#fff" stroke="rgba(5,10,20,.85)" strokeWidth={7} paintOrder="stroke">{name}</text>
+        <text y={r + 40 + Math.max(24, r * 0.32)} textAnchor="middle" fontFamily={TITLE} fontWeight={800} fontSize={Math.max(22, r * 0.26)} fill={GOLD} stroke="rgba(5,10,20,.85)" strokeWidth={7} paintOrder="stroke">{(sc.bubbleFmt ?? '{v}').replace('{v}', String(val))}</text>
+      </g>); }); }
+  // columns: 3D bars rising out of the map at each place
+  { const cs = (sc.columns as [string, number, number, number, string?][] | undefined) ?? []; const mx = Math.max(1, ...cs.map((b) => b[3]));
+    cs.forEach(([name, lon, lat, val, lab], ci) => { const c = cue(seg, name, ci, cs.length); const p = pr(t, c - 0.1, 1.1, eOut) * vis; if (p <= 0) return;
+      const [x, y] = pt(lon, lat); const h = (50 + 320 * (val / mx)) * p; const w = 52, dd = 20;
+      items.push(<g key={'c' + ci}>
+        <ellipse cx={x + dd / 2} cy={y} rx={w * 0.9} ry={14} fill="rgba(0,0,0,.35)" filter="url(#soft)" />
+        <path d={`M${x - w / 2} ${y} L${x - w / 2} ${y - h} L${x + w / 2} ${y - h} L${x + w / 2} ${y} Z`} fill={GOLD} />
+        <path d={`M${x + w / 2} ${y} L${x + w / 2} ${y - h} L${x + w / 2 + dd} ${y - h - dd * 0.6} L${x + w / 2 + dd} ${y - dd * 0.6} Z`} fill={GOLD} style={{ filter: 'brightness(.7)' }} opacity={0.85} />
+        <path d={`M${x - w / 2} ${y - h} L${x - w / 2 + dd} ${y - h - dd * 0.6} L${x + w / 2 + dd} ${y - h - dd * 0.6} L${x + w / 2} ${y - h} Z`} fill="#fff" opacity={0.55} />
+        <rect x={x - w / 2} y={y - h} width={10} height={h} fill="#fff" opacity={0.25} />
+        <text x={x + dd / 2} y={y - h - 30} textAnchor="middle" fontFamily={TITLE} fontWeight={800} fontSize={34} fill="#fff" stroke="rgba(5,10,20,.85)" strokeWidth={7} paintOrder="stroke" opacity={cl(p * 2)}>{lab ?? String(val)}</text>
+        <text x={x} y={y + 40} textAnchor="middle" fontFamily={TITLE} fontWeight={700} fontSize={26} fill="#fff" stroke="rgba(5,10,20,.85)" strokeWidth={6} paintOrder="stroke" opacity={cl(p * 2)}>{name}</text>
+      </g>); }); }
   // routes: a dashed journey/conquest/trade line that draws itself, with an icon travelling at its head
   ((sc.routes as { points: [number, number][]; label?: string; cue?: string; icon?: string; color?: string }[] | undefined) ?? []).forEach((r, ri, arr) => {
     const c = cue(seg, r.cue ?? r.label ?? '', ri, arr.length); const p = pr(t, c - 0.1, 2.6, (x) => 1 - Math.pow(1 - x, 2)) * vis;

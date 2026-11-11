@@ -1,7 +1,7 @@
 // Infographic overlays: stat cards, big numbers, timeline, culture cards, KPI + bar chart, outro, captions, chapter chip.
 import React from 'react';
 import { Icon, isIcon } from '../lib/Icon';
-import { EP, W, H, GOLD, INK, TITLE, BODY, Seg, cl, pr, lerp, eOut, eBack, eExpo, cue, segWindow, fadeWin, fmtNum, E, HIST, DISPLAY, spokenAt } from '../lib/core';
+import { EP, W, H, GOLD, INK, TITLE, BODY, Seg, cl, pr, lerp, eOut, eBack, eExpo, eIO, cue, segWindow, fadeWin, fmtNum, E, HIST, DISPLAY, spokenAt } from '../lib/core';
 import { FlagWave } from './Three';
 import CH from '../../channel.json';
 
@@ -413,6 +413,38 @@ export const Journey: React.FC<{ t: number; seg: Seg; i: number }> = ({ t, seg, 
           <Icon name={icon} size={120} style={{ filter: 'drop-shadow(0 12px 16px rgba(0,0,0,.45))' }} />
           <div style={{ marginTop: 6, fontFamily: DISPLAY, fontWeight: 900, fontSize: 38, color: HIST ? '#8a1c10' : INK, background: HIST ? '#f6e7c4' : GOLD, border: HIST ? '3px solid #6b4a22' : 'none', padding: '0 16px 2px', borderRadius: 12, boxShadow: '0 6px 14px rgba(0,0,0,.35)' }}>{year}</div>
           <div style={{ fontFamily: BODY, fontWeight: 700, fontSize: 26, color: '#fff', textAlign: 'center', background: 'rgba(30,18,8,.8)', padding: '4px 12px', borderRadius: 10, marginTop: 6 }}>{label}</div>
+        </div>); })}
+    </div>
+  );
+};
+
+// ---------- bar chart race: {title, years: [..], items: [[name, iso2, [v per year]]], suffix?, fmt?} ----------
+export const Race: React.FC<{ t: number; seg: Seg; i: number }> = ({ t, seg, i }) => {
+  const [a, b] = segWindow(i); const vis = fadeWin(t, a, b, 0.4, 0.45);
+  if (vis <= 0) return null;
+  const sc = seg.scene as any; const years = sc.years as string[]; const items = sc.items as [string, string, number[]][];
+  const t0 = (sc.cue ? spokenAt(seg, sc.cue) : null) ?? seg.start + 0.6; const t1 = seg.end - 0.6;
+  const f = cl((t - t0) / Math.max(1, t1 - t0)) * (years.length - 1); const k0 = Math.min(years.length - 1, Math.floor(f)), k1 = Math.min(years.length - 1, k0 + 1), u = eIO(f - k0);
+  const vals = items.map(([, , v]) => v[k0] + (v[k1] - v[k0]) * u);
+  const order = vals.map((v, j) => [v, j] as [number, number]).sort((x, y) => y[0] - x[0]).map((x) => x[1]);
+  const top = order.slice(0, Math.min(8, items.length)); const mx = Math.max(...top.map((j) => vals[j]));
+  const ordAt = (kk: number) => items.map((it, j) => [it[2][kk], j] as [number, number]).sort((x, y) => y[0] - x[0]).map((x) => x[1]);
+  const o0 = ordAt(k0), o1 = ordAt(k1);
+  const rank = (j: number) => lerp(o0.indexOf(j), o1.indexOf(j), u); const BH = 76, GAP = 14, X0 = 420, WMAX = 1180;
+  const yr = years[Math.round(f)] ?? years[0];
+  return (
+    <div style={{ position: 'absolute', inset: 0, opacity: vis }}>
+      <div style={{ position: 'absolute', left: 160, top: 120, fontFamily: DISPLAY, fontWeight: 800, fontSize: 52, color: '#fff' }}>{sc.title}</div>
+      <div style={{ position: 'absolute', right: 160, bottom: 140, fontFamily: TITLE, fontWeight: 800, fontSize: 170, color: 'rgba(255,255,255,.22)' }}>{yr}</div>
+      {items.map(([name, iso], j) => { const r = rank(j); if (r > 7.5) return null; const v = vals[j];
+        const y = 230 + r * (BH + GAP); const w = Math.max(8, (v / mx) * WMAX) * pr(t, a + 0.3, 0.8, eOut);
+        const col = ['#5EC8FF', '#FFC94A', '#FF6B6B', '#7CFFB2', '#C792EA', '#FF9F43', '#4DD0E1', '#F06292'][j % 8];
+        return (<div key={j} style={{ position: 'absolute', left: 0, top: y, height: BH, width: W, transition: 'none' }}>
+          <div style={{ position: 'absolute', right: W - X0 + 24, top: 0, height: BH, display: 'flex', alignItems: 'center', gap: 14, fontFamily: TITLE, fontWeight: 800, fontSize: 32, color: '#fff' }}>
+            {name}<Icon name={'circle-flags:' + iso} size={58} />
+          </div>
+          <div style={{ position: 'absolute', left: X0, top: 0, height: BH, width: w, borderRadius: 14, background: `linear-gradient(90deg, ${col}cc, ${col})`, boxShadow: `0 10px 30px ${col}55` }} />
+          <div style={{ position: 'absolute', left: X0 + w + 18, top: 0, height: BH, display: 'flex', alignItems: 'center', fontFamily: TITLE, fontWeight: 800, fontSize: 34, color: '#fff' }}>{fmtNum(v, sc.fmt ?? '1dp')}{sc.suffix ?? ''}</div>
         </div>); })}
     </div>
   );

@@ -80,6 +80,14 @@ A story format inspired by fast cartoon-history channels (one example got 760K v
 - Facts: only well-established history from reputable sources (Britannica, UNESCO, academic or museum sites, national archives). Dates as words in text ("five hundred fifty BC"). Neutral wording for wars, religion and modern politics; nothing graphic; no judgement of present-day governments.
 - Thumbnail: `rank` or `headline` or `flagfull` style with a strong emoji (crown, crossed-swords, exploding-head); title like "The ENTIRE History of the World in 10 Minutes".
 
+## Data graphics (world-scale videos; work on any map scene)
+- `arcs`: [{from: [lon,lat], to: [lon,lat], label?, cue, color?}]: glowing curved flight/trade/migration lines with a travelling light and pulsing ends.
+- `bubbles`: [[name, lon, lat, value, iso2, cueWord?], …] + optional `bubbleFmt` ("{v}M"): round flags sized by the value, pushed apart so they never overlap ("countries resized by population").
+- `columns`: [[name, lon, lat, value, label?], …]: 3D bars rising out of the map (tourists, GDP, height of buildings). Keep the view's lat a little north so the tallest bar fits.
+- Scenes with arcs/bubbles/columns/frames keep the whole view (no camera fly-in), so leave `markers` empty there.
+- `race` scene (bar chart race): {title, years: ["1950","1975","2000","2025"], items: [[name, iso2, [value per year]]], fmt: "int"|"1dp", suffix?, cue}: bars with round flags grow and swap places over the years; give the segment enough words (8+ s). Data only from official sources (UN, World Bank, IMF).
+- Round flags for every country are always available: "circle-flags:<iso2>".
+
 ## Proven formats from 100 breakout videos (Nov 2026 research)
 Ranked by how far they beat their channel's normal: "The ENTIRE History of X in N Minutes" (up to 16,000×), "X: Every Year (3400 BCE – 2026)" map timelapses (858×), "POV: you were there when…" (101×), "The ONLY countries where…" (map with a few highlighted countries; 257K views), "Countries that no longer exist", "How old is every country?", "Rise and fall of…", "Evolution of X (year–year)". Titles use exact time spans in brackets and minute counts. Use these as series on this channel (countries, empires, cities, travel facts) with our own graphics. Hossein's rule: the channel is for the whole world, so pick whatever gets the most views worldwide; prefer world-scale topics (the whole world, all empires, all countries, global rankings) over single-country history, and do not centre episodes on Iran/Persia.
 

@@ -8,7 +8,7 @@ import { FlagIntro, HookIntro } from './scenes/Intros';
 import { MapLayer } from './scenes/MapLayer';
 import { Globe, usePreload, DustLayer } from './scenes/Three';
 import { ChapterHero, LightSweep, Progress, shake } from './scenes/Fx';
-import { Stats, BigChips, Timeline, Cards, BigNum, Bars, Outro, Captions, Chapter, Steps, Checklist, Era, Split, Journey } from './scenes/Panels';
+import { Stats, BigChips, Timeline, Cards, BigNum, Bars, Outro, Captions, Chapter, Steps, Checklist, Era, Split, Journey, Race } from './scenes/Panels';
 
 const useFonts = () => {
   const [h] = useState(() => delayRender('fonts'));
@@ -49,7 +49,7 @@ const RankBadge: React.FC<{ t: number }> = ({ t }) => {
   );
 };
 const INTRO = EP.segments[0];
-const DIM: Record<string, number> = { timeline: 0.55, cards: 0.55, bignum: 0.6, bars: 0.55, steps: 0.6, checklist: 0.6, era: 0.5, split: 0.55, journey: 0.55, crowd: 0.45 };
+const DIM: Record<string, number> = { timeline: 0.55, cards: 0.55, bignum: 0.6, bars: 0.55, steps: 0.6, checklist: 0.6, era: 0.5, split: 0.55, journey: 0.55, crowd: 0.45, race: 0.75 };
 
 // big year counter for map timelapses (scene.frames)
 const YearTicker: React.FC<{ t: number; seg: any; i: number }> = ({ t, seg, i }) => {
@@ -134,6 +134,7 @@ export const Episode: React.FC = () => {
             {ty === 'split' ? <Split t={t} seg={s} i={k} /> : null}
             {ty === 'journey' ? <Journey t={t} seg={s} i={k} /> : null}
             {ty === 'street' ? <Street t={t} seg={s} i={k} /> : null}
+            {ty === 'race' ? <Race t={t} seg={s} i={k} /> : null}
             {ty === 'crowd' ? <Crowd t={t} seg={s} i={k} /> : null}
             {s.scene.frames ? <YearTicker t={t} seg={s} i={k} /> : null}
             <Chapter t={t} seg={s} i={k} />
