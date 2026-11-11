@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { Icon } from './lib/Icon';
 import { Street, Crowd } from './scenes/Story';
 import { AbsoluteFill, continueRender, delayRender, useCurrentFrame, useVideoConfig } from 'remotion';
-import { EP, W, H, GOLD, INK, TITLE, BODY, cl, pr, eBack, eOut, segIndexAt, spokenAt, E, INTRO_END, INTRO_TYPE, MAP_STYLE } from './lib/core';
+import { EP, W, H, GOLD, INK, TITLE, BODY, cl, pr, eBack, eOut, eIO, segIndexAt, spokenAt, E, INTRO_END, INTRO_TYPE, MAP_STYLE, HIST } from './lib/core';
 import { FlagIntro, HookIntro } from './scenes/Intros';
 import { MapLayer } from './scenes/MapLayer';
 import { Globe, usePreload, DustLayer } from './scenes/Three';
@@ -22,19 +22,51 @@ const FIRST_MAP = { start: INTRO_END };
 
 // countdown badge (#5 … #1) for list-style episodes: any segment with scene.rank
 // Emoji pops: scene.pops [[cueWord, "fluent-emoji-flat:<name>"]] bounce in when the word is spoken
+const SLOTS: [number, number][] = [[1560, 470], [180, 500], [1600, 270], [160, 290]];
+const BURST = ['#FFD54A', '#FF5E7E', '#5EC8FF', '#7CFFB2', '#FFFFFF'];
 const EmojiPops: React.FC<{ t: number }> = ({ t }) => {
   const i = segIndexAt(t), seg = EP.segments[i];
   const pops = ((seg?.scene as any)?.pops ?? []) as [string, string][];
+  const leftOnly = ['bars', 'stats', 'bignum', 'checklist'].includes(seg.scene.type);
   return (<>{pops.map(([w, name], k) => {
     const at = spokenAt(seg, w) ?? seg.start + 1 + k * 2; const age = t - at + 0.1;
-    if (age < 0 || age > 2.1) return null;
-    const pin = eBack(cl(age / 0.35)), out = cl((age - 1.75) / 0.35);
-    const side = ['bars', 'stats', 'bignum', 'checklist'].includes(seg.scene.type) ? 1 : k % 2; const left = side ? 200 : 1530, top = 560 - (k % 3) * 40;
-    return (<div key={k} style={{ position: 'absolute', left, top, width: 190, height: 190, transform: `translateY(${-age * 24}px) scale(${pin * (1 - out * 0.6)}) rotate(${(k % 2 ? -1 : 1) * (14 - pin * 10 + Math.sin(age * 6) * 4)}deg)`, opacity: 1 - out }}>
+    if (age < 0 || age > 2.3) return null;
+    const pin = eBack(cl(age / 0.35)), out = cl((age - 1.95) / 0.35);
+    const [left, top] = leftOnly ? SLOTS[1 + 2 * (k % 2)] : SLOTS[(k + i) % 4];
+    const big = name.startsWith('fluent-3d:') || name.startsWith('lib:') ? 230 : 190;
+    return (<div key={k} style={{ position: 'absolute', left: left - (big - 190) / 2, top: top - (big - 190) / 2, width: big, height: big, transform: `translateY(${-age * 22}px) scale(${pin * (1 - out * 0.6)}) rotate(${(k % 2 ? -1 : 1) * (14 - pin * 10 + Math.sin(age * 6) * 4)}deg)`, opacity: 1 - out }}>
+      <div style={{ position: 'absolute', inset: -40, borderRadius: '50%', background: `radial-gradient(circle, ${GOLD}55 0%, ${GOLD}00 65%)`, opacity: cl(1 - age / 0.9) }} />
       <div style={{ position: 'absolute', inset: -30, borderRadius: '50%', border: `6px solid ${GOLD}`, opacity: cl(1 - age / 0.6), transform: `scale(${0.6 + age * 1.4})` }} />
-      <Icon name={name} size={190} style={{ filter: 'drop-shadow(0 14px 24px rgba(0,0,0,.55))' }} />
+      {age < 0.75 ? Array.from({ length: 10 }, (_, j) => {
+        const ang = (j / 10) * Math.PI * 2 + k, d = eOut(cl(age / 0.7)) * (big * 0.95), s2 = 18 * (1 - cl(age / 0.75));
+        return <div key={j} style={{ position: 'absolute', left: big / 2 + Math.cos(ang) * d - s2 / 2, top: big / 2 + Math.sin(ang) * d - s2 / 2, width: s2, height: s2,
+          borderRadius: j % 2 ? '50%' : 3, background: BURST[j % 5], transform: `rotate(${45 + age * 400}deg)`, boxShadow: `0 0 12px ${BURST[j % 5]}` }} />;
+      }) : null}
+      <Icon name={name} size={big} style={{ position: 'relative', filter: 'drop-shadow(0 16px 26px rgba(0,0,0,.6))' }} />
     </div>);
   })}</>);
+};
+
+// camera life on top of the map camera: breathing push-in, handheld drift, punch-ins on pops and whip pans between segments
+const camFx = (t: number, i: number) => {
+  const seg = EP.segments[i];
+  const p = cl((t - seg.start) / Math.max(1, seg.end - seg.start));
+  let z = 1.025 + 0.045 * eIO(p);
+  const pops = ((seg.scene as any).pops ?? []) as [string, string][];
+  for (const [w] of pops) { const at = spokenAt(seg, w); if (at !== null && t >= at - 0.05) z += 0.04 * Math.exp(-(t - at + 0.05) * 5); }
+  const rot = 0.45 * Math.sin(t * 0.23) + 0.2 * Math.sin(t * 0.61);
+  let x = 10 * Math.sin(t * 0.31), y = 7 * Math.sin(t * 0.27 + 1), blur = 0;
+  if (i > 1) { const d = t - seg.start, dir = i % 2 ? 1 : -1;
+    if (d > -0.22 && d < 0.28) { const q = d < 0 ? -d / 0.22 : d / 0.28; const k2 = (1 - q) * (1 - q); x += dir * 170 * k2 * (d < 0 ? -1 : 1); blur = 9 * k2; } }
+  return { transform: `translate(${x}px, ${y}px) scale(${z}) rotate(${rot}deg)`, filter: `${HIST ? 'saturate(1.08) contrast(1.04)' : 'saturate(1.25) contrast(1.07) brightness(1.03)'}${blur > 0.3 ? ` blur(${blur.toFixed(1)}px)` : ''}` };
+};
+// moving colour light leaks + a teal/orange grade so every frame feels warm and alive
+const ColorLife: React.FC<{ t: number }> = ({ t }) => {
+  const x1 = 50 + 45 * Math.sin(t * 0.17), y1 = 30 + 25 * Math.sin(t * 0.13 + 2), x2 = 50 + 45 * Math.sin(t * 0.11 + 3), y2 = 75 + 20 * Math.sin(t * 0.19);
+  return (<>
+    <AbsoluteFill style={{ background: HIST ? 'linear-gradient(160deg, rgba(255,190,90,.10), rgba(0,0,0,0) 45%, rgba(160,60,20,.12))' : 'linear-gradient(160deg, rgba(0,190,255,.14), rgba(0,0,0,0) 42%, rgba(255,120,40,.16))', mixBlendMode: 'overlay' }} />
+    <AbsoluteFill style={{ background: `radial-gradient(circle at ${x1}% ${y1}%, ${GOLD}2e, ${GOLD}00 38%), radial-gradient(circle at ${x2}% ${y2}%, rgba(255,80,140,.13), rgba(255,80,140,0) 34%)`, mixBlendMode: 'screen' }} />
+  </>);
 };
 
 const RankBadge: React.FC<{ t: number }> = ({ t }) => {
@@ -82,7 +114,7 @@ export const Episode: React.FC = () => {
   return (
     <AbsoluteFill style={{ background: '#02050c', overflow: 'hidden' }}>
       <AbsoluteFill style={{ transform: shake(t) }}>
-      {t > FIRST_MAP.start - 1.2 || INTRO_TYPE === 'dive' ? <AbsoluteFill style={{ opacity: mapIn }}><MapLayer t={t} seg={seg} segIdx={i} /></AbsoluteFill> : null}
+      {t > FIRST_MAP.start - 1.2 || INTRO_TYPE === 'dive' ? <AbsoluteFill style={{ opacity: mapIn, ...(t > FIRST_MAP.start - 0.3 ? camFx(t, i) : {}) }}><MapLayer t={t} seg={seg} segIdx={i} /></AbsoluteFill> : null}
       {globeOn && ready ? <AbsoluteFill style={{ opacity: 1 - mapIn }}><Globe t={t} t0={0} t1={FIRST_MAP.start - 0.6} /></AbsoluteFill> : null}
       {INTRO_TYPE === 'flag' && ready && t < INTRO_END + 0.2 ? <FlagIntro t={t} /> : null}
       {INTRO_TYPE === 'hook' && t < INTRO_END + 0.2 ? <HookIntro t={t} /> : null}
@@ -103,6 +135,7 @@ export const Episode: React.FC = () => {
         </svg>
       </> : null}
       {/* grade */}
+      <ColorLife t={t} />
       <AbsoluteFill style={{ background: 'radial-gradient(ellipse at 50% 50%, rgba(0,0,0,0) 55%, rgba(0,0,0,.55) 100%)' }} />
       <AbsoluteFill style={{ background: 'linear-gradient(180deg, rgba(0,0,0,.45) 0%, rgba(0,0,0,0) 18%, rgba(0,0,0,0) 72%, rgba(0,0,0,.55) 100%)' }} />
       <AbsoluteFill style={{ background: 'linear-gradient(90deg, rgba(3,6,12,0) 45%, rgba(3,6,12,.55) 75%)', opacity: sideShade }} />

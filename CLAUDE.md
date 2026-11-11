@@ -45,6 +45,7 @@ Before writing, look at the last 3 episodes (`ls -t episodes/`, read their scrip
   - At least 5 `map`/`cities` scenes, each with 3 to 7 markers or cities whose names are spoken. A map scene with 0 or 1 marker is not allowed.
   - Never two panel scenes in a row (timeline, cards, bignum, bars, steps, checklist): put a map between them. At most one `bignum` per episode.
   - 570 to 650 words in total (3:45 to 4:15), 35 to 60 words per segment, so nothing drags or rushes.
+  - **Built-in life (automatic, Nov 2026)**: the engine now adds a breathing push-in and handheld drift to every map shot, a punch-in zoom on every icon pop, a whip pan with motion blur between segments, particle bursts around pops, a teal/orange grade with moving colour light leaks, and **automatic icon pops**: `pipeline/prepare.py` gives every map/cities/stats segment 2–3 pops on spoken keywords (plane, train, money, king, war, island, food, city, record…, 3D icons first). So write concrete, visual words (name the thing: "bullet trains", "gold", "castles"), and add your own `scene.pops` for the key moments (stickers `lib:` or `fluent-3d:`); the auto pops fill the rest. Panel scenes get no auto pops, so give their `cards` 3D icons.
 - **Music** and **voice**: vary them too (`pulse` for most; `am_michael` / `bm_george` / `af_heart` rotating).
 
 ## script.json schema (copy `episodes/spain/script.json` as the template)

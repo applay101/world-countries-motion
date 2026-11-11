@@ -58,6 +58,66 @@ for sg in data['segments']:
         src = os.path.join(ROOT, 'node_modules', 'flag-icons', 'flags', '4x3', hit[1] + '.svg')
         if os.path.exists(src): shutil.copy(src, os.path.join(ROOT, 'public', 'flags', hit[1] + '.svg'))
     if found: sc['_countries'] = found
+
+# ---- automatic icon pops: every map/cities/stats segment gets 2-3 icons on spoken keywords (3D emoji first) ----
+AUTO = [  # (spoken word prefixes, icon)
+    (['plane', 'flight', 'fly', 'flew', 'airport', 'airline'], 'airplane'), (['train', 'rail', 'shinkansen'], 'high-speed-train'),
+    (['ship', 'boat', 'port', 'sail', 'navy', 'fleet'], 'ship'), (['sea', 'ocean', 'coast', 'gulf', 'bay'], 'water-wave'),
+    (['money', 'billion', 'trillion', 'dollar', 'euro', 'economy', 'gdp', 'rich', 'wealth', 'trade', 'spend', 'spent'], 'money-bag'),
+    (['tourist', 'visitor', 'travel', 'trip', 'holiday'], 'luggage'), (['mountain', 'peak', 'alps', 'himalaya'], 'snow-capped-mountain'),
+    (['beach'], 'beach-with-umbrella'), (['island'], 'desert-island'), (['king', 'queen', 'emperor', 'empire', 'crown', 'dynasty', 'royal'], 'crown'),
+    (['war', 'battle', 'army', 'armies', 'conquer', 'conquest', 'invade', 'soldier'], 'crossed-swords'), (['castle', 'fortress', 'fort'], 'castle'),
+    (['temple', 'ancient', 'ruins', 'monument'], 'classical-building'), (['food', 'cuisine', 'dish', 'eat', 'meal'], 'fork-and-knife-with-plate'),
+    (['coffee', 'tea'], 'hot-beverage'), (['wine'], 'wine-glass'), (['record', 'number one', 'best', 'champion', 'winner', 'first'], 'trophy'),
+    (['grow', 'grew', 'rising', 'rise', 'boom', 'increase', 'doubled'], 'chart-increasing'), (['people', 'population', 'citizens', 'residents'], 'busts-in-silhouette'),
+    (['city', 'cities', 'capital', 'skyline', 'metropolis'], 'cityscape'), (['history', 'histories', 'century', 'centuries'], 'scroll'),
+    (['desert', 'sahara', 'dune'], 'camel'), (['forest', 'jungle', 'rainforest'], 'evergreen-tree'), (['river', 'lake', 'water'], 'droplet'),
+    (['volcano', 'volcanic', 'eruption'], 'volcano'), (['snow', 'winter', 'ice', 'cold', 'arctic'], 'snowflake'), (['sun', 'sunny', 'summer', 'hot', 'heat'], 'sun'),
+    (['rain', 'monsoon', 'storm'], 'cloud-with-rain'), (['football', 'soccer', 'world cup'], 'soccer-ball'), (['music', 'song', 'dance'], 'musical-notes'),
+    (['technology', 'tech', 'robot', 'digital', 'internet'], 'robot'), (['space', 'rocket', 'satellite'], 'rocket'), (['oil', 'gas', 'fuel'], 'oil-drum'),
+    (['gold', 'silver', 'coin'], 'coin'), (['farm', 'rice', 'wheat', 'harvest', 'crop'], 'sheaf-of-rice'), (['fish', 'fishing'], 'fish'),
+    (['festival', 'celebrat', 'party', 'carnival'], 'party-popper'), (['love', 'heart', 'favourite', 'favorite'], 'red-heart'),
+    (['why', 'secret', 'mystery', 'question'], 'thinking-face'), (['shock', 'incredible', 'unbelievable', 'insane', 'huge', 'massive'], 'exploding-head'),
+    (['world', 'global', 'planet', 'earth'], 'globe-showing-europe-africa'), (['map', 'border', 'borders'], 'world-map'),
+    (['language', 'book', 'writing', 'literature', 'poet', 'university', 'school'], 'books'), (['passport', 'visa', 'residency', 'permit'], 'passport-control'),
+    (['car', 'cars', 'road', 'highway'], 'automobile'), (['factory', 'industry', 'industrial'], 'factory'), (['bank', 'tax', 'taxes'], 'bank'),
+    (['wildlife', 'animal', 'animals', 'safari'], 'lion'), (['elephant'], 'elephant'), (['tiger'], 'tiger'), (['horse', 'cavalry'], 'horse'),
+    (['penguin'], 'penguin'), (['whale'], 'spouting-whale'), (['eagle'], 'eagle'), (['dragon'], 'dragon'), (['flower', 'blossom', 'bloom'], 'cherry-blossom'),
+    (['stadium', 'olympic', 'olympics'], 'stadium'), (['hospital', 'health', 'doctor'], 'hospital'), (['time', 'hours', 'minutes', 'clock'], 'alarm-clock'),
+    (['diamond', 'gem', 'jewel'], 'gem-stone'), (['idea', 'invent', 'invented', 'invention', 'science'], 'light-bulb'), (['film', 'movie', 'cinema'], 'film-projector'),
+    (['shop', 'shopping', 'market', 'bazaar'], 'shopping-bags'), (['pizza'], 'pizza'), (['sushi'], 'sushi'), (['pasta', 'spaghetti'], 'spaghetti'),
+    (['bread', 'bakery'], 'bread'), (['cheese'], 'cheese-wedge'), (['beer'], 'beer-mug'), (['chocolate'], 'chocolate-bar'), (['olive'], 'olive'),
+    (['night', 'stars'], 'night-with-stars'), (['sunrise', 'dawn'], 'sunrise'), (['camp', 'camping', 'hike', 'hiking', 'trek'], 'camping'),
+    (['medal', 'gold medal'], '1st-place-medal'), (['flag'], 'triangular-flag'), (['bridge'], 'bridge-at-night'), (['tower', 'skyscraper'], 'tokyo-tower'),
+]
+_3D = set(json.load(open(os.path.join(ROOT, 'library', 'fluent-3d', 'index.json'))))
+POP_TYPES = {'map', 'cities', 'stats'}
+_wn = lambda w: _re.sub(r'[^a-z]', '', w.lower())
+for k, sg in enumerate(segs):
+    sc = sg['scene']
+    if k == 0 or sc.get('type') not in POP_TYPES or sc.get('arcs') or sc.get('bubbles') or sc.get('columns') or sc.get('frames'): continue
+    pops = list(sc.get('pops') or [])
+    want = 3 if (sg['end'] - sg['start']) > 14 else 2
+    if len(pops) >= want: continue
+    used_icons = {p[1] for p in pops}
+    times = [w['t'] for w in sg['words'] if any(_wn(w['w']).startswith(_wn(p[0])) for p in pops)]
+    cand = []
+    words = sg['words']
+    for wi, w in enumerate(words):
+        nw = _wn(w['w'])
+        if len(nw) < 3 or w['t'] < sg['start'] + 0.5: continue
+        two = nw + _wn(words[wi + 1]['w']) if wi + 1 < len(words) else nw
+        for keys, icon in AUTO:
+            if any((nw.startswith(_wn(kk)) if ' ' not in kk else two.startswith(_wn(kk))) for kk in keys):
+                cand.append((w['t'], w['w'], icon)); break
+    for t0, word, icon in cand:
+        if len(pops) >= want: break
+        if icon in used_icons or any(abs(t0 - tt) < 2.2 for tt in times): continue
+        # the cue must be the first time this word is spoken in the segment (the engine cues on the first match)
+        if any(_wn(w['w']).startswith(_wn(word)) and w['t'] < t0 - 0.01 for w in words): continue
+        name = ('fluent-3d:' + icon) if icon in _3D else ('fluent-emoji-flat:' + icon)
+        pops.append([_re.sub(r'[^\w\'-]', '', word), name]); used_icons.add(icon); times.append(t0)
+    if pops: sc['pops'] = pops
 json.dump(data, open(os.path.join(ROOT, 'src', 'data', 'episode.json'), 'w'), ensure_ascii=False)
 
 # icons used by the script ("fluent-emoji-flat:fire", "lucide:plane", "circle-flags:jp") -> src/data/icons.json
