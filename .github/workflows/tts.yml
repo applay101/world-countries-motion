@@ -1,0 +1,26 @@
+name: TTS (ElevenLabs one-off)
+# Push tools/tts/<name>/request.json to synthesise each segment with ElevenLabs (secret ELEVENLABS_API_KEY);
+# the MP3s are committed to tools/tts/<name>/out/ with [skip ci].
+on:
+  push:
+    branches: [main]
+    paths: ['tools/tts/*/request.json']
+permissions:
+  contents: write
+jobs:
+  tts:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 2 }
+      - name: Synthesise
+        env:
+          ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}
+        run: |
+          for f in $(git diff --name-only HEAD~1 HEAD -- 'tools/tts/*/request.json'); do python3 tools/tts/tts.py "$(dirname "$f")"; done
+      - name: Commit
+        run: |
+          git config user.name tts-bot && git config user.email tts-bot@users.noreply.github.com
+          git add -f tools/tts && (git diff --cached --quiet || git commit -q -m "tts output [skip ci]")
+          for i in 1 2 3 4 5; do git pull -q --rebase origin main && git push -q origin HEAD:main && break; sleep $((i*5)); done
