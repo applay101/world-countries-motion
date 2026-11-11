@@ -1,0 +1,515 @@
+{
+  "id": "spain-how-to-book-cita-previa",
+  "rev": 1,
+  "country": {
+    "name": "Spain",
+    "iso2": "es",
+    "isoNum": "724",
+    "lon": -3.7,
+    "lat": 40.2,
+    "capital": "Madrid"
+  },
+  "voice": "am_michael",
+  "speed": 1.0,
+  "music": "pulse",
+  "theme": {
+    "map": "night",
+    "accent": "#FFC400"
+  },
+  "thumb": {
+    "style": "steps",
+    "top": "STEP BY STEP",
+    "big": "SPAIN TIE",
+    "sub": "Book it right",
+    "badge": "1-month deadline",
+    "items": [
+      "Book online",
+      "Bring 4 docs",
+      "Get your TIE"
+    ],
+    "emoji": "fluent-emoji-flat:identification-card"
+  },
+  "short": {
+    "title": "1 MONTH TO DO THIS",
+    "sub": "Spain TIE card",
+    "segments": [
+      "intro",
+      "clock",
+      "book"
+    ]
+  },
+  "segments": [
+    {
+      "id": "intro",
+      "text": "Staying longer than six months? You have just one month to apply for this card in Spain.",
+      "scene": {
+        "type": "flag"
+      }
+    },
+    {
+      "id": "who",
+      "text": "It's called the TIE, the Foreigner Identity Card. If you hold a visa or a permit to stay in Spain for more than six months, getting it is both your right and your obligation. Whether you live in Madrid, Barcelona, Valencia, Seville or Malaga, it all starts on the same official website.",
+      "scene": {
+        "type": "map",
+        "chapter": "Who needs a TIE?",
+        "view": {
+          "lon": -3.2,
+          "lat": 39.6,
+          "span": 20
+        },
+        "labels": [
+          [
+            "Mediterranean Sea",
+            2.6,
+            38.2,
+            "sea"
+          ],
+          [
+            "Atlantic Ocean",
+            -12.5,
+            41.5,
+            "sea"
+          ]
+        ],
+        "markers": [
+          [
+            "Madrid",
+            -3.7,
+            40.42,
+            "star"
+          ],
+          [
+            "Barcelona",
+            2.17,
+            41.39,
+            "pin"
+          ],
+          [
+            "Valencia",
+            -0.38,
+            39.47,
+            "pin"
+          ],
+          [
+            "Seville",
+            -5.98,
+            37.39,
+            "pin"
+          ],
+          [
+            "Malaga",
+            -4.42,
+            36.72,
+            "pin"
+          ]
+        ],
+        "pops": [
+          [
+            "visa",
+            "fluent-3d:passport-control"
+          ],
+          [
+            "card",
+            "fluent-3d:identification-card"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "clock",
+      "text": "Now, the clock. For most long stays, like study, work or non-lucrative residence, your visa is only valid for ninety days. So whether you fly in from the United States, Mexico, Morocco or India, you must apply for your TIE within one month of entering Spain. And appointments can be weeks away.",
+      "scene": {
+        "type": "map",
+        "chapter": "The one-month clock",
+        "view": {
+          "lon": -30.0,
+          "lat": 30.0,
+          "span": 150
+        },
+        "markers": [
+          [
+            "United States",
+            -98.5,
+            39.5,
+            "dot"
+          ],
+          [
+            "Mexico",
+            -102.5,
+            23.6,
+            "dot"
+          ],
+          [
+            "Morocco",
+            -6.8,
+            31.8,
+            "dot"
+          ],
+          [
+            "India",
+            78.9,
+            21.5,
+            "dot"
+          ]
+        ],
+        "big": [
+          [
+            "1",
+            "month to apply"
+          ]
+        ],
+        "pops": [
+          [
+            "clock",
+            "fluent-3d:alarm-clock"
+          ],
+          [
+            "fly",
+            "fluent-3d:airplane"
+          ],
+          [
+            "weeks",
+            "fluent-3d:spiral-calendar"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "book",
+      "text": "Step one: book the appointment, the cita previa. Open the official website of Spain's public administration. Select your province of residence. Then choose the procedures of the National Police. Pick the option called Police, fingerprints, card issue. Finally, enter your details exactly as on your passport, choose an office and a time, and save your confirmation.",
+      "scene": {
+        "type": "steps",
+        "chapter": "Step 1: Book the cita previa",
+        "url": "sede.administracionespublicas.gob.es/icpplus",
+        "steps": [
+          [
+            "Choose your province",
+            "Where you live, not where you landed",
+            "Select"
+          ],
+          [
+            "National Police procedures",
+            "Trámites Cuerpo Nacional de Policía",
+            "Then"
+          ],
+          [
+            "Fingerprints & card issue",
+            "POLICÍA-TOMA DE HUELLAS (EXPEDICIÓN DE TARJETA)",
+            "Pick"
+          ],
+          [
+            "Your details, office & time",
+            "Exactly as on your passport",
+            "Finally"
+          ],
+          [
+            "Save the confirmation",
+            "Print it or keep a screenshot",
+            "save"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "province",
+      "text": "Your province decides where you go. Someone living in Alicante books in Alicante. In Palma, on the island of Mallorca, you book in the Balearic Islands. In Las Palmas, on Gran Canaria, you book in the Canary Islands. Always pick the province where you live, not the city where you landed.",
+      "scene": {
+        "type": "map",
+        "chapter": "Pick the right province",
+        "view": {
+          "lon": -6.5,
+          "lat": 35.0,
+          "span": 30
+        },
+        "labels": [
+          [
+            "Balearic Islands",
+            3.0,
+            40.3
+          ],
+          [
+            "Canary Islands",
+            -16.0,
+            29.4
+          ]
+        ],
+        "markers": [
+          [
+            "Alicante",
+            -0.48,
+            38.35,
+            "pin"
+          ],
+          [
+            "Palma",
+            2.65,
+            39.57,
+            "pin"
+          ],
+          [
+            "Las Palmas",
+            -15.43,
+            28.12,
+            "pin"
+          ]
+        ],
+        "pops": [
+          [
+            "island",
+            "fluent-3d:desert-island"
+          ],
+          [
+            "live",
+            "fluent-3d:house"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "docs",
+      "text": "Step two: get your documents ready. First, the application form, called EX seventeen. Second, proof that you paid the fee, with form seven ninety, code zero twelve. Third, your valid passport, plus a photocopy. And fourth, one recent colour photo that meets the rules for Spanish ID cards. Missing one can cost you the appointment.",
+      "scene": {
+        "type": "checklist",
+        "chapter": "Step 2: What to bring",
+        "title": "Your document checklist",
+        "items": [
+          [
+            "Form EX-17 (TIE application)",
+            "First"
+          ],
+          [
+            "Fee receipt: Modelo 790, código 012",
+            "Second"
+          ],
+          [
+            "Valid passport + a photocopy",
+            "Third"
+          ],
+          [
+            "1 recent colour ID photo",
+            "fourth"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "fee",
+      "text": "How much does it cost? For a first card that documents a temporary residence or stay, the official fee is sixteen euros and eight cents. A renewal card costs nineteen euros and thirty cents. You fill in form seven ninety online, on the National Police website, and pay it before your appointment in Madrid or anywhere else.",
+      "scene": {
+        "type": "stats",
+        "chapter": "The fee",
+        "view": {
+          "lon": -0.6,
+          "lat": 40.0,
+          "span": 22
+        },
+        "capital": [
+          "Madrid",
+          -3.7,
+          40.42
+        ],
+        "cards": [
+          {
+            "label": "First card",
+            "value": 16.08,
+            "fmt": "2dp",
+            "note": "Policía Nacional, tasas",
+            "cue": "official",
+            "suffix": " €"
+          },
+          {
+            "label": "Renewal card",
+            "value": 19.3,
+            "fmt": "2dp",
+            "note": "Policía Nacional, tasas",
+            "cue": "renewal",
+            "suffix": " €"
+          },
+          {
+            "label": "Fee form",
+            "text": "790 · 012",
+            "cue": "fill"
+          }
+        ],
+        "pops": [
+          [
+            "cost",
+            "fluent-3d:euro-banknote"
+          ],
+          [
+            "online",
+            "fluent-3d:laptop"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "day",
+      "text": "Step three: appointment day. Go to the police office you booked, whether that's in Madrid, Zaragoza, Bilbao, Barcelona or Seville. Arrive on time, with every document in your hand. An officer checks your papers and takes your fingerprints. That's why everyone calls it the fingerprint appointment, or toma de huellas.",
+      "scene": {
+        "type": "cities",
+        "chapter": "Step 3: Appointment day",
+        "view": {
+          "lon": -3.0,
+          "lat": 40.3,
+          "span": 18
+        },
+        "cities": [
+          [
+            "Madrid",
+            -3.7,
+            40.42
+          ],
+          [
+            "Zaragoza",
+            -0.88,
+            41.65
+          ],
+          [
+            "Bilbao",
+            -2.93,
+            43.26
+          ],
+          [
+            "Barcelona",
+            2.17,
+            41.39
+          ],
+          [
+            "Seville",
+            -5.98,
+            37.39
+          ]
+        ],
+        "pops": [
+          [
+            "officer",
+            "fluent-3d:police-officer"
+          ],
+          [
+            "fingerprints",
+            "fluent-3d:hand-with-fingers-splayed"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "tips",
+      "text": "Three smart tips. One: book as early as you can, because the wait can be several weeks. Two: if the immigration office already sent you a positive resolution, it is valid while you wait for the card. Three: only book on the official government website, and keep copies of everything you hand in.",
+      "scene": {
+        "type": "cards",
+        "chapter": "3 smart tips",
+        "cards": [
+          [
+            "fluent-3d:spiral-calendar",
+            "Book early",
+            "Slots can be weeks away",
+            "book"
+          ],
+          [
+            "fluent-3d:page-facing-up",
+            "Your resolution counts",
+            "Valid while you wait",
+            "immigration"
+          ],
+          [
+            "fluent-3d:check-mark-button",
+            "Official site only",
+            "Keep copies of everything",
+            "only"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "renew",
+      "text": "Already living here and renewing? Once your renewal is approved, you need a new card too, with the same booking, the same form and the renewal fee. The steps are identical in Granada, Murcia and Valladolid. And your card stays valid for as long as your residence permit does.",
+      "scene": {
+        "type": "map",
+        "chapter": "Renewing your TIE",
+        "view": {
+          "lon": -3.6,
+          "lat": 39.6,
+          "span": 17
+        },
+        "markers": [
+          [
+            "Granada",
+            -3.6,
+            37.18,
+            "pin"
+          ],
+          [
+            "Murcia",
+            -1.13,
+            37.99,
+            "pin"
+          ],
+          [
+            "Valladolid",
+            -4.72,
+            41.65,
+            "pin"
+          ]
+        ],
+        "pops": [
+          [
+            "renewing",
+            "fluent-3d:counterclockwise-arrows-button"
+          ],
+          [
+            "card",
+            "fluent-3d:identification-card"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "recap",
+      "text": "Let's recap. Book your cita previa on the official site. Choose your province and the fingerprint option. Bring form EX seventeen, the fee receipt, your passport and a photo. Then show up, give your fingerprints, and your TIE is on its way.",
+      "scene": {
+        "type": "journey",
+        "chapter": "Recap",
+        "stops": [
+          [
+            "1",
+            "Book online",
+            "fluent-3d:laptop",
+            "Book"
+          ],
+          [
+            "2",
+            "Pick province",
+            "fluent-3d:round-pushpin",
+            "Choose"
+          ],
+          [
+            "3",
+            "4 documents",
+            "fluent-3d:clipboard",
+            "Bring"
+          ],
+          [
+            "4",
+            "Fingerprints",
+            "fluent-3d:police-officer",
+            "show"
+          ],
+          [
+            "5",
+            "Your TIE",
+            "fluent-3d:identification-card",
+            "TIE"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "outro",
+      "text": "Rules can change, so always check the official site before you go. Which step confused you the most? Tell us in the comments. Next, watch our video on Spain itself, and subscribe to join us for the next country.",
+      "scene": {
+        "type": "outro"
+      }
+    }
+  ]
+}

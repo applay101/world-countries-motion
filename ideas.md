@@ -9,7 +9,7 @@ Ideas can be in Persian or English. Lines tagged [tutorial] are used by the 14:4
 - [ ] POV: You live in ancient Rome for a day (street + crowd scenes, history facts)
 - [ ] Countries that no longer exist (world map + era cards)
 - [ ] How old is every country? (world ranking, map timelapse)
-- [ ] [tutorial] Spain: how to book a police appointment (cita previa) for fingerprints and the TIE card, step by step
+- [x] [tutorial] Spain: how to book a police appointment (cita previa) for fingerprints and the TIE card, step by step
 - [ ] [tutorial] Spain: how to get an NIE number as a foreigner
 - [ ] [tutorial] Spain Digital Nomad Visa: requirements and how to apply
 - [ ] [tutorial] Spain non-lucrative residence visa: requirements and steps
