@@ -94,6 +94,15 @@ def eleven_voice():
     key = os.environ.get('ELEVENLABS_API_KEY', '').strip()
     v = ep.get('voice', '')
     vid = v.split(':', 1)[1] if v.startswith('eleven:') else os.environ.get('ELEVEN_VOICE_ID', '').strip()
+    # ELEVEN_VOICE_ID may list several voices (comma separated): history episodes take the first, others rotate by episode id
+    ids = [x.strip() for x in re.split(r'[,\s]+', vid) if x.strip()]
+    if len(ids) > 1:
+        import zlib
+        hist = (ep.get('theme') or {}).get('map') == 'parchment'
+        vid = ids[0] if hist else ids[zlib.crc32(ep['id'].encode()) % len(ids)]
+        print('eleven voice', vid, flush=True)
+    elif ids:
+        vid = ids[0]
     return (key, vid) if key and vid else (None, None)
 
 
