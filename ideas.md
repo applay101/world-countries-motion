@@ -5,6 +5,8 @@ Ideas can be in Persian or English. Lines tagged [tutorial] are used by the 14:4
 
 ## Production queue: proven million-view topics (Manifold YouTube research, 11 Nov 2026). Use from the top.
 Views in brackets are the competitor video that proves the topic. Copy the topic and title pattern only, never their script. Every rule, visa and number must be checked on official sources at production time (government, EU, Henley/IATA, OECD, World Bank, UN).
+- [ ] FOLLOW-UP (best performer 11 Nov: Coca-Cola, 21 views in 9 h, top of the channel): Things That ONLY Exist in ONE Country: a world-map countdown of unique things, one country per segment, `rank` badges (1.15M "Cool Things That ONLY Exist In Other Countries", 2026; 258K "The ONLY Countries Where Coca-Cola Is NOT Sold")
+- [ ] FOLLOW-UP (same "only countries" theme): The ONLY Countries Whose Flags Break the Rules: Nepal's non-rectangular flag, the square flags of Switzerland and Vatican City and other one-of-a-kind flags, on a world map (110K in 6 days "If Your Flag Has This, Your Country Is Deleted" map animation, Nov 2026; 258K Coca-Cola "ONLY countries" format; verify every flag fact on official/reputable sources)
 - [x] HISTORY: The ENTIRE History of Rome in 12 Minutes (10.6M; parchment, frames timelapse of Roman territory, era cards, street scene "a day in Rome")
 - [ ] Countries You Can Move to in 24 Hours: no visa in advance, no income proof (2.3M "5 countries Americans can move in 24 hours"; say which passports, e.g. US/EU/UK; long visa-free stays like Georgia, Albania, Mexico, Panama; official immigration sites only)
 - [ ] [tutorial] Schengen visa: how to apply step by step (home-affairs.ec.europa.eu + the embassy site; documents checklist, 90/180 rule)
@@ -62,6 +64,6 @@ Views in brackets are the competitor video that proves the topic. Copy the topic
 - [ ] The happiest countries in the world (latest World Happiness Report): countdown
 - [ ] HISTORY: The ENTIRE History of Spain in 10 Minutes
 - [ ] HISTORY: The ENTIRE History of Ancient Egypt in 10 Minutes
-- [ ] HISTORY: The ENTIRE History of Rome in 10 Minutes
+- [x] HISTORY: The ENTIRE History of Rome in 10 Minutes (done 11 Nov as rome-history)
 - [ ] Countries that no longer exist (map + era cards)
 - [ ] How old is every country in Europe? (ranking, map timelapse)
