@@ -6,6 +6,7 @@ import { AbsoluteFill, continueRender, delayRender, useCurrentFrame, useVideoCon
 import { EP, W, H, GOLD, INK, TITLE, BODY, cl, pr, eBack, eOut, eIO, segIndexAt, spokenAt, E, INTRO_END, INTRO_TYPE, MAP_STYLE, HIST } from './lib/core';
 import { FlagIntro, HookIntro } from './scenes/Intros';
 import { MapLayer } from './scenes/MapLayer';
+import { Morph } from './scenes/Morph';
 import { Globe, usePreload, DustLayer } from './scenes/Three';
 import { ChapterHero, LightSweep, Progress, shake } from './scenes/Fx';
 import { Stats, BigChips, Timeline, Cards, BigNum, Bars, Outro, Captions, Chapter, Steps, Checklist, Era, Split, Journey, Race } from './scenes/Panels';
@@ -56,9 +57,31 @@ const camFx = (t: number, i: number) => {
   for (const [w] of pops) { const at = spokenAt(seg, w); if (at !== null && t >= at - 0.05) z += 0.04 * Math.exp(-(t - at + 0.05) * 5); }
   const rot = 0.45 * Math.sin(t * 0.23) + 0.2 * Math.sin(t * 0.61);
   let x = 10 * Math.sin(t * 0.31), y = 7 * Math.sin(t * 0.27 + 1), blur = 0;
-  if (i > 1) { const d = t - seg.start, dir = i % 2 ? 1 : -1;
+  if (i > 1 && TR_OF(i) === 'whip') { const d = t - seg.start, dir = i % 2 ? 1 : -1;
     if (d > -0.22 && d < 0.28) { const q = d < 0 ? -d / 0.22 : d / 0.28; const k2 = (1 - q) * (1 - q); x += dir * 170 * k2 * (d < 0 ? -1 : 1); blur = 9 * k2; } }
   return { transform: `translate(${x}px, ${y}px) scale(${z}) rotate(${rot}deg)`, filter: `${HIST ? 'saturate(1.08) contrast(1.04)' : 'saturate(1.25) contrast(1.07) brightness(1.03)'}${blur > 0.3 ? ` blur(${blur.toFixed(1)}px)` : ''}` };
+};
+// segment transitions rotate so cuts never feel the same: whip pan (camFx), a hard-edged accent flood, or blinds closing behind a scan line
+const TRS = ['whip', 'flood', 'whip', 'blinds'];
+const TR_OF = (i: number) => (i <= 1 || i >= EP.segments.length - 1 ? 'none' : TRS[(i + EP.id.length) % TRS.length]);
+const Transition: React.FC<{ t: number; i: number }> = ({ t, i }) => {
+  // look at the nearest boundary (the next segment may be about to start)
+  const k = t > EP.segments[i].start + 0.4 && EP.segments[i + 1] ? i + 1 : i;
+  const kind = TR_OF(k); if (kind === 'none' || kind === 'whip') return null;
+  const d = t - (EP.segments[k].start - 0.05);
+  if (d < -0.3 || d > 0.34) return null;
+  if (kind === 'flood') {
+    const R = 2300, cin = k % 2 ? [0, H] : [W, 0], cout = k % 2 ? [W, 0] : [0, H];
+    const q = d < 0 ? 1 - Math.pow(cl(-d / 0.3), 2) : Math.pow(cl(d / 0.34), 1.6);
+    const [cx, cy] = d < 0 ? cin : cout; const r = d < 0 ? R * q : R * (1 - q);
+    return <svg width={W} height={H} style={{ position: 'absolute', inset: 0 }}><circle cx={cx} cy={cy} r={r} fill={GOLD} /><circle cx={cx} cy={cy} r={r} fill="none" stroke="#fff" strokeWidth={10} /></svg>;
+  }
+  const N = 9, bh = H / N;
+  return <svg width={W} height={H} style={{ position: 'absolute', inset: 0 }}>
+    {Array.from({ length: N }, (_, j) => { const lag = j * 0.018; const q = d < 0 ? cl((d + 0.3 - lag) / 0.16) : 1 - cl((d - lag) / 0.16);
+      return <rect key={j} x={0} y={j * bh + (bh * (1 - q)) / 2} width={W} height={bh * q + 1} fill={j % 2 ? GOLD : '#0B1220'} />; })}
+    {d < 0.05 ? <rect x={0} y={cl((d + 0.3) / 0.35) * H - 3} width={W} height={6} fill="#fff" /> : null}
+  </svg>;
 };
 // moving colour light leaks + a teal/orange grade so every frame feels warm and alive
 const ColorLife: React.FC<{ t: number }> = ({ t }) => {
@@ -81,7 +104,7 @@ const RankBadge: React.FC<{ t: number }> = ({ t }) => {
   );
 };
 const INTRO = EP.segments[0];
-const DIM: Record<string, number> = { timeline: 0.55, cards: 0.55, bignum: 0.6, bars: 0.55, steps: 0.6, checklist: 0.6, era: 0.5, split: 0.55, journey: 0.55, crowd: 0.45, race: 0.75 };
+const DIM: Record<string, number> = { timeline: 0.55, cards: 0.55, bignum: 0.6, bars: 0.55, steps: 0.6, checklist: 0.6, era: 0.5, split: 0.55, journey: 0.55, crowd: 0.45, race: 0.75, morph: 0.62 };
 
 // big year counter for map timelapses (scene.frames)
 const YearTicker: React.FC<{ t: number; seg: any; i: number }> = ({ t, seg, i }) => {
@@ -169,12 +192,14 @@ export const Episode: React.FC = () => {
             {ty === 'street' ? <Street t={t} seg={s} i={k} /> : null}
             {ty === 'race' ? <Race t={t} seg={s} i={k} /> : null}
             {ty === 'crowd' ? <Crowd t={t} seg={s} i={k} /> : null}
+            {ty === 'morph' ? <Morph t={t} seg={s} i={k} /> : null}
             {s.scene.frames ? <YearTicker t={t} seg={s} i={k} /> : null}
             <Chapter t={t} seg={s} i={k} />
           </React.Fragment>
         );
       })}
       {ready ? <Outro t={t} seg={last} /> : null}
+      <Transition t={t} i={i} />
       </AbsoluteFill>
       {ready && seg.scene.type !== 'street' ? <DustLayer t={t} burstAt={(spokenAt(last, 'subscribe') ?? last.start + 4) - 0.1} /> : null}
       <LightSweep t={t} />

@@ -27,11 +27,12 @@ const THEMES: Record<string, { o: [string, string, string]; l: [string, string];
   night: { o: ['#0b1426', '#060a14', '#020306'], l: ['#1b2433', '#121926'], b: 'rgba(94,200,255,.55)', g: 'rgba(94,200,255,.07)' },
   sand: { o: ['#1d6f86', '#155a70', '#0b3444'], l: ['#d8c39a', '#b89f72'], b: 'rgba(90,60,30,.45)', g: 'rgba(255,255,255,.08)' },
   emerald: { o: ['#0c3b3a', '#082a2a', '#041615'], l: ['#3c5e4a', '#2a4434'], b: 'rgba(190,240,210,.4)', g: 'rgba(160,255,210,.07)' },
+  blueprint: { o: ['#2161b3', '#1a4f96', '#0f3466'], l: ['#2f72c9', '#2866b8'], b: 'rgba(255,255,255,.85)', g: 'rgba(255,255,255,.18)' },
   parchment: { o: ['#a9926a', '#8e7853', '#5e4d33'], l: ['#efe0bb', '#dcc697'], b: 'rgba(90,58,25,.6)', g: 'rgba(80,50,20,.14)' },
 };
 const MT = THEMES[MAP_STYLE] ?? THEMES.navy;
 const FLAG_ON_MAP = (EP as any).flagOnMap !== false; // history episodes: plain accent fill instead of today's flag
-const DIMMED = new Set(['timeline', 'cards', 'bignum', 'bars', 'steps', 'checklist', 'era', 'split', 'journey', 'crowd', 'street', 'race']);
+const DIMMED = new Set(['timeline', 'cards', 'bignum', 'bars', 'steps', 'checklist', 'era', 'split', 'journey', 'crowd', 'street', 'race', 'morph']);
 
 // ---------- camera: shot list built from the narration ----------
 // Each map segment opens on its view, then the camera flies in to every place as it is spoken, and pulls back out.
