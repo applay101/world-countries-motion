@@ -4,7 +4,7 @@
  "size_bytes": 69695610,
  "video_url": "https://github.com/applay101/world-countries-motion/releases/download/ep-japan-5-reasons/japan-5-reasons.mp4",
  "thumbnail_url": "https://github.com/applay101/world-countries-motion/releases/download/ep-japan-5-reasons/japan-5-reasons-thumb.jpg",
- "run": "https://github.com/applay101/world-countries-motion/actions/runs/42951995374",
+ "run": "https://github.com/applay101/world-countries-motion/actions/runs/42953779896",
  "chapters": [
   "0:00 Intro",
   "0:09 World's number one",
@@ -54,5 +54,6 @@
   "\u001b[40m Tab 3, node_modules/react-dom/cjs/react-dom.production.min.js:23 \u001b[49m ",
   "\u001b[40m Tab 3, node_modules/react-dom/cjs/react-dom.production.min.js:23 \u001b[49m ",
   "\u001b[40m Tab 3, node_modules/react-dom/cjs/react-dom.production.min.js:23 \u001b[49m "
- ]
+ ],
+ "short_url": "https://github.com/applay101/world-countries-motion/releases/download/ep-japan-5-reasons/japan-5-reasons-short.mp4"
 }
