@@ -10,6 +10,9 @@ docs/youtube-agent.md is Hossein's YouTube agent skill (also installed as the `y
 - Script and packaging: `social-media-skills:youtube-long-form`, `social-media-skills:hook-writer`, `social-media-skills:youtube-publishing-and-metadata` (title, description, chapters, tags), `social-media-skills:youtube-shorts` (the Short's title and caption).
 - Cover: `social-media-skills:thumbnail-design` (one idea, contrast, 3-word rule) and `image-generation:image-generation` (how to write the vidIQ cover prompt).
 - Data scenes (bars, race, bubbles, columns, stats): `dataink:data-visualization` and `dataink:infographic-creator` (honest scales, one takeaway per chart, cite the source).
+- Engine work (fixing a render bug, improving a scene, adding a graphic to the library): load `remotion:remotion-best-practices` first, plus `remotion:remotion-maps` (map animation), `remotion:remotion-markup` (animation/effects), `remotion:remotion-captions` (subtitles) as needed.
+- Competitor research: `youtube-transcriber:youtube-transcriber` (free captions of viral videos, to study their hook and structure; needs a browser, so skip it when none is available; never copy their script).
+- `animation-studio:animation-studio` makes standalone hand-drawn films, not Remotion scenes: use it only for a separate special video Hossein asks for, not inside the episode engine.
 These sharpen the steps; the rules in this file still win when they disagree (e.g. the channel's formats, engine scenes, Metricool publishing, vidIQ only for covers).
 
 ## Pipeline
