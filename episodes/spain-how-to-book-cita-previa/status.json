@@ -1,11 +1,24 @@
 {
  "episode": "spain-how-to-book-cita-previa",
- "status": "cancelled",
- "size_bytes": 0,
- "video_url": null,
- "thumbnail_url": null,
- "short_url": null,
- "run": "https://github.com/applay101/world-countries-motion/actions/runs/43034370042",
- "chapters": [],
- "log_tail": []
+ "status": "success",
+ "size_bytes": 92489912,
+ "video_url": "https://github.com/applay101/world-countries-motion/releases/download/ep-spain-how-to-book-cita-previa/spain-how-to-book-cita-previa.mp4",
+ "thumbnail_url": "https://github.com/applay101/world-countries-motion/releases/download/ep-spain-how-to-book-cita-previa/spain-how-to-book-cita-previa-thumb.jpg",
+ "short_url": "https://github.com/applay101/world-countries-motion/releases/download/ep-spain-how-to-book-cita-previa/spain-how-to-book-cita-previa-short.mp4",
+ "run": "https://github.com/applay101/world-countries-motion/actions/runs/43040102274",
+ "chapters": [
+  "0:00 Intro",
+  "0:05 Who needs a TIE?",
+  "0:26 The one-month clock",
+  "0:46 Step 1: Book the cita previa",
+  "1:14 Pick the right province",
+  "1:37 Step 2: What to bring",
+  "1:57 The fee",
+  "2:20 Step 3: Appointment day",
+  "2:41 3 smart tips",
+  "3:03 Renewing your TIE",
+  "3:19 Recap",
+  "3:34 Outro"
+ ],
+ "note": "status written by the episode session: the run succeeded but its status push hit an untracked-file checkout error (fixed in render.yml with checkout -f)"
 }

@@ -149,7 +149,7 @@ jobs:
           cp episodes/$ID/status.json /tmp/status.json
           # main may have moved while we rendered (and may hold an older status.json): rebuild the commit on the latest main, retry a few times
           for i in 1 2 3 4 5; do
-            git fetch -q origin main && git checkout -q -B status-update origin/main && cp /tmp/status.json episodes/$ID/status.json \
+            git fetch -q origin main && git checkout -q -f -B status-update origin/main && cp /tmp/status.json episodes/$ID/status.json \
               && git add episodes/$ID/status.json && (git diff --cached --quiet || git commit -q -m "status: $ID $STATUS [skip ci]") \
               && git push -q origin HEAD:main && break
             sleep $((i * 5))
