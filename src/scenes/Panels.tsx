@@ -1,7 +1,7 @@
 // Infographic overlays: stat cards, big numbers, timeline, culture cards, KPI + bar chart, outro, captions, chapter chip.
 import React from 'react';
 import { Icon, isIcon } from '../lib/Icon';
-import { EP, W, H, GOLD, INK, TITLE, BODY, Seg, cl, pr, lerp, eOut, eBack, eExpo, cue, segWindow, fadeWin, fmtNum, E } from '../lib/core';
+import { EP, W, H, GOLD, INK, TITLE, BODY, Seg, cl, pr, lerp, eOut, eBack, eExpo, cue, segWindow, fadeWin, fmtNum, E, HIST, DISPLAY, spokenAt } from '../lib/core';
 import { FlagWave } from './Three';
 import CH from '../../channel.json';
 
@@ -315,24 +315,105 @@ export const Chapter: React.FC<{ t: number; seg: Seg; i: number }> = ({ t, seg, 
   );
 };
 
-// ---------- era card (history episodes): big year, title, subtitle, icon row ----------
+// ---------- era card (history episodes): big year on a parchment scroll, title, subtitle, icon row ----------
+const Scroll: React.FC<{ w: number; h: number; p: number }> = ({ w, h, p }) => (
+  <svg width={w} height={h} viewBox={`0 0 ${w} ${h}`} style={{ position: 'absolute', left: 0, top: 0, overflow: 'visible' }}>
+    <defs>
+      <linearGradient id="scr" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stopColor="#f6e7c4" /><stop offset="1" stopColor="#e3cc98" /></linearGradient>
+      <filter id="scrn"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="2" seed="3" /><feColorMatrix values="0 0 0 0 0.4 0 0 0 0 0.28 0 0 0 0 0.12 0 0 0 0.35 0" /><feComposite in2="SourceGraphic" operator="in" /></filter>
+    </defs>
+    <g transform={`translate(${w / 2},0) scale(${p},1) translate(${-w / 2},0)`}>
+      <rect x={40} y={20} width={w - 80} height={h - 40} rx={10} fill="url(#scr)" stroke="#6b4a22" strokeWidth={4} />
+      <rect x={40} y={20} width={w - 80} height={h - 40} rx={10} fill="#000" filter="url(#scrn)" />
+      <rect x={62} y={40} width={w - 124} height={h - 80} rx={6} fill="none" stroke="#8a6232" strokeWidth={2} strokeDasharray="2 6" />
+    </g>
+    {[0, 1].map((k) => { const x = k ? lerp(w / 2, w - 40, p) : lerp(w / 2, 40, p);
+      return <g key={k}><rect x={x - 26} y={6} width={52} height={h - 12} rx={26} fill="#d8bd86" stroke="#6b4a22" strokeWidth={4} />
+        <rect x={x - 26} y={6} width={18} height={h - 12} rx={9} fill="rgba(255,255,255,.25)" /><circle cx={x} cy={6} r={14} fill="#6b4a22" /><circle cx={x} cy={h - 6} r={14} fill="#6b4a22" /></g>; })}
+  </svg>
+);
 export const Era: React.FC<{ t: number; seg: Seg; i: number }> = ({ t, seg, i }) => {
   const [a, b] = segWindow(i); const vis = fadeWin(t, a, b, 0.4, 0.45);
   if (vis <= 0) return null;
   const sc = seg.scene as any; const at = cue(seg, sc.cue ?? sc.title ?? '', 0, 1);
-  const p = pr(t, at - 0.1, 0.7, eBack), q = pr(t, at + 0.35, 0.8, eOut);
+  const open = pr(t, a + 0.1, 0.8, eOut);
+  const p = pr(t, at - 0.1, 0.7, eBack), q = pr(t, at + 0.35, 0.8, eOut), seal = pr(t, at + 0.9, 0.45, eBack);
   const icons = (sc.icons ?? []) as string[];
+  const ink = HIST ? '#2a1708' : '#fff';
   return (
-    <div style={{ position: 'absolute', left: 0, right: 0, top: 170, display: 'flex', flexDirection: 'column', alignItems: 'center', opacity: vis }}>
-      <div style={{ fontFamily: TITLE, fontWeight: 800, fontSize: 190, lineHeight: 1, color: GOLD, letterSpacing: 6, transform: `scale(${lerp(2.2, 1, p)}) rotate(${(1 - p) * -6}deg)`, opacity: cl(p * 2),
-        textShadow: '0 0 60px rgba(0,0,0,.6), 0 14px 0 rgba(0,0,0,.35)' }}>{sc.year}</div>
-      <div style={{ width: 520 * q, height: 6, background: GOLD, borderRadius: 4, margin: '14px 0 22px' }} />
-      <div style={{ fontFamily: TITLE, fontWeight: 800, fontSize: 84, color: '#fff', textAlign: 'center', opacity: q, transform: `translateY(${(1 - q) * 30}px)`, textShadow: '0 10px 40px rgba(0,0,0,.8)' }}>{sc.title}</div>
-      {sc.sub ? <div style={{ fontFamily: BODY, fontWeight: 600, fontSize: 36, color: '#d9c7a0', marginTop: 10, opacity: q }}>{sc.sub}</div> : null}
-      <div style={{ display: 'flex', gap: 46, marginTop: 40 }}>
-        {icons.map((ic, k) => { const r = pr(t, at + 0.6 + k * 0.25, 0.6, eBack);
-          return <Icon key={k} name={ic} size={150} style={{ opacity: cl(r * 2), transform: `translateY(${(1 - r) * 80}px) scale(${r}) rotate(${Math.sin(t * 2 + k) * 4}deg)`, filter: 'drop-shadow(0 16px 24px rgba(0,0,0,.55))' }} />; })}
+    <div style={{ position: 'absolute', left: W / 2 - 720, top: 120, width: 1440, height: 640, opacity: vis }}>
+      {HIST ? <Scroll w={1440} h={640} p={open} /> : null}
+      <div style={{ position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', paddingTop: 70, opacity: HIST ? cl((open - 0.5) * 2) : 1 }}>
+        <div style={{ fontFamily: DISPLAY, fontWeight: 900, fontSize: 170, lineHeight: 1, color: HIST ? '#8a1c10' : GOLD, letterSpacing: 6, transform: `scale(${lerp(2.2, 1, p)}) rotate(${(1 - p) * -6}deg)`, opacity: cl(p * 2),
+          textShadow: HIST ? '0 3px 0 rgba(255,255,255,.4), 0 -2px 0 rgba(60,20,5,.4)' : '0 0 60px rgba(0,0,0,.6)' }}>{sc.year}</div>
+        <div style={{ width: 520 * q, height: 5, background: HIST ? '#8a6232' : GOLD, borderRadius: 4, margin: '14px 0 18px' }} />
+        <div style={{ fontFamily: DISPLAY, fontWeight: HIST ? 900 : 800, fontSize: 78, color: ink, textAlign: 'center', opacity: q, transform: `translateY(${(1 - q) * 30}px)` }}>{sc.title}</div>
+        {sc.sub ? <div style={{ fontFamily: BODY, fontWeight: 600, fontSize: 34, color: HIST ? '#5c3d1a' : '#d9c7a0', marginTop: 8, opacity: q, fontStyle: 'italic' }}>{sc.sub}</div> : null}
+        <div style={{ display: 'flex', gap: 46, marginTop: 30 }}>
+          {icons.map((ic, k) => { const r = pr(t, at + 0.6 + k * 0.25, 0.6, eBack);
+            return <Icon key={k} name={ic} size={130} style={{ opacity: cl(r * 2), transform: `translateY(${(1 - r) * 80}px) scale(${r}) rotate(${Math.sin(t * 2 + k) * 4}deg)`, filter: 'drop-shadow(0 12px 18px rgba(60,30,5,.45))' }} />; })}
+        </div>
       </div>
+      {HIST ? <div style={{ position: 'absolute', right: 120, bottom: 40, width: 130, height: 130, borderRadius: '50%', background: 'radial-gradient(circle at 40% 35%, #d0453a, #8a1c10 70%)',
+        boxShadow: '0 8px 16px rgba(60,10,5,.5), inset 0 0 0 10px rgba(0,0,0,.12)', transform: `scale(${lerp(2.5, 1, seal)}) rotate(${(1 - seal) * 40 - 12}deg)`, opacity: cl(seal * 3),
+        display: 'flex', alignItems: 'center', justifyContent: 'center' }}><Icon name="fluent-emoji-flat:crown" size={64} style={{ filter: 'sepia(1) saturate(2) brightness(1.3)', opacity: 0.85 }} /></div> : null}
+    </div>
+  );
+};
+
+// ---------- split (A vs B / before vs after) ----------
+type Side = { title: string; sub?: string; icon?: string; value?: string; cue?: string; color?: string };
+export const Split: React.FC<{ t: number; seg: Seg; i: number }> = ({ t, seg, i }) => {
+  const [a, b] = segWindow(i); const vis = fadeWin(t, a, b, 0.4, 0.45);
+  if (vis <= 0) return null;
+  const sc = seg.scene as any; const L = sc.left as Side, R = sc.right as Side;
+  const la = cue(seg, L.cue ?? L.title, 0, 2), ra = cue(seg, R.cue ?? R.title, 1, 2);
+  const pl = pr(t, la - 0.15, 0.6, eOut), pr2 = pr(t, ra - 0.15, 0.6, eOut), vs = pr(t, ra + 0.2, 0.5, eBack);
+  const half = (s: Side, p: number, left: boolean) => (
+    <div style={{ position: 'absolute', top: 150, [left ? 'left' : 'right']: 90, width: 800, height: 620, borderRadius: 30, overflow: 'hidden',
+      background: HIST ? 'linear-gradient(180deg,#f3e2bb,#dcc28d)' : 'linear-gradient(180deg, rgba(20,30,55,.92), rgba(10,16,30,.92))', border: `4px solid ${s.color ?? (HIST ? '#6b4a22' : GOLD)}`,
+      transform: `translateX(${(1 - p) * (left ? -900 : 900)}px) rotate(${(1 - p) * (left ? -4 : 4)}deg)`, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 18,
+      boxShadow: '0 30px 60px rgba(0,0,0,.45)' } as any}>
+      {s.icon ? <Icon name={s.icon} size={200} style={{ filter: 'drop-shadow(0 14px 20px rgba(0,0,0,.35))', transform: `scale(${eBack(cl(p))})` }} /> : null}
+      <div style={{ fontFamily: DISPLAY, fontWeight: 900, fontSize: 70, color: HIST ? '#2a1708' : '#fff', textAlign: 'center' }}>{s.title}</div>
+      {s.value ? <div style={{ fontFamily: TITLE, fontWeight: 800, fontSize: 64, color: s.color ?? (HIST ? '#8a1c10' : GOLD) }}>{s.value}</div> : null}
+      {s.sub ? <div style={{ fontFamily: BODY, fontWeight: 600, fontSize: 32, color: HIST ? '#5c3d1a' : '#a9bcd6', textAlign: 'center', padding: '0 40px' }}>{s.sub}</div> : null}
+    </div>
+  );
+  return (
+    <div style={{ position: 'absolute', inset: 0, opacity: vis }}>
+      {half(L, pl, true)}{half(R, pr2, false)}
+      <div style={{ position: 'absolute', left: W / 2 - 85, top: 380, width: 170, height: 170, borderRadius: '50%', background: HIST ? '#8a1c10' : '#ff3b30', color: '#fff',
+        display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: DISPLAY, fontWeight: 900, fontSize: 70, boxShadow: '0 0 0 8px rgba(255,255,255,.9), 0 20px 40px rgba(0,0,0,.5)',
+        transform: `scale(${vs}) rotate(${(1 - vs) * 90}deg)` }}>{sc.vs ?? 'VS'}</div>
+    </div>
+  );
+};
+
+// ---------- journey (recap road): stops pop along a winding dashed road ----------
+export const Journey: React.FC<{ t: number; seg: Seg; i: number }> = ({ t, seg, i }) => {
+  const [a, b] = segWindow(i); const vis = fadeWin(t, a, b, 0.4, 0.45);
+  if (vis <= 0) return null;
+  const stops = (seg.scene as any).stops as [string, string, string, string?][];
+  const n = stops.length; const xs = stops.map((_, k) => 180 + (k * (W - 360)) / Math.max(1, n - 1)); const ys = stops.map((_, k) => (k % 2 ? 640 : 430));
+  const times = stops.map((s, k) => cue(seg, s[3] ?? s[1], k, n));
+  let d = `M${xs[0]},${ys[0]}`; for (let k = 1; k < n; k++) { const mx = (xs[k - 1] + xs[k]) / 2; d += ` C${mx},${ys[k - 1]} ${mx},${ys[k]} ${xs[k]},${ys[k]}`; }
+  const prog = cl((t - times[0] + 0.3) / Math.max(0.5, times[n - 1] - times[0] + 0.6));
+  return (
+    <div style={{ position: 'absolute', inset: 0, opacity: vis }}>
+      <svg width={W} height={H} style={{ position: 'absolute', inset: 0 }}>
+        <defs><mask id="jm"><path d={d} fill="none" stroke="#fff" strokeWidth={40} strokeLinecap="round" pathLength={1000} strokeDasharray={`${1000 * prog} 1000`} /></mask></defs>
+        <g mask="url(#jm)">
+          <path d={d} fill="none" stroke={HIST ? 'rgba(250,236,205,.85)' : 'rgba(255,255,255,.15)'} strokeWidth={34} strokeLinecap="round" />
+          <path d={d} fill="none" stroke={HIST ? '#7a1f12' : GOLD} strokeWidth={7} strokeDasharray="22 16" strokeDashoffset={-t * 40} strokeLinecap="round" />
+        </g>
+      </svg>
+      {stops.map(([year, label, icon], k) => { const p = pr(t, times[k] - 0.1, 0.55, eBack); if (p <= 0) return null;
+        return (<div key={k} style={{ position: 'absolute', left: xs[k] - 120, top: ys[k] - 175, width: 240, display: 'flex', flexDirection: 'column', alignItems: 'center', transform: `scale(${p})`, opacity: cl(p * 2) }}>
+          <Icon name={icon} size={120} style={{ filter: 'drop-shadow(0 12px 16px rgba(0,0,0,.45))' }} />
+          <div style={{ marginTop: 6, fontFamily: DISPLAY, fontWeight: 900, fontSize: 38, color: HIST ? '#8a1c10' : INK, background: HIST ? '#f6e7c4' : GOLD, border: HIST ? '3px solid #6b4a22' : 'none', padding: '0 16px 2px', borderRadius: 12, boxShadow: '0 6px 14px rgba(0,0,0,.35)' }}>{year}</div>
+          <div style={{ fontFamily: BODY, fontWeight: 700, fontSize: 26, color: '#fff', textAlign: 'center', background: 'rgba(30,18,8,.8)', padding: '4px 12px', borderRadius: 10, marginTop: 6 }}>{label}</div>
+        </div>); })}
     </div>
   );
 };

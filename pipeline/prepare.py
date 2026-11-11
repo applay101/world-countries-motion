@@ -28,6 +28,7 @@ import re
 SETS = {'fluent-emoji-flat', 'circle-flags', 'lucide'}
 refs = set(re.findall(r'"((?:%s):[a-z0-9-]+)"' % '|'.join(SETS), json.dumps(ep)))
 refs.add('circle-flags:' + iso)
+refs.update(['fluent-emoji-flat:crossed-swords', 'fluent-emoji-flat:crown', 'fluent-emoji-flat:sailboat', 'fluent-emoji-flat:horse', 'fluent-emoji-flat:classical-building', 'fluent-emoji-flat:scroll'])
 packs, icons = {}, {}
 for ref in sorted(refs):
     pre, name = ref.split(':')

@@ -8,6 +8,7 @@
     "render": "remotion render src/index.ts Episode build/video.mp4"
   },
   "dependencies": {
+    "@fontsource/cinzel": "^5.3.0",
     "@fontsource/inter": "^5.1.0",
     "@fontsource/montserrat": "^5.1.0",
     "@iconify-json/circle-flags": "^1.2.14",

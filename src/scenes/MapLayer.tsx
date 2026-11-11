@@ -5,7 +5,8 @@ import { staticFile } from 'remotion';
 import { geoMercator, geoPath, geoGraticule10, geoArea, geoBounds } from 'd3-geo';
 import { feature } from 'topojson-client';
 import world from 'world-atlas/countries-50m.json';
-import { EP, W, H, GOLD, TITLE, BODY, Seg, View, cl, pr, lerp, eExpoIO, eBack, eOut, cue, segWindow, fadeWin, INTRO_END, spokenAt, MAP_STYLE, INTRO_TYPE } from '../lib/core';
+import { EP, W, H, GOLD, TITLE, BODY, Seg, View, cl, pr, lerp, eExpoIO, eBack, eOut, cue, segWindow, fadeWin, INTRO_END, spokenAt, MAP_STYLE, INTRO_TYPE, HIST, DISPLAY } from '../lib/core';
+import { SvgIcon } from '../lib/Icon';
 
 const FC: any = feature(world as any, (world as any).objects.countries);
 const FEATS: any[] = FC.features;
@@ -30,7 +31,7 @@ const THEMES: Record<string, { o: [string, string, string]; l: [string, string];
 };
 const MT = THEMES[MAP_STYLE] ?? THEMES.navy;
 const FLAG_ON_MAP = (EP as any).flagOnMap !== false; // history episodes: plain accent fill instead of today's flag
-const DIMMED = new Set(['timeline', 'cards', 'bignum', 'bars', 'steps', 'checklist', 'era']);
+const DIMMED = new Set(['timeline', 'cards', 'bignum', 'bars', 'steps', 'checklist', 'era', 'split', 'journey']);
 
 // ---------- camera: shot list built from the narration ----------
 // Each map segment opens on its view, then the camera flies in to every place as it is spoken, and pulls back out.
@@ -88,7 +89,10 @@ type Mk = [string, number, number, string?];
 const Marker: React.FC<{ x: number; y: number; name: string; kind: string; p: number; side?: number }> = ({ x, y, name, kind, p, side = 1 }) => {
   if (p <= 0) return null;
   const s = eBack(cl(p));
-  const icon = kind === 'peak' ? (
+  const lib = kind === 'battle' ? 'fluent-emoji-flat:crossed-swords' : kind.includes(':') ? kind : null;
+  const icon = lib ? (
+    <g><circle r={34} fill={HIST ? 'rgba(250,236,205,.92)' : 'rgba(10,16,30,.85)'} stroke={GOLD} strokeWidth={3} /><SvgIcon name={lib} x={0} y={0} size={46} /></g>
+  ) : kind === 'peak' ? (
     <path d="M-16 10 L0 -16 L16 10 Z" fill={GOLD} stroke="#3a2a00" strokeWidth={2} />
   ) : kind === 'star' ? (
     <path d="M0 -15 L4.4 -4.6 L15 -4.6 L6.5 2 L9.5 13 L0 6.5 L-9.5 13 L-6.5 2 L-15 -4.6 L-4.4 -4.6 Z" fill={GOLD} stroke="#3a2a00" strokeWidth={1.5} />
@@ -105,8 +109,8 @@ const Marker: React.FC<{ x: number; y: number; name: string; kind: string; p: nu
       <circle r={22 + 30 * cl(p)} fill="none" stroke={GOLD} strokeWidth={2} opacity={0.6 * (1 - cl(p))} />
       <g transform={`scale(${s})`}>{icon}</g>
       <g transform={`translate(${lx},${kind === 'pin' ? -28 : 0})`} opacity={cl((p - 0.15) * 3)}>
-        <text x={0} y={9} textAnchor={side > 0 ? 'start' : 'end'} fontFamily={TITLE} fontWeight={600} fontSize={27} fill="#fff"
-          stroke="rgba(5,10,20,.85)" strokeWidth={7} paintOrder="stroke" style={{ letterSpacing: 0.5 }}>{name}</text>
+        <text x={lib ? side * 18 : 0} y={9} textAnchor={side > 0 ? 'start' : 'end'} fontFamily={HIST ? DISPLAY : TITLE} fontWeight={HIST ? 700 : 600} fontSize={HIST ? 30 : 27} fill={HIST ? '#2a1708' : '#fff'}
+          stroke={HIST ? 'rgba(248,234,204,.95)' : 'rgba(5,10,20,.85)'} strokeWidth={HIST ? 8 : 7} paintOrder="stroke" style={{ letterSpacing: 0.5 }}>{name}</text>
       </g>
     </g>
   );
@@ -147,6 +151,26 @@ export const MapLayer: React.FC<{ t: number; seg: Seg; segIdx: number; view?: Vi
     const c = cue(seg, name, i, arr.length); const p = pr(t, c, 0.7, (x) => x) * vis; const [x, y] = pt(lon, lat);
     items.push(<Marker key={'m' + i} x={x} y={y} name={name} kind={kind ?? 'dot'} p={p} side={x > CW / 2 + W * 0.28 ? -1 : 1} />);
   });
+  // routes: a dashed journey/conquest/trade line that draws itself, with an icon travelling at its head
+  ((sc.routes as { points: [number, number][]; label?: string; cue?: string; icon?: string; color?: string }[] | undefined) ?? []).forEach((r, ri, arr) => {
+    const c = cue(seg, r.cue ?? r.label ?? '', ri, arr.length); const p = pr(t, c - 0.1, 2.6, (x) => 1 - Math.pow(1 - x, 2)) * vis;
+    if (p <= 0) return;
+    const pts = r.points.map(([lo, la]) => pt(lo, la)); const col = r.color ?? (HIST ? '#7a1f12' : GOLD);
+    const segs = pts.slice(1).map((q, k) => Math.hypot(q[0] - pts[k][0], q[1] - pts[k][1])); const len = segs.reduce((a, b) => a + b, 0);
+    let rem = len * p, hx = pts[0][0], hy = pts[0][1], ang = 0;
+    for (let k = 0; k < segs.length; k++) { const [ax, ay] = pts[k], [bx, by] = pts[k + 1]; ang = Math.atan2(by - ay, bx - ax);
+      if (rem <= segs[k]) { const f = segs[k] ? rem / segs[k] : 0; hx = ax + (bx - ax) * f; hy = ay + (by - ay) * f; break; } rem -= segs[k]; hx = bx; hy = by; }
+    const d = 'M' + pts.map((q) => q.join(',')).join('L');
+    items.push(<g key={'r' + ri}>
+      <defs><mask id={'rm' + ri}><path d={d} fill="none" stroke="#fff" strokeWidth={14} strokeDasharray={`${len * p} ${len}`} strokeLinecap="round" strokeLinejoin="round" /></mask></defs>
+      <path d={d} fill="none" stroke={HIST ? 'rgba(250,236,205,.8)' : 'rgba(5,10,20,.6)'} strokeWidth={11} strokeLinecap="round" strokeLinejoin="round" mask={`url(#rm${ri})`} />
+      <path d={d} fill="none" stroke={col} strokeWidth={5.5} strokeDasharray="18 12" strokeDashoffset={-t * 30} strokeLinecap="round" strokeLinejoin="round" mask={`url(#rm${ri})`} />
+      {r.icon ? <SvgIcon name={r.icon} x={hx} y={hy - 6} size={64} rotate={0} opacity={cl(p * 5) * (p > 0.98 ? 1 : 1)} /> :
+        <path d="M-14 -10 L12 0 L-14 10 Z" fill={col} transform={`translate(${hx},${hy}) rotate(${(ang * 180) / Math.PI})`} />}
+      {r.label ? <text x={pts[Math.floor(pts.length / 2)][0]} y={pts[Math.floor(pts.length / 2)][1] - 26} textAnchor="middle" fontFamily={HIST ? DISPLAY : TITLE} fontWeight={700} fontSize={30}
+        fill={HIST ? '#5a1408' : '#fff'} stroke={HIST ? 'rgba(248,234,204,.95)' : 'rgba(5,10,20,.85)'} strokeWidth={8} paintOrder="stroke" fontStyle="italic" opacity={cl((p - 0.3) * 3)}>{r.label}</text> : null}
+    </g>);
+  });
   // areas: territories made of modern countries, e.g. an empire's approximate extent
   const areaEls: React.ReactNode[] = [];
   ((sc.areas as { ids: string[]; label?: string; cue?: string; color?: string; labelAt?: [number, number] }[] | undefined) ?? []).forEach((a, ai, arr) => {
@@ -159,7 +183,7 @@ export const MapLayer: React.FC<{ t: number; seg: Seg; segIdx: number; view?: Vi
       {fs.map((f, k) => { const q = cl(p * 1.6 - k * 0.12); return <path key={k} d={path(f) || ''} fill={col} fillOpacity={0.55 * q} stroke={col} strokeWidth={3} strokeOpacity={0.9 * q} />; })}
     </g>);
     if (a.label && big) { const [x, y] = a.labelAt ? pt(a.labelAt[0], a.labelAt[1]) : path.centroid(big);
-      areaEls.push(<text key={'al' + ai} x={x} y={y} textAnchor="middle" fontFamily={TITLE} fontWeight={800} fontSize={40} fill="#fff" stroke="rgba(40,20,5,.85)" strokeWidth={8} paintOrder="stroke"
+      areaEls.push(<text key={'al' + ai} x={x} y={y} textAnchor="middle" fontFamily={DISPLAY} fontWeight={HIST ? 900 : 800} fontSize={HIST ? 46 : 40} fill={HIST ? '#fff8e6' : '#fff'} stroke="rgba(60,25,8,.9)" strokeWidth={9} paintOrder="stroke"
         letterSpacing={3} opacity={cl((p - 0.35) * 2)}>{a.label.toUpperCase()}</text>); }
   });
   if (sc.capital) {

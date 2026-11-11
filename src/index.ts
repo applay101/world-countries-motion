@@ -3,5 +3,7 @@ import '@fontsource/montserrat/600.css';
 import '@fontsource/montserrat/800.css';
 import '@fontsource/inter/500.css';
 import '@fontsource/inter/700.css';
+import '@fontsource/cinzel/700.css';
+import '@fontsource/cinzel/900.css';
 import { Root } from './Root';
 registerRoot(Root);

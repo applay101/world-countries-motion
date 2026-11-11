@@ -56,6 +56,7 @@ Before writing, look at the last 3 episodes (`ls -t episodes/`, read their scrip
     - stats `cards` also take `cue` (the spoken word that reveals the card)
     - `steps` (tutorials): `chapter`, optional `url` (official site, shown in a browser bar, e.g. "sede.administracionespublicas.gob.es"), `steps` [[title, detail, cueWord?]] (3 to 6)
     - `checklist` (tutorials): `chapter`, `title`, `items` [[label, cueWord?]] (documents, requirements)
+    - `era`, `split`, `journey` (see History episodes; usable anywhere)
   - A `cue` is the first spoken word of a phrase in that segment's text (e.g. "forty-two", "census"). Elements appear when it's spoken; without one they are staggered.
   - Labels and markers appear when their first word is spoken, so use the exact spoken name.
 - Check the map coordinates. Render previews before pushing if you can: `python pipeline/prepare.py` needs `build/timing.json`, so usually just push and check the stills from the finished video.
@@ -66,6 +67,12 @@ A story format inspired by fast cartoon-history channels (one example got 760K v
 - Look: `"theme": {"map": "parchment", "accent": <a deep red/brown/blue>}` (vintage paper map, sepia grain), `"flagOnMap": false` (history is not about today's flag), `music` "ambient", voice `bm_george` or `am_michael`.
 - Story arc: hook with the most surprising fact (0–20 s) → 4–6 acts in time order, each opened by an `era` card → a climax (the biggest turning point) → a short "today" act → recap of the whole journey in 3–4 sentences → outro question.
 - Scenes: `era` {year, title, sub, icons [2–4 library emoji], cue} opens each act; `map` scenes with `areas` show territory: [{ids: [ISO numeric codes of modern countries], label: "Achaemenid Empire (approx.)", cue: <spoken word>, color, labelAt?: [lon, lat]}]. Always write "(approx.)" in area labels, because modern borders only approximate old territory. Use 3–6 markers (cities, battles, monuments) per map, `timeline` for quick sequences, and `pops` with emoji (crown, crossed-swords, scroll, castle, ship, money-bag).
+- More history tools (all work in any episode, styled vintage on parchment):
+  - `routes` on map scenes: [{points: [[lon,lat],…], label, cue, icon?: "fluent-emoji-flat:horse" | sailboat | camel | ship…, color?}]: a dashed road that draws itself with the icon travelling at its head (conquests, trade routes, journeys, the Silk Road).
+  - Marker kind `"battle"` (crossed swords) or any library icon as the kind, e.g. ["Persepolis", 52.89, 29.93, "fluent-emoji-flat:classical-building"].
+  - `split` scene: {left: {title, sub, icon, value?, cue}, right: {…}, vs?: "VS"}: two cards slam in (rivals, before/after, then vs now).
+  - `journey` scene: {stops: [[year, label, icon, cueWord?], …]} (4–6 stops): the recap road near the end.
+  - `era` cards are drawn on an unrolling parchment scroll with a wax seal; chapter titles, labels and area names use the Cinzel serif font.
 - Facts: only well-established history from reputable sources (Britannica, UNESCO, academic or museum sites, national archives). Dates as words in text ("five hundred fifty BC"). Neutral wording for wars, religion and modern politics; nothing graphic; no judgement of present-day governments.
 - Thumbnail: `rank` or `headline` or `flagfull` style with a strong emoji (crown, crossed-swords, exploding-head); title like "The ENTIRE History of Persia in 10 Minutes".
 

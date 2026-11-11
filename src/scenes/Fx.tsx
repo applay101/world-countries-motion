@@ -1,6 +1,6 @@
 // High-energy layer: full-screen chapter title hits, light sweeps, camera shake and a chapter progress bar.
 import React from 'react';
-import { EP, W, H, GOLD, INK, TITLE, BODY, cl, pr, lerp, eExpo, eOut, E, INTRO_END } from '../lib/core';
+import { EP, W, H, GOLD, INK, TITLE, BODY, cl, pr, lerp, eExpo, eOut, E, INTRO_END , DISPLAY, HIST } from '../lib/core';
 
 const CHAPTERS = EP.segments.map((s, i) => ({ s, i })).filter(({ s }) => s.scene.chapter && s.start > INTRO_END - 0.5);
 
@@ -18,7 +18,7 @@ export const ChapterHero: React.FC<{ t: number }> = ({ t }) => {
       <div style={{ position: 'absolute', left: 0, right: 0, top: H / 2 - 120, height: 240, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 34,
         transform: `translateX(${(1 - inP) * -260 + out * 420}px)`, opacity: cl(inP * 1.5) * (1 - out) }}>
         <div style={{ fontFamily: TITLE, fontWeight: 800, fontSize: 64, color: INK, background: GOLD, borderRadius: 18, padding: '10px 24px' }}>{String(num).padStart(2, '0')}</div>
-        <div style={{ fontFamily: TITLE, fontWeight: 800, fontSize: 104, color: '#fff', letterSpacing: 3, textShadow: '0 10px 40px rgba(0,0,0,.7)', whiteSpace: 'nowrap' }}>{c.s.scene.chapter}</div>
+        <div style={{ fontFamily: DISPLAY, fontWeight: HIST ? 900 : 800, fontSize: 104, color: '#fff', letterSpacing: 3, textShadow: '0 10px 40px rgba(0,0,0,.7)', whiteSpace: 'nowrap' }}>{c.s.scene.chapter}</div>
       </div>
       <div style={{ position: 'absolute', top: H / 2 + 92, left: W / 2 - 300, width: 600, height: 6, borderRadius: 4, background: GOLD, transform: `scaleX(${inP * (1 - out)})` }} />
     </div>

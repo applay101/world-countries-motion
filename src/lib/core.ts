@@ -8,6 +8,8 @@ const TH = ((EPJ as any).theme ?? {}) as { accent?: string; map?: string };
 export const GOLD = TH.accent ?? '#FFC94A', INK = '#0B1220', WHITE = '#F4F7FB', ACCENT = '#5EC8FF';
 export const MAP_STYLE = TH.map ?? 'navy';
 export const TITLE = 'Montserrat, sans-serif', BODY = 'Inter, sans-serif';
+export const HIST = MAP_STYLE === 'parchment';
+export const DISPLAY = HIST ? 'Cinzel, serif' : TITLE; // vintage display face for history episodes
 
 export type Word = { w: string; t: number; e: number };
 export type View = { lon: number; lat: number; span: number };

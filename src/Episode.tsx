@@ -7,7 +7,7 @@ import { FlagIntro, HookIntro } from './scenes/Intros';
 import { MapLayer } from './scenes/MapLayer';
 import { Globe, usePreload, DustLayer } from './scenes/Three';
 import { ChapterHero, LightSweep, Progress, shake } from './scenes/Fx';
-import { Stats, BigChips, Timeline, Cards, BigNum, Bars, Outro, Captions, Chapter, Steps, Checklist, Era } from './scenes/Panels';
+import { Stats, BigChips, Timeline, Cards, BigNum, Bars, Outro, Captions, Chapter, Steps, Checklist, Era, Split, Journey } from './scenes/Panels';
 
 const useFonts = () => {
   const [h] = useState(() => delayRender('fonts'));
@@ -48,8 +48,9 @@ const RankBadge: React.FC<{ t: number }> = ({ t }) => {
   );
 };
 const INTRO = EP.segments[0];
-const DIM: Record<string, number> = { timeline: 0.55, cards: 0.55, bignum: 0.6, bars: 0.55, steps: 0.6, checklist: 0.6, era: 0.5 };
+const DIM: Record<string, number> = { timeline: 0.55, cards: 0.55, bignum: 0.6, bars: 0.55, steps: 0.6, checklist: 0.6, era: 0.5, split: 0.55, journey: 0.55 };
 
+const DIM_OF = (s: any) => (DIM[s.scene.type] ?? 0);
 export const Episode: React.FC = () => {
   useFonts();
   const ready = usePreload(['bm.jpg', 'flag.png']);
@@ -77,6 +78,17 @@ export const Episode: React.FC = () => {
       {MAP_STYLE === 'parchment' ? <>
         <AbsoluteFill style={{ mixBlendMode: 'multiply', opacity: 0.35 }}><svg width={W} height={H}><filter id="paper"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="3" seed="7" /><feColorMatrix values="0 0 0 0 0.45  0 0 0 0 0.33  0 0 0 0 0.18  0 0 0 1.1 0" /></filter><rect width={W} height={H} filter="url(#paper)" /></svg></AbsoluteFill>
         <AbsoluteFill style={{ background: 'radial-gradient(ellipse at 50% 50%, rgba(120,80,30,0) 50%, rgba(70,40,10,.55) 100%)' }} />
+        <svg width={W} height={H} style={{ position: 'absolute', inset: 0, opacity: mapIn * (1 - DIM_OF(seg) * 1.2) }}>
+          <rect x={22} y={22} width={W - 44} height={H - 44} fill="none" stroke="rgba(70,42,15,.75)" strokeWidth={5} />
+          <rect x={34} y={34} width={W - 68} height={H - 68} fill="none" stroke="rgba(70,42,15,.55)" strokeWidth={2} />
+          <g transform={`translate(150,${H - 190}) rotate(${Math.sin(t * 0.4) * 8})`} opacity={0.85}>
+            <circle r={88} fill="rgba(245,228,190,.75)" stroke="#5a3a17" strokeWidth={3} /><circle r={70} fill="none" stroke="#5a3a17" strokeWidth={1.5} strokeDasharray="3 5" />
+            {[0, 90, 180, 270].map((a) => <path key={a} d="M0 -80 L13 0 L0 13 L-13 0 Z" fill={a === 0 ? '#8a1c10' : '#5a3a17'} transform={`rotate(${a})`} />)}
+            {[45, 135, 225, 315].map((a) => <path key={a} d="M0 -50 L8 0 L-8 0 Z" fill="#8a6232" transform={`rotate(${a})`} />)}
+            <circle r={7} fill="#f3e2bb" stroke="#5a3a17" strokeWidth={2} />
+            <text y={-94} textAnchor="middle" fontFamily="Cinzel, serif" fontWeight={900} fontSize={26} fill="#5a3a17">N</text>
+          </g>
+        </svg>
       </> : null}
       {/* grade */}
       <AbsoluteFill style={{ background: 'radial-gradient(ellipse at 50% 50%, rgba(0,0,0,0) 55%, rgba(0,0,0,.55) 100%)' }} />
@@ -107,6 +119,8 @@ export const Episode: React.FC = () => {
             {ty === 'steps' ? <Steps t={t} seg={s} i={k} /> : null}
             {ty === 'checklist' ? <Checklist t={t} seg={s} i={k} /> : null}
             {ty === 'era' ? <Era t={t} seg={s} i={k} /> : null}
+            {ty === 'split' ? <Split t={t} seg={s} i={k} /> : null}
+            {ty === 'journey' ? <Journey t={t} seg={s} i={k} /> : null}
             <Chapter t={t} seg={s} i={k} />
           </React.Fragment>
         );
