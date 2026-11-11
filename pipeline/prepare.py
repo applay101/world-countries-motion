@@ -62,7 +62,8 @@ json.dump(data, open(os.path.join(ROOT, 'src', 'data', 'episode.json'), 'w'), en
 
 # icons used by the script ("fluent-emoji-flat:fire", "lucide:plane", "circle-flags:jp") -> src/data/icons.json
 import re
-SETS = {'fluent-emoji-flat', 'circle-flags', 'lucide'}
+SETS = {'fluent-emoji-flat', 'circle-flags', 'lucide', 'fluent-3d', 'lib'}
+PNG_SETS = {'fluent-3d': 'library/fluent-3d', 'lib': 'library/stickers'}  # PNG icons: Microsoft Fluent 3D emoji (MIT) and Hossein's own stickers
 refs = set(re.findall(r'"((?:%s):[a-z0-9-]+)"' % '|'.join(SETS), json.dumps(ep)))
 refs.add('circle-flags:' + iso)
 refs.update('circle-flags:' + k for k in json.load(open(os.path.join(ROOT, 'node_modules', '@iconify-json', 'circle-flags', 'icons.json')))['icons'])
@@ -70,6 +71,13 @@ refs.update(['fluent-emoji-flat:crossed-swords', 'fluent-emoji-flat:crown', 'flu
 packs, icons = {}, {}
 for ref in sorted(refs):
     pre, name = ref.split(':')
+    if pre in PNG_SETS:  # embed the PNG in an SVG so Icon/SvgIcon draw it like any other icon
+        fp = os.path.join(ROOT, PNG_SETS[pre], name + '.png')
+        if not os.path.exists(fp): print('WARNING: icon not found', ref); continue
+        import base64
+        b = base64.b64encode(open(fp, 'rb').read()).decode()
+        icons[ref] = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="100%%" height="100%%"><image href="data:image/png;base64,%s" width="256" height="256" preserveAspectRatio="xMidYMid meet"/></svg>' % b
+        continue
     if pre not in packs:
         packs[pre] = json.load(open(os.path.join(ROOT, 'node_modules', '@iconify-json', pre, 'icons.json')))
     pk = packs[pre]; nm = name
