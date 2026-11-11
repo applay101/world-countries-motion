@@ -41,11 +41,23 @@ jobs:
         with: { python-version: '3.12', cache: pip, cache-dependency-path: pipeline/requirements.txt }
 
       - name: System packages
-        run: sudo apt-get update -qq && sudo apt-get install -y -qq librsvg2-bin ffmpeg > /dev/null
+        # apt mirrors sometimes hang for hours: give apt 4 minutes, else use a static ffmpeg from pip and a resvg shim
+        run: |
+          if timeout 240 bash -c 'sudo apt-get update -qq && sudo DEBIAN_FRONTEND=noninteractive apt-get install -y -qq librsvg2-bin ffmpeg > /dev/null'; then
+            echo "apt ok"
+          else
+            echo "apt unavailable, using fallbacks"
+            pip install -q imageio-ffmpeg
+            sudo ln -sf "$(python -c 'import imageio_ffmpeg as f; print(f.get_ffmpeg_exe())')" /usr/local/bin/ffmpeg
+            printf '#!/bin/sh\nexec node %s/pipeline/rsvg_shim.mjs "$@"\n' "$PWD" | sudo tee /usr/local/bin/rsvg-convert > /dev/null
+            sudo chmod +x /usr/local/bin/rsvg-convert
+          fi
+          ffmpeg -version | head -1
 
       - name: Install
         run: |
           npm ci --no-audit --no-fund
+          if grep -q rsvg_shim /usr/local/bin/rsvg-convert 2>/dev/null; then npm install --no-save --no-audit --no-fund @resvg/resvg-js > /dev/null; fi
           pip install -q -r pipeline/requirements.txt
 
       - name: Cache voice models
