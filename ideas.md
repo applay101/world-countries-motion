@@ -9,6 +9,7 @@ Ideas can be in Persian or English. Lines tagged `[tutorial]` are used by the 14
 - [ ] [tutorial] Spain non-lucrative residence visa: requirements and steps
 - [ ] [tutorial] Spain: how to register on the padrón (empadronamiento)
 
+- [ ] HISTORY: The ENTIRE History of Persia (Iran) in 10 Minutes (see CLAUDE.md History episodes; ancient to today, neutral)
 - [ ] The world's most powerful passports right now (latest Henley Passport Index): countdown #5 to #1, main country = #1
 - [ ] Why do most Canadians live close to the US border? ("why" format, map-heavy)
 - [ ] Spain vs Portugal: which is better to live in? (versus: cost of living, salaries, weather, visas; official stats)
@@ -21,3 +22,7 @@ Ideas can be in Persian or English. Lines tagged `[tutorial]` are used by the 14
 - [ ] The cheapest countries to live in Europe (Eurostat price levels): countdown
 - [ ] Why Norway is so rich ("why" format: oil fund, official figures)
 - [ ] The happiest countries in the world (latest World Happiness Report): countdown
+- [ ] HISTORY: The ENTIRE History of Spain in 10 Minutes
+- [ ] HISTORY: The ENTIRE History of Ancient Egypt in 10 Minutes
+- [ ] HISTORY: The ENTIRE History of the Ottoman Empire in 10 Minutes
+- [ ] HISTORY: The ENTIRE History of Rome in 10 Minutes

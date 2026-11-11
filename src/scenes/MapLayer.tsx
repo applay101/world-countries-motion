@@ -26,9 +26,11 @@ const THEMES: Record<string, { o: [string, string, string]; l: [string, string];
   night: { o: ['#0b1426', '#060a14', '#020306'], l: ['#1b2433', '#121926'], b: 'rgba(94,200,255,.55)', g: 'rgba(94,200,255,.07)' },
   sand: { o: ['#1d6f86', '#155a70', '#0b3444'], l: ['#d8c39a', '#b89f72'], b: 'rgba(90,60,30,.45)', g: 'rgba(255,255,255,.08)' },
   emerald: { o: ['#0c3b3a', '#082a2a', '#041615'], l: ['#3c5e4a', '#2a4434'], b: 'rgba(190,240,210,.4)', g: 'rgba(160,255,210,.07)' },
+  parchment: { o: ['#a9926a', '#8e7853', '#5e4d33'], l: ['#efe0bb', '#dcc697'], b: 'rgba(90,58,25,.6)', g: 'rgba(80,50,20,.14)' },
 };
 const MT = THEMES[MAP_STYLE] ?? THEMES.navy;
-const DIMMED = new Set(['timeline', 'cards', 'bignum', 'bars', 'steps', 'checklist']);
+const FLAG_ON_MAP = (EP as any).flagOnMap !== false; // history episodes: plain accent fill instead of today's flag
+const DIMMED = new Set(['timeline', 'cards', 'bignum', 'bars', 'steps', 'checklist', 'era']);
 
 // ---------- camera: shot list built from the narration ----------
 // Each map segment opens on its view, then the camera flies in to every place as it is spoken, and pulls back out.
@@ -145,6 +147,21 @@ export const MapLayer: React.FC<{ t: number; seg: Seg; segIdx: number; view?: Vi
     const c = cue(seg, name, i, arr.length); const p = pr(t, c, 0.7, (x) => x) * vis; const [x, y] = pt(lon, lat);
     items.push(<Marker key={'m' + i} x={x} y={y} name={name} kind={kind ?? 'dot'} p={p} side={x > CW / 2 + W * 0.28 ? -1 : 1} />);
   });
+  // areas: territories made of modern countries, e.g. an empire's approximate extent
+  const areaEls: React.ReactNode[] = [];
+  ((sc.areas as { ids: string[]; label?: string; cue?: string; color?: string; labelAt?: [number, number] }[] | undefined) ?? []).forEach((a, ai, arr) => {
+    const c = cue(seg, a.cue ?? a.label ?? '', ai, arr.length); const p = pr(t, c - 0.1, 1.6, eOut) * vis;
+    if (p <= 0) return;
+    const col = a.color ?? GOLD; const fs = FEATS.filter((f) => a.ids.includes(String(f.id).padStart(3, '0')));
+    let big: any = null, bigA = -1;
+    fs.forEach((f) => { const ar = path.area(f); if (ar > bigA) { bigA = ar; big = f; } });
+    areaEls.push(<g key={'a' + ai}>
+      {fs.map((f, k) => { const q = cl(p * 1.6 - k * 0.12); return <path key={k} d={path(f) || ''} fill={col} fillOpacity={0.55 * q} stroke={col} strokeWidth={3} strokeOpacity={0.9 * q} />; })}
+    </g>);
+    if (a.label && big) { const [x, y] = a.labelAt ? pt(a.labelAt[0], a.labelAt[1]) : path.centroid(big);
+      areaEls.push(<text key={'al' + ai} x={x} y={y} textAnchor="middle" fontFamily={TITLE} fontWeight={800} fontSize={40} fill="#fff" stroke="rgba(40,20,5,.85)" strokeWidth={8} paintOrder="stroke"
+        letterSpacing={3} opacity={cl((p - 0.35) * 2)}>{a.label.toUpperCase()}</text>); }
+  });
   if (sc.capital) {
     const [name, lon, lat] = sc.capital as Mk; const c = cue(seg, name, 0, 1); const [x, y] = pt(lon, lat);
     items.push(<Marker key="cap" x={x} y={y} name={`${name} · capital`} kind="capital" p={pr(t, c, 0.7, (x) => x) * vis} />);
@@ -185,13 +202,15 @@ export const MapLayer: React.FC<{ t: number; seg: Seg; segIdx: number; view?: Vi
           <path d={tgtD} fill="none" stroke={GOLD} strokeWidth={16} opacity={glow * fillP} filter="url(#glow)" />
           <path d={tgtD} fill="#3a4f63" />
           <g clipPath="url(#tgt)" opacity={fillP}>
-            <image href={staticFile('flag.svg')} x={mb[0][0] - fw * 0.04} y={mb[0][1] - fh * 0.04} width={fw * 1.08} height={fh * 1.08} preserveAspectRatio="xMidYMid slice" />
+            {FLAG_ON_MAP ? <image href={staticFile('flag.svg')} x={mb[0][0] - fw * 0.04} y={mb[0][1] - fh * 0.04} width={fw * 1.08} height={fh * 1.08} preserveAspectRatio="xMidYMid slice" />
+              : <rect x={0} y={0} width={CW} height={CH} fill={GOLD} opacity={0.75} />}
             <rect x={0} y={0} width={CW} height={CH} fill="url(#ocean)" opacity={0.12} />
           </g>
           <path d={tgtD} fill="none" stroke="#FFE6A0" strokeWidth={3} strokeLinejoin="round" pathLength={1000} strokeDasharray={`${1000 * draw} 1000`} />
           <path d={tgtD} fill="none" stroke="#fff" strokeWidth={4} strokeLinejoin="round" pathLength={1000} strokeDasharray="60 940" strokeDashoffset={-((t * 140) % 1000)} opacity={0.75 * fillP} filter="url(#soft)" />
         </g>
       ) : null}
+      {areaEls}
       {items}
     </svg>
     </div>

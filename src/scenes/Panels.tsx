@@ -314,3 +314,25 @@ export const Chapter: React.FC<{ t: number; seg: Seg; i: number }> = ({ t, seg, 
     </div>
   );
 };
+
+// ---------- era card (history episodes): big year, title, subtitle, icon row ----------
+export const Era: React.FC<{ t: number; seg: Seg; i: number }> = ({ t, seg, i }) => {
+  const [a, b] = segWindow(i); const vis = fadeWin(t, a, b, 0.4, 0.45);
+  if (vis <= 0) return null;
+  const sc = seg.scene as any; const at = cue(seg, sc.cue ?? sc.title ?? '', 0, 1);
+  const p = pr(t, at - 0.1, 0.7, eBack), q = pr(t, at + 0.35, 0.8, eOut);
+  const icons = (sc.icons ?? []) as string[];
+  return (
+    <div style={{ position: 'absolute', left: 0, right: 0, top: 170, display: 'flex', flexDirection: 'column', alignItems: 'center', opacity: vis }}>
+      <div style={{ fontFamily: TITLE, fontWeight: 800, fontSize: 190, lineHeight: 1, color: GOLD, letterSpacing: 6, transform: `scale(${lerp(2.2, 1, p)}) rotate(${(1 - p) * -6}deg)`, opacity: cl(p * 2),
+        textShadow: '0 0 60px rgba(0,0,0,.6), 0 14px 0 rgba(0,0,0,.35)' }}>{sc.year}</div>
+      <div style={{ width: 520 * q, height: 6, background: GOLD, borderRadius: 4, margin: '14px 0 22px' }} />
+      <div style={{ fontFamily: TITLE, fontWeight: 800, fontSize: 84, color: '#fff', textAlign: 'center', opacity: q, transform: `translateY(${(1 - q) * 30}px)`, textShadow: '0 10px 40px rgba(0,0,0,.8)' }}>{sc.title}</div>
+      {sc.sub ? <div style={{ fontFamily: BODY, fontWeight: 600, fontSize: 36, color: '#d9c7a0', marginTop: 10, opacity: q }}>{sc.sub}</div> : null}
+      <div style={{ display: 'flex', gap: 46, marginTop: 40 }}>
+        {icons.map((ic, k) => { const r = pr(t, at + 0.6 + k * 0.25, 0.6, eBack);
+          return <Icon key={k} name={ic} size={150} style={{ opacity: cl(r * 2), transform: `translateY(${(1 - r) * 80}px) scale(${r}) rotate(${Math.sin(t * 2 + k) * 4}deg)`, filter: 'drop-shadow(0 16px 24px rgba(0,0,0,.55))' }} />; })}
+      </div>
+    </div>
+  );
+};
