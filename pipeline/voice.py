@@ -166,9 +166,13 @@ def monotonic(times, dur):
 
 if __name__ == '__main__':
     key, vid = eleven_voice()
+    segs = None
     if key:
-        segs, wav = tts_eleven(key, vid)
-    else:
+        try:
+            segs, wav = tts_eleven(key, vid)
+        except Exception as e:  # no credits left, bad key, API down: never lose the episode, fall back to Kokoro
+            print('ElevenLabs failed, falling back to Kokoro:', e, flush=True)
+    if segs is None:
         segs, wav = tts()
         segs = align(segs, wav)
     json.dump({'duration': round(len(wav) / SR, 3), 'segments': segs}, open(os.path.join(OUT, 'timing.json'), 'w'), indent=1)
