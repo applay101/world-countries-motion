@@ -23,10 +23,11 @@ jobs:
         run: |
           mkdir -p tools/voicetest/out; L=tools/voicetest/out/log.txt
           echo "key set: $([ -n "$ELEVENLABS_API_KEY" ] && echo yes || echo NO)  model: ${ELEVEN_MODEL:-default}  voices: $IDS" > $L
+          [ -f config/eleven_voices.txt ] && IDS=$(grep -v '^#' config/eleven_voices.txt | tr '\n' ' ')
           i=0
           for v in $(echo "$IDS" | tr ',' ' '); do
             i=$((i+1)); rm -rf tools/voicetest/ep/build
-            ELEVEN_VOICE_ID=$v python pipeline/voice.py tools/voicetest/ep >> $L 2>&1 || echo "voice $i failed" >> $L
+            mv config/eleven_voices.txt /tmp/ev 2>/dev/null; ELEVEN_VOICE_ID=$v python pipeline/voice.py tools/voicetest/ep >> $L 2>&1 || echo "voice $i failed" >> $L; mv /tmp/ev config/eleven_voices.txt 2>/dev/null
             [ -f tools/voicetest/ep/build/voice.wav ] && ffmpeg -v error -y -i tools/voicetest/ep/build/voice.wav -b:a 128k tools/voicetest/out/voice$i.mp3
           done
           cat $L

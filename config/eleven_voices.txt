@@ -1,0 +1,4 @@
+# ElevenLabs voices used for narration (one id per line). History episodes use the first; others rotate.
+kqVT88a5QfII1HNAEPTJ
+m4hBEimiy2ffkQ0hHMVD
+n1PvBOwxb8X6m7tahp2h

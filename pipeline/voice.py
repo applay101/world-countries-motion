@@ -94,6 +94,10 @@ def eleven_voice():
     key = os.environ.get('ELEVENLABS_API_KEY', '').strip()
     v = ep.get('voice', '')
     vid = v.split(':', 1)[1] if v.startswith('eleven:') else os.environ.get('ELEVEN_VOICE_ID', '').strip()
+    cfg = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'config', 'eleven_voices.txt')
+    if not v.startswith('eleven:') and os.path.exists(cfg):  # the repo file wins over the Actions variable
+        ids = [l.strip() for l in open(cfg) if l.strip() and not l.startswith('#')]
+        if ids: vid = ','.join(ids)
     # ELEVEN_VOICE_ID may list several voices (comma separated): history episodes take the first, others rotate by episode id
     ids = [x.strip() for x in re.split(r'[,\s]+', vid) if x.strip()]
     if len(ids) > 1:
