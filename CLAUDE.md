@@ -2,6 +2,9 @@
 
 Channel: **Zoom World Travel** (@zoomworldtravel), English. Every video is about one country, or a ranking/comparison of countries (then `country` is the main one, e.g. #1, and the others appear as map markers). The video itself and everything published with it (script, captions, title, description, tags) are in English. Messages to the owner (Hossein) are in **Persian**.
 
+## YouTube agent checklist (Hossein: apply in EVERY video)
+docs/youtube-agent.md is Hossein's YouTube agent skill (also installed as the `youtube-agent` skill). Every episode run goes through its steps, on top of all rules below: /yt-viral (pick a proven format) → /yt-script → /yt-hook (write 5 openings, keep the best) → /yt-title (10 titles, pick the best) → /yt-thumbnail (style different from the last 3) → render → /yt-edit (frame review, fix before publishing) → /yt-seo + /yt-package (description, chapters, tags, Short) → publish. In the Persian message, mention the chosen hook and title.
+
 ## Pipeline
 Push `episodes/<id>/script.json` to `main`, and GitHub Actions (`.github/workflows/render.yml`) does the rest: TTS narration, Whisper timing, music and SFX, Remotion render. It publishes `https://github.com/applay101/world-countries-motion/releases/download/ep-<id>/<id>.mp4` and commits `episodes/<id>/status.json` (status, size, log tail). Rendering a 4-minute episode takes about 15 minutes.
 Check progress without auth: `curl -s https://api.github.com/repos/applay101/world-countries-motion/actions/runs?per_page=3`.
