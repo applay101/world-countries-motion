@@ -143,7 +143,7 @@ export const BigNum: React.FC<{ t: number; seg: Seg; i: number }> = ({ t, seg, i
   const chips = (sc.chips as string[]) ?? [];
   return (
     <div style={{ position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', opacity: vis, paddingBottom: 120 }}>
-      <div style={{ fontFamily: TITLE, fontWeight: 800, fontSize: 210, color: GOLD, lineHeight: 1, transform: `scale(${0.6 + 0.4 * s})`, textShadow: '0 20px 60px rgba(0,0,0,.6)' }}>
+      <div style={{ fontFamily: TITLE, fontWeight: 800, fontSize: 210, color: GOLD, lineHeight: 1, transform: `scale(${0.6 + 0.4 * s})`, opacity: cl(s * 2), textShadow: '0 20px 60px rgba(0,0,0,.6)' }}>
         <Count v={sc.value} p={p} fmt={sc.fmt} suffix="" /><span style={{ fontSize: 90, color: '#fff' }}>{sc.suffix}</span>
       </div>
       <div style={{ fontFamily: BODY, fontWeight: 500, fontSize: 44, color: '#e6eef8', marginTop: 10, opacity: cl(s * 2) }}>{sc.label}</div>
