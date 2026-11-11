@@ -27,7 +27,33 @@
       "id": "intro",
       "text": "Forty-two point seven million visitors in one single year. A new record. The best travel country on Earth? This is Japan.",
       "scene": {
-        "type": "hook"
+        "type": "hook",
+        "lines": [
+          [
+            "42.7 MILLION",
+            "Forty-two"
+          ],
+          [
+            "VISITORS",
+            "visitors"
+          ],
+          [
+            "IN ONE YEAR",
+            "in"
+          ],
+          [
+            "A NEW RECORD",
+            "new"
+          ],
+          [
+            "THE BEST TRAVEL COUNTRY?",
+            "best"
+          ],
+          [
+            "JAPAN",
+            "Japan"
+          ]
+        ]
       }
     },
     {
@@ -548,5 +574,5 @@
       }
     }
   ],
-  "rev": 1
+  "rev": 2
 }
