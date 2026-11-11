@@ -3,6 +3,9 @@
 Usage: python pipeline/voice.py episodes/<id>
 Env:   KOKORO_DIR   folder holding kokoro-v1.0.int8.onnx + voices-v1.0.bin (default: models/kokoro)
        WHISPER_MODEL faster-whisper model name or local path (default: small.en)
+       ELEVENLABS_API_KEY + ELEVEN_VOICE_ID  when both are set (or script "voice": "eleven:<voice id>"), the narration is
+       made with ElevenLabs instead of Kokoro, and its character timestamps give exact word timing (no Whisper needed).
+       ELEVEN_MODEL (default eleven_multilingual_v2)
 """
 import sys, os, re, json, difflib
 import numpy as np, soundfile as sf
@@ -87,6 +90,66 @@ def align(segs, wav):
     return segs
 
 
+def eleven_voice():
+    key = os.environ.get('ELEVENLABS_API_KEY', '').strip()
+    v = ep.get('voice', '')
+    vid = v.split(':', 1)[1] if v.startswith('eleven:') else os.environ.get('ELEVEN_VOICE_ID', '').strip()
+    return (key, vid) if key and vid else (None, None)
+
+
+def tts_eleven(key, vid):
+    """One request per segment (with the neighbouring text for natural flow); word times from the character alignment."""
+    import base64, subprocess, urllib.request
+    model = os.environ.get('ELEVEN_MODEL') or 'eleven_multilingual_v2'
+    url = f'https://api.elevenlabs.io/v1/text-to-speech/{vid}/with-timestamps?output_format=mp3_44100_128'
+    audio, t, segs = [np.zeros(int(0.4 * SR), np.float32)], 0.4, []
+    S = ep['segments']
+    for i, s in enumerate(S):
+        text = re.sub(r'\s+', ' ', s['text'].strip())
+        body = {'text': text, 'model_id': model,
+                'voice_settings': {'stability': 0.45, 'similarity_boost': 0.8, 'style': 0.2, 'use_speaker_boost': True},
+                'previous_text': S[i - 1]['text'] if i else None, 'next_text': S[i + 1]['text'] if i + 1 < len(S) else None}
+        for attempt in range(4):
+            try:
+                req = urllib.request.Request(url, data=json.dumps(body).encode(), headers={'xi-api-key': key, 'Content-Type': 'application/json'})
+                r = json.load(urllib.request.urlopen(req, timeout=180)); break
+            except Exception as e:
+                print('elevenlabs retry', attempt, e, flush=True)
+                if attempt == 3: raise
+                import time; time.sleep(5 * (attempt + 1))
+        mp3 = base64.b64decode(r['audio_base64'])
+        pcm = subprocess.run(['ffmpeg', '-v', 'error', '-i', 'pipe:0', '-f', 's16le', '-ac', '1', '-ar', str(SR), 'pipe:1'], input=mp3, capture_output=True, check=True).stdout
+        a = np.frombuffer(pcm, np.int16).astype(np.float32) / 32768
+        al = r.get('normalized_alignment') or r['alignment']
+        ch, cs, ce = al['characters'], al['character_start_times_seconds'], al['character_end_times_seconds']
+        # leading silence that the trim removes, so the word times stay in sync
+        idx = np.where(np.abs(a) > 0.008)[0]; lead = max(0, idx[0] - int(0.03 * SR)) / SR if len(idx) else 0
+        a = trim(a)
+        words, cur, w0, w1 = [], '', None, None
+        for c, st, en in zip(ch, cs, ce):
+            if c.isspace():
+                if cur: words.append((cur, w0, w1)); cur = ''
+                continue
+            if not cur: w0 = st
+            cur += c; w1 = en
+        if cur: words.append((cur, w0, w1))
+        script = text.split(' ')
+        if len(words) != len(script): print('warning: word count', len(words), len(script), s['id'])
+        seg = {'id': s['id'], 'start': round(t, 3), 'words': []}
+        for k, w in enumerate(script):
+            _, a0, a1 = words[min(k, len(words) - 1)]
+            seg['words'].append({'w': w, 't': round(t + max(0, a0 - lead), 3), 'e': round(t + max(0, a1 - lead), 3)})
+        audio.append(a); t += len(a) / SR
+        seg['end'] = round(t, 3)
+        audio.append(np.zeros(int(GAP_SEG * SR), np.float32)); t += GAP_SEG
+        segs.append(seg)
+        print('eleven', s['id'], round(t, 1), flush=True)
+    audio.append(np.zeros(int(1.0 * SR), np.float32))
+    wav = np.concatenate(audio)
+    sf.write(os.path.join(OUT, 'voice.wav'), wav, SR)
+    return segs, wav
+
+
 def proportional(words, dur):
     wt = [len(norm(w)) + 2 for w in words]; tot = sum(wt); t = 0; out = []
     for x in wt:
@@ -102,7 +165,11 @@ def monotonic(times, dur):
 
 
 if __name__ == '__main__':
-    segs, wav = tts()
-    segs = align(segs, wav)
+    key, vid = eleven_voice()
+    if key:
+        segs, wav = tts_eleven(key, vid)
+    else:
+        segs, wav = tts()
+        segs = align(segs, wav)
     json.dump({'duration': round(len(wav) / SR, 3), 'segments': segs}, open(os.path.join(OUT, 'timing.json'), 'w'), indent=1)
     print('voice ok', round(len(wav) / SR, 1), 's')

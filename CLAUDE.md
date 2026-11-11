@@ -16,7 +16,7 @@ docs/youtube-agent.md is Hossein's YouTube agent skill (also installed as the `y
 These sharpen the steps; the rules in this file still win when they disagree (e.g. the channel's formats, engine scenes, Metricool publishing, vidIQ only for covers).
 
 ## Pipeline
-Push `episodes/<id>/script.json` to `main`, and GitHub Actions (`.github/workflows/render.yml`) does the rest: TTS narration, Whisper timing, music and SFX, Remotion render. It publishes `https://github.com/applay101/world-countries-motion/releases/download/ep-<id>/<id>.mp4` and commits `episodes/<id>/status.json` (status, size, log tail). Rendering a 4-minute episode takes about 15 minutes.
+Push `episodes/<id>/script.json` to `main`, and GitHub Actions (`.github/workflows/render.yml`) does the rest: TTS narration, Whisper timing, music and SFX, Remotion render. It publishes `https://github.com/applay101/world-countries-motion/releases/download/ep-<id>/<id>.mp4` and commits `episodes/<id>/status.json` (status, size, log tail). Rendering takes about 35 minutes for a 4-minute episode and about 2 hours for a 10-minute one; several episodes render in parallel (one run per push).
 Check progress without auth: `curl -s https://api.github.com/repos/applay101/world-countries-motion/actions/runs?per_page=3`.
 
 ## Tutorial episodes (education)
@@ -50,7 +50,7 @@ Before writing, look at the last 3 episodes (`ls -t episodes/`, read their scrip
 
 ## script.json schema (copy `episodes/spain/script.json` as the template)
 - `id`, `country` {name, iso2 (flag-icons code), isoNum (ISO 3166 numeric, 3 digits, as in world-atlas), lon, lat (country centre), capital}
-- `voice`: Kokoro voice (`af_heart` default; `am_michael`, `bm_george` also good). `speed` 1.0. `music`: `pulse` (energetic, default), `spanish_guitar` (rumba groove), `ambient`, `spanish_gentle`.
+- `voice`: Kokoro voice (`af_heart` default; `am_michael`, `bm_george` also good). If the repo has the `ELEVENLABS_API_KEY` secret and the `ELEVEN_VOICE_ID` variable, every episode is narrated by that ElevenLabs voice instead (exact word timing from ElevenLabs; Kokoro is the fallback), or set `"voice": "eleven:<voice id>"` for one episode. `speed` 1.0. `music`: `pulse` (energetic, default), `spanish_guitar` (rumba groove), `ambient`, `spanish_gentle`.
 - `thumb`: {style, top, big, sub, badge, + style extras (question, left/right, rank, items)}: the YouTube thumbnail (see Thumbnail style). `top` is a short hook in a yellow tag ("WORLD'S #1", "EXPLAINED", "STEP BY STEP"), `big` is the country or subject in 1–2 words, `sub` a 3–5 word promise, `badge` one striking number ("42.7M visitors"). Keep it punchy and true. It is rendered to `<id>-thumb.jpg` on the release.
 - The engine is high-energy by design: the camera flies to every marker or city at the moment it is spoken, so put 3 to 7 markers in map/cities scenes and say their names in the text.
 - `segments`: 11 to 14 items, about 550 to 650 words in total (~4 min). Each one is `{id, text, scene}`.

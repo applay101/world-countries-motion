@@ -14,8 +14,9 @@ on:
 permissions:
   contents: write
 
+# no global queue: several episodes render at the same time (one run per push)
 concurrency:
-  group: render-${{ github.ref }}
+  group: render-${{ github.run_id }}
   cancel-in-progress: false
 
 jobs:
@@ -63,7 +64,12 @@ jobs:
           [ -f models/kokoro/voices-v1.0.bin ] || curl -sSL -o models/kokoro/voices-v1.0.bin $B/voices-v1.0.bin
 
       - name: Narration (TTS + word timing)
-        env: { KOKORO_DIR: models/kokoro, WHISPER_MODEL: small.en }
+        env:
+          KOKORO_DIR: models/kokoro
+          WHISPER_MODEL: small.en
+          ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}
+          ELEVEN_VOICE_ID: ${{ vars.ELEVEN_VOICE_ID }}
+          ELEVEN_MODEL: ${{ vars.ELEVEN_MODEL }}
         run: python pipeline/voice.py episodes/${{ steps.ep.outputs.id }} 2>&1 | tee -a build.log
 
       - name: Prepare data + audio mix
