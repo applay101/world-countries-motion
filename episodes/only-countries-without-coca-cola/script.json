@@ -1,0 +1,543 @@
+{
+  "id": "only-countries-without-coca-cola",
+  "country": {
+    "name": "Cuba",
+    "iso2": "cu",
+    "isoNum": "192",
+    "lon": -79.5,
+    "lat": 21.7,
+    "capital": "Havana"
+  },
+  "voice": "af_heart",
+  "speed": 1.0,
+  "music": "pulse",
+  "theme": {
+    "map": "navy",
+    "accent": "#E8202A"
+  },
+  "thumb": {
+    "style": "question",
+    "top": "ONLY 3",
+    "big": "ONLY 3 COUNTRIES",
+    "question": "NO COKE HERE?",
+    "badge": "200+ sell it",
+    "emoji": "fluent-emoji-flat:thinking-face"
+  },
+  "short": {
+    "title": "NO COCA-COLA?",
+    "sub": "Only 3 countries",
+    "segments": [
+      "intro",
+      "northkorea",
+      "russia"
+    ]
+  },
+  "segments": [
+    {
+      "id": "intro",
+      "text": "Over two hundred countries sell Coca-Cola. Only three officially don't. And one of them was among the very first: Cuba.",
+      "scene": {
+        "type": "hook",
+        "lines": [
+          [
+            "200+ COUNTRIES",
+            "two"
+          ],
+          [
+            "SELL COCA-COLA",
+            "sell"
+          ],
+          [
+            "ONLY 3 DON'T",
+            "Only"
+          ],
+          [
+            "ONE WAS FIRST",
+            "first"
+          ],
+          [
+            "CUBA",
+            "Cuba"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "origin",
+      "text": "The story starts in Atlanta in eighteen eighty-six, at a pharmacy soda fountain. Twenty years later, the first bottling plants outside the United States opened in three countries: Canada, Cuba and Panama. So how did one of the very first Coca-Cola countries end up without it?",
+      "scene": {
+        "type": "map",
+        "chapter": "Where it all began",
+        "view": {
+          "lon": -84.0,
+          "lat": 30.0,
+          "span": 70
+        },
+        "labels": [
+          [
+            "Caribbean Sea",
+            -75.0,
+            15.0,
+            "sea"
+          ],
+          [
+            "Atlantic Ocean",
+            -60.0,
+            32.0,
+            "sea"
+          ]
+        ],
+        "markers": [
+          [
+            "Atlanta",
+            -84.39,
+            33.75,
+            "star"
+          ],
+          [
+            "Canada",
+            -75.7,
+            45.4,
+            "dot"
+          ],
+          [
+            "Cuba",
+            -82.37,
+            23.13,
+            "pin"
+          ],
+          [
+            "Panama",
+            -79.52,
+            8.98,
+            "dot"
+          ]
+        ],
+        "countries": [
+          "United States"
+        ],
+        "pops": [
+          [
+            "fountain",
+            "fluent-emoji-flat:cup-with-straw"
+          ],
+          [
+            "bottling",
+            "fluent-emoji-flat:factory"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "stats",
+      "text": "Cuba is the largest island in the Caribbean, covering about one hundred and ten thousand square kilometres. Its capital, Havana, sits less than one hundred and fifty kilometres from Florida. And after years of emigration, fewer than ten million people live here today.",
+      "scene": {
+        "type": "stats",
+        "chapter": "Cuba in numbers",
+        "view": {
+          "lon": -76.2,
+          "lat": 21.9,
+          "span": 22
+        },
+        "capital": [
+          "Havana",
+          -82.37,
+          23.13
+        ],
+        "cards": [
+          {
+            "label": "Area",
+            "value": 110000,
+            "suffix": " km²",
+            "fmt": "int",
+            "cue": "covering"
+          },
+          {
+            "label": "Capital",
+            "text": "Havana",
+            "cue": "capital"
+          },
+          {
+            "label": "Population",
+            "text": "under 10 million",
+            "note": "ONEI, 2024",
+            "cue": "fewer"
+          }
+        ]
+      }
+    },
+    {
+      "id": "cuba",
+      "text": "Before the revolution, Coca-Cola was the island's favourite soft drink, from Havana to Santa Clara and Santiago de Cuba. But after nineteen fifty-nine, the new government nationalized private businesses, and Coca-Cola left. Then the United States placed a trade embargo on Cuba, and it is still in place today.",
+      "scene": {
+        "type": "map",
+        "chapter": "Country number one: Cuba",
+        "view": {
+          "lon": -79.3,
+          "lat": 22.2,
+          "span": 15
+        },
+        "markers": [
+          [
+            "Havana",
+            -82.37,
+            23.13,
+            "star"
+          ],
+          [
+            "Santa Clara",
+            -79.96,
+            22.41,
+            "pin"
+          ],
+          [
+            "Santiago de Cuba",
+            -75.82,
+            20.02,
+            "pin"
+          ]
+        ],
+        "countries": [
+          "United States"
+        ],
+        "pops": [
+          [
+            "embargo",
+            "fluent-emoji-flat:no-entry"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "travel",
+      "text": "And yet Cuba still draws visitors from around the world. Old Havana, Trinidad and the historic centre of Cienfuegos are all UNESCO World Heritage Sites, and the beaches of Varadero are among the most famous in the Caribbean. You just won't find an official Coke at the bar.",
+      "scene": {
+        "type": "cities",
+        "chapter": "Cuba today",
+        "view": {
+          "lon": -80.6,
+          "lat": 22.4,
+          "span": 9
+        },
+        "cities": [
+          [
+            "Havana",
+            -82.36,
+            23.14
+          ],
+          [
+            "Varadero",
+            -81.25,
+            23.15
+          ],
+          [
+            "Cienfuegos",
+            -80.44,
+            22.15
+          ],
+          [
+            "Trinidad",
+            -79.98,
+            21.8
+          ]
+        ],
+        "pops": [
+          [
+            "UNESCO",
+            "fluent-emoji-flat:classical-building"
+          ],
+          [
+            "beaches",
+            "fluent-emoji-flat:beach-with-umbrella"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "comebacks",
+      "text": "Cuba is not the only country that lost its Coke. China went almost thirty years without it, until a deal in nineteen seventy-eight. India said goodbye in nineteen seventy-seven and welcomed it back in nineteen ninety-three. Vietnam got its first bottling plant in nineteen ninety-four. And Myanmar? Coke returned there in twenty twelve, after sixty years.",
+      "scene": {
+        "type": "map",
+        "chapter": "The great comebacks",
+        "view": {
+          "lon": 98.0,
+          "lat": 24.0,
+          "span": 58
+        },
+        "markers": [
+          [
+            "China",
+            108.0,
+            34.0,
+            "dot"
+          ],
+          [
+            "India",
+            78.9,
+            22.0,
+            "dot"
+          ],
+          [
+            "Vietnam",
+            105.85,
+            21.03,
+            "dot"
+          ],
+          [
+            "Myanmar",
+            96.1,
+            19.75,
+            "dot"
+          ]
+        ],
+        "pops": [
+          [
+            "returned",
+            "fluent-emoji-flat:party-popper"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "northkorea",
+      "text": "Country number two is North Korea. Strict sanctions and a US trade ban keep American companies out, so Coca-Cola does not officially do business here. Just across the border, in China and South Korea, it is easy to find. But in Pyongyang, real cans are rare, and sell for high prices on the black market.",
+      "scene": {
+        "type": "map",
+        "chapter": "Country number two: North Korea",
+        "view": {
+          "lon": 127.3,
+          "lat": 39.2,
+          "span": 15
+        },
+        "markers": [
+          [
+            "China",
+            123.4,
+            41.8,
+            "dot"
+          ],
+          [
+            "South Korea",
+            127.8,
+            36.5,
+            "dot"
+          ],
+          [
+            "Pyongyang",
+            125.75,
+            39.03,
+            "star"
+          ]
+        ],
+        "countries": [
+          "North Korea"
+        ],
+        "pops": [
+          [
+            "sanctions",
+            "fluent-emoji-flat:locked"
+          ],
+          [
+            "black",
+            "fluent-emoji-flat:money-bag"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "scale",
+      "text": "To see how rare this is, look at the scale. The Coca-Cola Company serves around two point two billion drinks every single day, in more than two hundred countries and territories. It owns thirty-two brands that each sell over a billion dollars a year. That is about one drink for every four people on the planet.",
+      "scene": {
+        "type": "bignum",
+        "chapter": "A global giant",
+        "value": 2.2,
+        "fmt": "1dp",
+        "suffix": " billion",
+        "label": "drinks served every day",
+        "note": "The Coca-Cola Company, investor relations",
+        "chips": [
+          "200+ countries",
+          "32 billion-dollar brands"
+        ],
+        "cue": "two"
+      }
+    },
+    {
+      "id": "russia",
+      "text": "Country number three is the newest: Russia. Coca-Cola bottling began here in nineteen eighty-five, with drinks sold from Moscow to Saint Petersburg. Then, in March twenty twenty-two, after the war in Ukraine began, the company suspended its business. The former bottler now makes its own drink, called Dobry Cola.",
+      "scene": {
+        "type": "map",
+        "chapter": "Country number three: Russia",
+        "view": {
+          "lon": 36.0,
+          "lat": 55.0,
+          "span": 44
+        },
+        "markers": [
+          [
+            "Moscow",
+            37.62,
+            55.75,
+            "star"
+          ],
+          [
+            "Saint Petersburg",
+            30.31,
+            59.94,
+            "pin"
+          ],
+          [
+            "Ukraine",
+            31.2,
+            49.0,
+            "dot"
+          ]
+        ],
+        "countries": [
+          "Russia"
+        ],
+        "pops": [
+          [
+            "suspended",
+            "fluent-emoji-flat:prohibited"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "anyway",
+      "text": "But officially out does not mean impossible to find. Cans slip into Cuba from Mexico. In Russia, imported Coke still turns up on shop shelves. And in North Korea, it trades on the black market. None of it comes from the company itself.",
+      "scene": {
+        "type": "map",
+        "chapter": "Officially out, still around",
+        "view": {
+          "lon": 20.0,
+          "lat": 35.0,
+          "span": 200
+        },
+        "markers": [
+          [
+            "Mexico",
+            -99.13,
+            19.43,
+            "dot"
+          ],
+          [
+            "Cuba",
+            -82.37,
+            23.13,
+            "pin"
+          ],
+          [
+            "Russia",
+            37.62,
+            55.75,
+            "dot"
+          ],
+          [
+            "North Korea",
+            125.75,
+            39.03,
+            "dot"
+          ]
+        ],
+        "pops": [
+          [
+            "imported",
+            "fluent-emoji-flat:package"
+          ],
+          [
+            "None",
+            "fluent-emoji-flat:eyes"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "dates",
+      "text": "Here is the whole story in five dates. Eighteen eighty-six: born in Atlanta. Nineteen oh-six: Cuba bottles Coke. The early nineteen-sixties: Coke leaves Cuba. Twenty twelve: Myanmar comes back. And twenty twenty-two: business in Russia is suspended.",
+      "scene": {
+        "type": "timeline",
+        "chapter": "Five dates",
+        "events": [
+          [
+            "1886",
+            "Born in Atlanta"
+          ],
+          [
+            "1906",
+            "Cuba bottles Coke"
+          ],
+          [
+            "1960s",
+            "Coke leaves Cuba"
+          ],
+          [
+            "2012",
+            "Myanmar returns"
+          ],
+          [
+            "2022",
+            "Russia suspended"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "three",
+      "text": "So here they are, the only three countries where the Coca-Cola Company does not officially sell: Cuba, North Korea and Russia. Almost everywhere else, from Brazil to Japan, a cold Coke is never far away. Three countries, three very different stories.",
+      "scene": {
+        "type": "map",
+        "chapter": "The only three",
+        "view": {
+          "lon": 20.0,
+          "lat": 35.0,
+          "span": 230
+        },
+        "markers": [
+          [
+            "Cuba",
+            -82.37,
+            23.13,
+            "pin"
+          ],
+          [
+            "North Korea",
+            125.75,
+            39.03,
+            "dot"
+          ],
+          [
+            "Russia",
+            60.0,
+            58.0,
+            "dot"
+          ]
+        ],
+        "pops": [
+          [
+            "three",
+            "fluent-emoji-flat:thinking-face"
+          ]
+        ],
+        "countries": [
+          "Brazil",
+          "Japan"
+        ]
+      }
+    },
+    {
+      "id": "outro",
+      "text": "Which of the three surprised you most? Tell us in the comments. Next, watch our video on Japan, the world's number one travel country. Subscribe, and join us for the next country on our journey around the world.",
+      "scene": {
+        "type": "outro",
+        "pops": [
+          [
+            "comments",
+            "fluent-emoji-flat:speech-balloon"
+          ]
+        ]
+      }
+    }
+  ]
+}
