@@ -90,13 +90,19 @@ jobs:
           ls -la out
           echo "file=out/$ID.mp4" >> "$GITHUB_OUTPUT"
 
+      - name: Cut the vertical Short
+        run: |
+          ID=${{ steps.ep.outputs.id }}
+          npx remotion still src/index.ts ShortFrame build/short_frame.png --gl=swangle --image-format=png --log=error 2>&1 | tee -a build.log
+          python3 pipeline/short.py out/$ID.mp4 build/short_frame.png out/$ID-short.mp4 2>&1 | tee -a build.log
+
       - name: Publish release asset
         env: { GH_TOKEN: '${{ github.token }}' }
         run: |
           ID=${{ steps.ep.outputs.id }}
           gh release view ep-$ID >/dev/null 2>&1 || gh release create ep-$ID --title "Episode: $ID" --notes "Rendered by GitHub Actions."
           cp build/thumb.jpg out/$ID-thumb.jpg
-          gh release upload ep-$ID out/$ID.mp4 out/$ID-thumb.jpg --clobber
+          gh release upload ep-$ID out/$ID.mp4 out/$ID-thumb.jpg $( [ -f out/$ID-short.mp4 ] && echo out/$ID-short.mp4 ) --clobber
 
       - name: Write status back to the repo
         if: always()
@@ -117,7 +123,7 @@ jobs:
                                            for s in d['segments'] if s['scene'].get('chapter')]
               if d['segments'][-1]['scene']['type'] == 'outro':
                   o = int(d['segments'][-1]['start']); chapters.append('%d:%02d Outro' % (o // 60, o % 60))
-          json.dump({'episode': ep, 'status': status, 'size_bytes': int(size), 'video_url': url if int(size) else None, 'thumbnail_url': url.replace('.mp4', '-thumb.jpg') if int(size) else None,
+          json.dump({'episode': ep, 'status': status, 'size_bytes': int(size), 'video_url': url if int(size) else None, 'thumbnail_url': url.replace('.mp4', '-thumb.jpg') if int(size) else None, 'short_url': url.replace('.mp4', '-short.mp4') if os.path.exists(f'out/{ep}-short.mp4') else None,
                      'run': '${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}', 'chapters': chapters, 'log_tail': log},
                     open(f'episodes/{ep}/status.json', 'w'), indent=1)
           PY
