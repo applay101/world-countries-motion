@@ -1,6 +1,7 @@
 // One country episode: globe intro -> narrated map chapters with infographics -> outro. 1920x1080.
 import React, { useEffect, useState } from 'react';
 import { Icon } from './lib/Icon';
+import { Street, Crowd } from './scenes/Story';
 import { AbsoluteFill, continueRender, delayRender, useCurrentFrame, useVideoConfig } from 'remotion';
 import { EP, W, H, GOLD, INK, TITLE, BODY, cl, pr, eBack, eOut, segIndexAt, spokenAt, E, INTRO_END, INTRO_TYPE, MAP_STYLE } from './lib/core';
 import { FlagIntro, HookIntro } from './scenes/Intros';
@@ -48,8 +49,19 @@ const RankBadge: React.FC<{ t: number }> = ({ t }) => {
   );
 };
 const INTRO = EP.segments[0];
-const DIM: Record<string, number> = { timeline: 0.55, cards: 0.55, bignum: 0.6, bars: 0.55, steps: 0.6, checklist: 0.6, era: 0.5, split: 0.55, journey: 0.55 };
+const DIM: Record<string, number> = { timeline: 0.55, cards: 0.55, bignum: 0.6, bars: 0.55, steps: 0.6, checklist: 0.6, era: 0.5, split: 0.55, journey: 0.55, crowd: 0.45 };
 
+// big year counter for map timelapses (scene.frames)
+const YearTicker: React.FC<{ t: number; seg: any; i: number }> = ({ t, seg, i }) => {
+  const fr = seg.scene.frames as [string, any[], string?][]; const n = fr.length;
+  const times = fr.map((f, k) => (f[2] ? spokenAt(seg, f[2]) : null) ?? seg.start + 0.4 + (k * (seg.end - seg.start - 0.8)) / Math.max(1, n));
+  if (t < seg.start - 0.3 || t > seg.end + 0.5) return null;
+  let k = 0; times.forEach((tt, j) => { if (t >= tt - 0.1) k = j; });
+  const p = pr(t, times[k] - 0.1, 0.4, eBack);
+  return <div style={{ position: 'absolute', left: 0, right: 0, top: 110, display: 'flex', justifyContent: 'center' }}>
+    <div style={{ fontFamily: MAP_STYLE === 'parchment' ? 'Cinzel, serif' : TITLE, fontWeight: 900, fontSize: 120, color: MAP_STYLE === 'parchment' ? '#8a1c10' : '#fff', background: MAP_STYLE === 'parchment' ? 'rgba(246,231,196,.92)' : 'rgba(5,10,20,.7)',
+      border: `4px solid ${MAP_STYLE === 'parchment' ? '#6b4a22' : GOLD}`, borderRadius: 24, padding: '0 40px 8px', transform: `scale(${1 + 0.25 * (1 - p)})`, boxShadow: '0 20px 40px rgba(0,0,0,.4)' }}>{fr[k][0]}</div></div>;
+};
 const DIM_OF = (s: any) => (DIM[s.scene.type] ?? 0);
 export const Episode: React.FC = () => {
   useFonts();
@@ -121,13 +133,16 @@ export const Episode: React.FC = () => {
             {ty === 'era' ? <Era t={t} seg={s} i={k} /> : null}
             {ty === 'split' ? <Split t={t} seg={s} i={k} /> : null}
             {ty === 'journey' ? <Journey t={t} seg={s} i={k} /> : null}
+            {ty === 'street' ? <Street t={t} seg={s} i={k} /> : null}
+            {ty === 'crowd' ? <Crowd t={t} seg={s} i={k} /> : null}
+            {s.scene.frames ? <YearTicker t={t} seg={s} i={k} /> : null}
             <Chapter t={t} seg={s} i={k} />
           </React.Fragment>
         );
       })}
       {ready ? <Outro t={t} seg={last} /> : null}
       </AbsoluteFill>
-      {ready ? <DustLayer t={t} burstAt={(spokenAt(last, 'subscribe') ?? last.start + 4) - 0.1} /> : null}
+      {ready && seg.scene.type !== 'street' ? <DustLayer t={t} burstAt={(spokenAt(last, 'subscribe') ?? last.start + 4) - 0.1} /> : null}
       <LightSweep t={t} />
       <ChapterHero t={t} />
       {INTRO_TYPE === 'hook' && t < INTRO_END ? null : <Captions t={t} />}

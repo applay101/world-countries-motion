@@ -26,3 +26,8 @@ Ideas can be in Persian or English. Lines tagged `[tutorial]` are used by the 14
 - [ ] HISTORY: The ENTIRE History of Ancient Egypt in 10 Minutes
 - [ ] HISTORY: The ENTIRE History of the Ottoman Empire in 10 Minutes
 - [ ] HISTORY: The ENTIRE History of Rome in 10 Minutes
+- [ ] The ONLY countries where you can't buy Coca-Cola (map highlight; verify with reputable sources)
+- [ ] Persia: Every Era (550 BC – 2026) map timelapse + story (frames)
+- [ ] POV: You live in ancient Rome for a day (street + crowd scenes, history facts)
+- [ ] Countries that no longer exist (map + era cards)
+- [ ] How old is every country in Europe? (ranking, map timelapse)

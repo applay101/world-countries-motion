@@ -72,9 +72,16 @@ A story format inspired by fast cartoon-history channels (one example got 760K v
   - Marker kind `"battle"` (crossed swords) or any library icon as the kind, e.g. ["Persepolis", 52.89, 29.93, "fluent-emoji-flat:classical-building"].
   - `split` scene: {left: {title, sub, icon, value?, cue}, right: {…}, vs?: "VS"}: two cards slam in (rivals, before/after, then vs now).
   - `journey` scene: {stops: [[year, label, icon, cueWord?], …]} (4–6 stops): the recap road near the end.
+  - `street` scene (full-screen cartoon town): {era: "ancient" | "medieval" | "industrial" | "modern" | "future", time?: "day" | "sunset" | "night", title, sub?, people: [role or [role, skin 0–4]], cue}. Buildings match the era (columns and mud brick → timber houses → brick factories with smoke → glass towers → neon future), parallax pan, clouds/stars, cartoon people walking, waving and talking. Great for "a day in 500 BC Persepolis" vs "Tehran today", POV moments and then-vs-now.
+  - `crowd` scene (on the map): {people: [[role, caption, skin?, cueWord?], …]} (3–5): characters pop up with captions ("Kings", "Merchants", "Poets").
+  - Roles: king, queen, soldier, merchant, farmer, scholar, explorer, sailor, worker, tourist, business, student, chef, doctor, kid, elder. Skin tones 0 (light) to 4 (dark): mix them.
+  - **Map timelapse** ("every year" style): a `map` scene with `frames`: [[yearLabel, [areas…], cueWord?], …] (3–8 frames): a big year counter slams in and the territory switches on each spoken year. Very popular format ("History of X: Every Year").
   - `era` cards are drawn on an unrolling parchment scroll with a wax seal; chapter titles, labels and area names use the Cinzel serif font.
 - Facts: only well-established history from reputable sources (Britannica, UNESCO, academic or museum sites, national archives). Dates as words in text ("five hundred fifty BC"). Neutral wording for wars, religion and modern politics; nothing graphic; no judgement of present-day governments.
 - Thumbnail: `rank` or `headline` or `flagfull` style with a strong emoji (crown, crossed-swords, exploding-head); title like "The ENTIRE History of Persia in 10 Minutes".
+
+## Proven formats from 100 breakout videos (Nov 2026 research)
+Ranked by how far they beat their channel's normal: "The ENTIRE History of X in N Minutes" (up to 16,000×), "X: Every Year (3400 BCE – 2026)" map timelapses (858×), "POV: you were there when…" (101×), "The ONLY countries where…" (map with a few highlighted countries; 257K views), "Countries that no longer exist", "How old is every country?", "Rise and fall of…", "Evolution of X (year–year)". Titles use exact time spans in brackets and minute counts. Use these as series on this channel (countries, empires, cities, travel facts) with our own graphics.
 
 ## YouTube growth rules (from current best practice; apply to every episode)
 - **Packaging decides reach.** YouTube first tests a video on a small audience; strong CTR (thumbnail + title) and strong retention in the first 30–60 s get it pushed wider. Title, thumbnail and hook must promise the same thing, and the video must deliver it quickly.

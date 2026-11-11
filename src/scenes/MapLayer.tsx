@@ -31,7 +31,7 @@ const THEMES: Record<string, { o: [string, string, string]; l: [string, string];
 };
 const MT = THEMES[MAP_STYLE] ?? THEMES.navy;
 const FLAG_ON_MAP = (EP as any).flagOnMap !== false; // history episodes: plain accent fill instead of today's flag
-const DIMMED = new Set(['timeline', 'cards', 'bignum', 'bars', 'steps', 'checklist', 'era', 'split', 'journey']);
+const DIMMED = new Set(['timeline', 'cards', 'bignum', 'bars', 'steps', 'checklist', 'era', 'split', 'journey', 'crowd', 'street']);
 
 // ---------- camera: shot list built from the narration ----------
 // Each map segment opens on its view, then the camera flies in to every place as it is spoken, and pulls back out.
@@ -173,8 +173,13 @@ export const MapLayer: React.FC<{ t: number; seg: Seg; segIdx: number; view?: Vi
   });
   // areas: territories made of modern countries, e.g. an empire's approximate extent
   const areaEls: React.ReactNode[] = [];
-  ((sc.areas as { ids: string[]; label?: string; cue?: string; color?: string; labelAt?: [number, number] }[] | undefined) ?? []).forEach((a, ai, arr) => {
-    const c = cue(seg, a.cue ?? a.label ?? '', ai, arr.length); const p = pr(t, c - 0.1, 1.6, eOut) * vis;
+  let areaList = (sc.areas as { ids: string[]; label?: string; cue?: string; color?: string; labelAt?: [number, number] }[] | undefined) ?? [];
+  let frameAt = -1;
+  if (sc.frames) { const fr = sc.frames as [string, any[], string?][]; const n = fr.length;
+    const times = fr.map((f, k) => (f[2] ? spokenAt(seg, f[2]) : null) ?? seg.start + 0.4 + (k * (seg.end - seg.start - 0.8)) / Math.max(1, n));
+    let k = 0; times.forEach((tt, j) => { if (t >= tt - 0.1) k = j; }); areaList = fr[k][1]; frameAt = times[k]; }
+  areaList.forEach((a, ai, arr) => {
+    const c = frameAt >= 0 ? frameAt : cue(seg, a.cue ?? a.label ?? '', ai, arr.length); const p = pr(t, c - 0.1, frameAt >= 0 ? 0.6 : 1.6, eOut) * vis;
     if (p <= 0) return;
     const col = a.color ?? GOLD; const fs = FEATS.filter((f) => a.ids.includes(String(f.id).padStart(3, '0')));
     let big: any = null, bigA = -1;
