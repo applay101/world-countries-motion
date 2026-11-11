@@ -5,7 +5,7 @@ import { staticFile } from 'remotion';
 import { geoMercator, geoPath, geoGraticule10, geoArea, geoBounds } from 'd3-geo';
 import { feature } from 'topojson-client';
 import world from 'world-atlas/countries-50m.json';
-import { EP, W, H, GOLD, TITLE, BODY, Seg, View, cl, pr, lerp, eExpoIO, eBack, eOut, cue, segWindow, fadeWin, INTRO_END, spokenAt } from '../lib/core';
+import { EP, W, H, GOLD, TITLE, BODY, Seg, View, cl, pr, lerp, eExpoIO, eBack, eOut, cue, segWindow, fadeWin, INTRO_END, spokenAt, MAP_STYLE, INTRO_TYPE } from '../lib/core';
 
 const FC: any = feature(world as any, (world as any).objects.countries);
 const FEATS: any[] = FC.features;
@@ -20,6 +20,14 @@ const MAIN: any = (() => {
   return best;
 })();
 const GRAT = geoGraticule10();
+// map looks: ocean (centre/mid/edge), land (top/bottom), borders, graticule
+const THEMES: Record<string, { o: [string, string, string]; l: [string, string]; b: string; g: string }> = {
+  navy: { o: ['#0f3a66', '#0a2546', '#050f20'], l: ['#4a6380', '#33495f'], b: 'rgba(200,220,240,.45)', g: 'rgba(140,190,255,.08)' },
+  night: { o: ['#0b1426', '#060a14', '#020306'], l: ['#1b2433', '#121926'], b: 'rgba(94,200,255,.55)', g: 'rgba(94,200,255,.07)' },
+  sand: { o: ['#1d6f86', '#155a70', '#0b3444'], l: ['#d8c39a', '#b89f72'], b: 'rgba(90,60,30,.45)', g: 'rgba(255,255,255,.08)' },
+  emerald: { o: ['#0c3b3a', '#082a2a', '#041615'], l: ['#3c5e4a', '#2a4434'], b: 'rgba(190,240,210,.4)', g: 'rgba(160,255,210,.07)' },
+};
+const MT = THEMES[MAP_STYLE] ?? THEMES.navy;
 const DIMMED = new Set(['timeline', 'cards', 'bignum', 'bars', 'steps', 'checklist']);
 
 // ---------- camera: shot list built from the narration ----------
@@ -29,8 +37,13 @@ const SHOT_TYPES = new Set(['map', 'cities']);
 const KEYS: Key[] = (() => {
   const ks: Key[] = [];
   const first = EP.segments.find((s) => s.scene.view)?.scene.view as View | undefined ?? { lon: EP.country.lon, lat: EP.country.lat, span: 30 };
-  ks.push({ t: -10, v: { ...first, span: first.span * 3.4, lon: first.lon + 6 }, d: 0.01 });
-  ks.push({ t: INTRO_END - 1.0, v: first, d: 2.2 });
+  if (INTRO_TYPE === 'dive') {
+    ks.push({ t: -10, v: { lon: first.lon - 40, lat: first.lat - 10, span: 260 }, d: 0.01 });
+    ks.push({ t: 0, v: first, d: Math.max(3, INTRO_END - 0.5) });
+  } else {
+    ks.push({ t: -10, v: { ...first, span: first.span * 3.4, lon: first.lon + 6 }, d: 0.01 });
+    ks.push({ t: INTRO_END - 1.0, v: first, d: 2.2 });
+  }
   EP.segments.forEach((s) => {
     const base = s.scene.view as View | undefined; if (!base) return;
     ks.push({ t: s.start - 0.55, v: base, d: 1.5 });
@@ -105,13 +118,13 @@ export const MapLayer: React.FC<{ t: number; seg: Seg; segIdx: number; view?: Vi
   const tgtD = TARGET ? path(TARGET) || '' : '';
   const mb = MAIN ? path.bounds(MAIN) : [[0, 0], [0, 0]];
   const fw = mb[1][0] - mb[0][0], fh = mb[1][1] - mb[0][1];
-  const fillP = pr(t, INTRO_END + 0.6, 1.4, eOut);
+  const fillP = INTRO_TYPE === 'dive' ? pr(t, INTRO_END - 2.0, 1.4, eOut) : pr(t, INTRO_END + 0.6, 1.4, eOut);
   const glow = 0.55 + 0.2 * Math.sin(t * 2.4);
   const tiltBase = seg.scene.type === 'stats' ? 14 : DIMMED.has(seg.scene.type) ? 30 : 24;
-  const tilt = tiltBase + 4 * Math.sin(t * 0.13) - 14 * (1 - pr(t, INTRO_END - 0.4, 2.4));
+  const tilt = tiltBase + 4 * Math.sin(t * 0.13) - 14 * (1 - pr(t, INTRO_TYPE === 'dive' ? 0 : INTRO_END - 0.4, INTRO_TYPE === 'dive' ? INTRO_END : 2.4));
   const rz = 1.4 * Math.sin(t * 0.09);
   let blur = 0; for (const s of EP.segments) { const d = t - s.start + 0.35; if (d > 0 && d < 0.5) blur = Math.max(blur, 7 * Math.sin((Math.PI * d) / 0.5)); }
-  const draw = pr(t, INTRO_END - 0.3, 2.2, eOut);
+  const draw = INTRO_TYPE === 'dive' ? pr(t, INTRO_END - 2.6, 2.2, eOut) : pr(t, INTRO_END - 0.3, 2.2, eOut);
 
   // overlays from the active segment (labels, markers, river) + capital
   const sc = seg.scene;
@@ -155,17 +168,17 @@ export const MapLayer: React.FC<{ t: number; seg: Seg; segIdx: number; view?: Vi
       transform: `rotateX(${tilt}deg) rotateZ(${rz}deg)`, filter: blur > 0.3 ? `blur(${blur}px)` : undefined }}>
     <svg width={CW} height={CH} style={{ position: 'absolute', inset: 0 }}>
       <defs>
-        <radialGradient id="ocean" cx="50%" cy="45%" r="75%"><stop offset="0" stopColor="#0f3a66" /><stop offset="0.6" stopColor="#0a2546" /><stop offset="1" stopColor="#050f20" /></radialGradient>
-        <linearGradient id="land" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stopColor="#4a6380" /><stop offset="1" stopColor="#33495f" /></linearGradient>
+        <radialGradient id="ocean" cx="50%" cy="45%" r="75%"><stop offset="0" stopColor={MT.o[0]} /><stop offset="0.6" stopColor={MT.o[1]} /><stop offset="1" stopColor={MT.o[2]} /></radialGradient>
+        <linearGradient id="land" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stopColor={MT.l[0]} /><stop offset="1" stopColor={MT.l[1]} /></linearGradient>
         <filter id="glow" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="9" /></filter>
         <filter id="soft"><feGaussianBlur stdDeviation="4" /></filter>
         <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%"><feDropShadow dx="0" dy="10" stdDeviation="12" floodColor="#000" floodOpacity="0.55" /></filter>
         <clipPath id="tgt"><path d={tgtD} /></clipPath>
       </defs>
       <rect width={CW} height={CH} fill="url(#ocean)" />
-      <path d={path(GRAT) || ''} fill="none" stroke="rgba(140,190,255,.08)" strokeWidth={1} />
+      <path d={path(GRAT) || ''} fill="none" stroke={MT.g} strokeWidth={1} />
       <g filter="url(#shadow)">
-        {land.map((f, i) => (f === TARGET ? null : <path key={i} d={path(f) || ''} fill="url(#land)" stroke="rgba(200,220,240,.45)" strokeWidth={1.1} />))}
+        {land.map((f, i) => (f === TARGET ? null : <path key={i} d={path(f) || ''} fill="url(#land)" stroke={MT.b} strokeWidth={1.1} />))}
       </g>
       {TARGET ? (
         <g>

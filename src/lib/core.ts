@@ -3,7 +3,10 @@ import gsap from 'gsap';
 import EPJ from '../data/episode.json';
 
 export const W = 1920, H = 1080;
-export const GOLD = '#FFC94A', INK = '#0B1220', WHITE = '#F4F7FB', ACCENT = '#5EC8FF';
+// per-episode look: accent colour + map style (see THEMES in MapLayer), so episodes don't all look alike
+const TH = ((EPJ as any).theme ?? {}) as { accent?: string; map?: string };
+export const GOLD = TH.accent ?? '#FFC94A', INK = '#0B1220', WHITE = '#F4F7FB', ACCENT = '#5EC8FF';
+export const MAP_STYLE = TH.map ?? 'navy';
 export const TITLE = 'Montserrat, sans-serif', BODY = 'Inter, sans-serif';
 
 export type Word = { w: string; t: number; e: number };
@@ -14,6 +17,8 @@ export type Ep = { id: string; country: { name: string; iso2: string; isoNum: st
 export const EP = EPJ as unknown as Ep;
 // the globe intro hands over to the map when the second segment starts
 export const INTRO_END = EP.segments[1]?.start ?? 6;
+// intro style: globe | flag | hook | dive
+export const INTRO_TYPE: string = EP.segments[0]?.scene.type ?? 'globe';
 
 export const E = (n: string) => gsap.parseEase(n) as (x: number) => number;
 export const eOut = E('power3.out'), eIO = E('power2.inOut'), eExpoIO = E('expo.inOut'), eBack = E('back.out(1.8)'), eExpo = E('expo.out');

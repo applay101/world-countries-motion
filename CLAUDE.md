@@ -17,6 +17,14 @@ Pick a country that people are talking about **right now**: news of the last 7 d
 - The angle is: hook on the current story, then a country profile that gives viewers context (where it is, numbers, geography, history, culture, economy and travel). Keep it neutral and factual. No opinions on politics, no partisan framing, nothing graphic. Wars, disasters and tragedies are covered respectfully, with no sensationalism. Never invent quotes.
 - Every number must come from a source you just read (official statistics office, UN, World Bank, IMF, UNESCO, reputable news). Put the source in the `note` field where the schema allows it.
 
+## Variety rules (important: viewers must never feel they've seen this video before)
+Before writing, look at the last 3 episodes (`ls -t episodes/`, read their script.json) and make this one different on all of these:
+- **Opening** (`segments[0].scene.type`): `globe` (Earth spins to the country), `dive` (camera falls from space straight onto the map), `flag` (giant waving flag with light rays), or `hook` (kinetic headline words on a dark grid; best with a question or a shocking fact). Never use the same opening as the previous episode, and use `globe` at most once in 4 episodes.
+- **Look** (`theme`): {"map": "navy" | "night" | "sand" | "emerald", "accent": a hex colour}. Pick one that suits the country (e.g. sand + orange for deserts, emerald + mint for green countries, night + cyan for futuristic topics) and differs from the last episode.
+- **Format**: rotate between a classic country profile; a countdown ("5 things you didn't know about X": put `"rank": 5…1` on five segments, so a big #5…#1 badge appears); "then vs now"; a news explainer that opens on the story; and tutorials. Vary the number and order of chapters and the scene types used (not always stats, timeline, cities, cards, bars in the same order).
+- **Hook**: the first 5 seconds must create curiosity (a surprising number, a question, a contrast). The thumbnail and title must match that hook.
+- **Music** and **voice**: vary them too (`pulse` for most; `am_michael` / `bm_george` / `af_heart` rotating).
+
 ## script.json schema (copy `episodes/spain/script.json` as the template)
 - `id`, `country` {name, iso2 (flag-icons code), isoNum (ISO 3166 numeric, 3 digits, as in world-atlas), lon, lat (country centre), capital}
 - `voice`: Kokoro voice (`af_heart` default; `am_michael`, `bm_george` also good). `speed` 1.0. `music`: `pulse` (energetic, default), `spanish_guitar` (rumba groove), `ambient`, `spanish_gentle`.
@@ -24,7 +32,7 @@ Pick a country that people are talking about **right now**: news of the last 7 d
 - The engine is high-energy by design: the camera flies to every marker or city at the moment it is spoken, so put 3 to 7 markers in map/cities scenes and say their names in the text.
 - `segments`: 11 to 14 items, about 550 to 650 words in total (~4 min). Each one is `{id, text, scene}`.
   - **Write numbers and years as words in `text`** ("forty-nine point eight million", "nineteen seventy-eight") so the TTS reads them correctly. Short, punchy, spoken sentences.
-  - The first segment's scene is `{"type":"globe"}`; its text ends with "This is <Country>." The last is `{"type":"outro"}` and asks viewers to subscribe and join the next country.
+  - The first segment's scene is the opening (`globe`, `dive`, `flag` or `hook`, see Variety rules); its text names the country (e.g. ends with "This is <Country>.") so the title slams in on that word. The last is `{"type":"outro"}` and asks viewers to subscribe and join the next country.
   - Scene types and fields:
     - `map`: `chapter`, `view` {lon, lat, span (visible degrees of longitude, about 2 to 2.5x the country width)}, optional `labels` [[name, lon, lat, "sea"?]], `markers` [[name, lon, lat, kind]] (kind: pin, dot, peak, star), `river` [[lon,lat]...] + `riverLabel`, `big` [["17","label"]] (right-hand number chips)
     - `stats`: like map plus `capital` [name, lon, lat] and `cards` [{label, value, suffix, fmt: int|1dp|2dp, note} or {label, text}]. Set the view lon about 0.15×span east of the country so it sits left of the panel.
