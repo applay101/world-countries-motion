@@ -5,6 +5,9 @@ Channel: **Zoom World Travel** (@zoomworldtravel), English. Every video is about
 ## YouTube agent checklist (Hossein: apply in EVERY video)
 docs/youtube-agent.md is Hossein's YouTube agent skill (also installed as the `youtube-agent` skill). Every episode run goes through its steps, on top of all rules below: /yt-viral (pick a proven format) → /yt-script → /yt-hook (write 5 openings, keep the best) → /yt-title (10 titles, pick the best) → /yt-thumbnail (style different from the last 3) → render → /yt-edit (frame review, fix before publishing) → /yt-seo + /yt-package (description, chapters, tags, Short) → publish. In the Persian message, mention the chosen hook and title.
 
+## Output: 2 high-quality videos a day (Hossein, 11 Nov 2026)
+Two episode runs a day (09:47 and 16:47 Madrid), each taking the FIRST unchecked line of ideas.md (tutorials included, in queue order). Only topics PROVEN by very high views on other channels: confirm each with one Manifold `youtube_search_videos` before writing. Quality over quantity: YouTube's monetization review rejects channels that look mass-produced, so each video must be accurate, varied and clearly worth watching. Prefer longer formats that build watch time (monetization needs 1,000 subscribers + 4,000 watch hours, 8,000 from 1 Feb 2027): history 10–12 min, explainers/rankings 6–9 min, tutorials 4–6 min.
+
 ## Full toolbox in EVERY video (Hossein, 11 Nov 2026: "apply everything we gave you")
 Every episode uses the whole kit, not just maps and captions:
 - **Icons:** 4+ hand-picked `scene.pops` on the key moments, 3D (`fluent-3d:`) for cards, era icons and big beats. Flat emoji that have a 3D twin are upgraded to 3D automatically by `pipeline/prepare.py` (map markers and route heads stay flat).
