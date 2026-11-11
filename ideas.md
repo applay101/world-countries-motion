@@ -5,7 +5,7 @@ Ideas can be in Persian or English. Lines tagged [tutorial] are used by the 14:4
 
 ## Production queue: proven million-view topics (Manifold YouTube research, 11 Nov 2026). Use from the top.
 Views in brackets are the competitor video that proves the topic. Copy the topic and title pattern only, never their script. Every rule, visa and number must be checked on official sources at production time (government, EU, Henley/IATA, OECD, World Bank, UN).
-- [ ] HISTORY: The ENTIRE History of Rome in 12 Minutes (10.6M; parchment, frames timelapse of Roman territory, era cards, street scene "a day in Rome")
+- [x] HISTORY: The ENTIRE History of Rome in 12 Minutes (10.6M; parchment, frames timelapse of Roman territory, era cards, street scene "a day in Rome")
 - [ ] Countries You Can Move to in 24 Hours: no visa in advance, no income proof (2.3M "5 countries Americans can move in 24 hours"; say which passports, e.g. US/EU/UK; long visa-free stays like Georgia, Albania, Mexico, Panama; official immigration sites only)
 - [ ] [tutorial] Schengen visa: how to apply step by step (home-affairs.ec.europa.eu + the embassy site; documents checklist, 90/180 rule)
 - [ ] Why No Other Country Is Like Switzerland (3.4M Johnny Harris / 1.7M Chile: mountains, 4 languages, 26 cantons, neutrality; map-heavy, blueprint look)

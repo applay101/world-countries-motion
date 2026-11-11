@@ -1,0 +1,1553 @@
+{
+ "id": "rome-history",
+ "rev": 1,
+ "country": {
+  "name": "Rome",
+  "iso2": "it",
+  "isoNum": "380",
+  "lon": 12.5,
+  "lat": 41.9,
+  "capital": "Rome"
+ },
+ "voice": "bm_george",
+ "speed": 1.0,
+ "music": "ambient",
+ "flagOnMap": false,
+ "theme": {
+  "map": "parchment",
+  "accent": "#b8282f"
+ },
+ "thumb": {
+  "style": "bignum",
+  "top": "ENTIRE HISTORY",
+  "big": "ROME",
+  "sub": "Rise and Fall",
+  "badge": "2,205 YEARS",
+  "emoji": "fluent-emoji-flat:crown"
+ },
+ "short": {
+  "title": "ROME",
+  "sub": "Hannibal's march",
+  "segments": [
+   "hannibal",
+   "day"
+  ]
+ },
+ "segments": [
+  {
+   "id": "intro",
+   "text": "It began as a few villages of shepherds beside a river. It became an empire from Britain to Egypt. This is Rome.",
+   "scene": {
+    "type": "globe",
+    "pops": [
+     [
+      "empire",
+      "lib:soldiers-032"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "founding",
+   "text": "Legend says Rome was founded in seven fifty-three BC by Romulus, who was raised with his twin brother Remus by a she-wolf. The real story is humbler: farming villages on hills beside the river Tiber. To the north lived the rich Etruscans, in cities like Tarquinia and Volterra. To the south, Greek settlers had built Naples and Syracuse.",
+   "scene": {
+    "type": "map",
+    "chapter": "The Seven Hills",
+    "view": {
+     "lon": 13.6,
+     "lat": 40.6,
+     "span": 17
+    },
+    "markers": [
+     [
+      "Rome",
+      12.48,
+      41.89,
+      "star"
+     ],
+     [
+      "Tarquinia",
+      11.76,
+      42.25,
+      "pin"
+     ],
+     [
+      "Volterra",
+      10.86,
+      43.4,
+      "pin"
+     ],
+     [
+      "Naples",
+      14.25,
+      40.85,
+      "pin"
+     ],
+     [
+      "Syracuse",
+      15.29,
+      37.08,
+      "fluent-emoji-flat:classical-building"
+     ]
+    ],
+    "river": [
+     [
+      12.07,
+      43.79
+     ],
+     [
+      12.25,
+      43.45
+     ],
+     [
+      12.39,
+      43.11
+     ],
+     [
+      12.47,
+      42.75
+     ],
+     [
+      12.39,
+      42.46
+     ],
+     [
+      12.55,
+      42.1
+     ],
+     [
+      12.48,
+      41.89
+     ],
+     [
+      12.29,
+      41.74
+     ]
+    ],
+    "riverLabel": "Tiber",
+    "pops": [
+     [
+      "she-wolf",
+      "fluent-3d:wolf"
+     ],
+     [
+      "Greek",
+      "lib:landmarks-026"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "republic",
+   "text": "At first, Rome was ruled by kings. Then, according to Roman tradition, in five hundred nine BC, the Romans drove out their last king, Tarquin the Proud, and vowed never to have another. Instead, citizens elected two consuls every year, guided by a Senate of powerful elders. The Roman Republic was born.",
+   "scene": {
+    "type": "era",
+    "year": "509 BC",
+    "title": "The Republic Is Born",
+    "sub": "No more kings",
+    "icons": [
+     "lib:kings-033",
+     "fluent-3d:classical-building",
+     "lib:soldiers-159"
+    ],
+    "cue": "five"
+   }
+  },
+  {
+   "id": "italy",
+   "text": "Step by step, Rome took over Italy. It captured the Etruscan city of Veii in three ninety-six BC and fought long wars in the southern mountains. It built the Appian Way, starting in three twelve BC, so its armies could march fast to Capua. When the Greek city of Tarentum called in King Pyrrhus, with his war elephants, Rome lost battles but won the war. By two seventy-two BC, it ruled most of Italy.",
+   "scene": {
+    "type": "map",
+    "chapter": "Rome Takes Italy",
+    "view": {
+     "lon": 14.6,
+     "lat": 41.4,
+     "span": 13
+    },
+    "markers": [
+     [
+      "Veii",
+      12.4,
+      42.02,
+      "battle"
+     ],
+     [
+      "Capua",
+      14.25,
+      41.08,
+      "pin"
+     ],
+     [
+      "Tarentum",
+      17.24,
+      40.47,
+      "battle"
+     ]
+    ],
+    "routes": [
+     {
+      "points": [
+       [
+        12.5,
+        41.88
+       ],
+       [
+        12.95,
+        41.45
+       ],
+       [
+        13.25,
+        41.28
+       ],
+       [
+        13.6,
+        41.25
+       ],
+       [
+        14.25,
+        41.08
+       ],
+       [
+        14.78,
+        41.13
+       ],
+       [
+        15.6,
+        40.9
+       ],
+       [
+        16.6,
+        40.7
+       ],
+       [
+        17.24,
+        40.47
+       ],
+       [
+        17.94,
+        40.63
+       ]
+      ],
+      "cue": "Appian",
+      "icon": "lib:soldiers-036"
+     }
+    ],
+    "pops": [
+     [
+      "elephants",
+      "fluent-3d:elephant"
+     ],
+     [
+      "wars",
+      "fluent-3d:crossed-swords"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "society",
+   "text": "So who were the Romans? At the top stood the patricians, old noble families who filled the Senate. Most citizens were plebeians: farmers, craftsmen and traders, who struggled for generations to win equal rights. Merchants grew rich on trade. And at the bottom were enslaved people, often captured in war, with almost no rights at all.",
+   "scene": {
+    "type": "crowd",
+    "people": [
+     [
+      "scholar",
+      "Patricians",
+      0,
+      "patricians"
+     ],
+     [
+      "farmer",
+      "Plebeians",
+      2,
+      "plebeians"
+     ],
+     [
+      "merchant",
+      "Merchants",
+      1,
+      "Merchants"
+     ],
+     [
+      "worker",
+      "Enslaved people",
+      3,
+      "enslaved"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "punic",
+   "text": "But across the sea stood Carthage, a rich trading city in North Africa with a mighty navy. In two sixty-four BC, Rome and Carthage went to war over Sicily. They would fight three wars, on and off, for more than a century. The prize was the whole western Mediterranean.",
+   "scene": {
+    "type": "era",
+    "year": "264 BC",
+    "title": "Rome vs Carthage",
+    "sub": "The Punic Wars",
+    "icons": [
+     "fluent-3d:ship",
+     "fluent-3d:crossed-swords",
+     "fluent-3d:elephant"
+    ],
+    "cue": "two"
+   }
+  },
+  {
+   "id": "hannibal",
+   "text": "In two eighteen BC, the Carthaginian general Hannibal set out from Cartagena, in Spain, with a large army and dozens of war elephants. He crossed the Pyrenees and then the snowy Alps, and invaded Italy. At Cannae, in two sixteen BC, he crushed one of the largest armies Rome had ever raised. But Rome refused to surrender. Its general Scipio struck back in Africa and defeated Hannibal at Zama, near Carthage, in two oh-two BC.",
+   "scene": {
+    "type": "map",
+    "chapter": "Hannibal's March",
+    "view": {
+     "lon": 7.5,
+     "lat": 40.5,
+     "span": 30
+    },
+    "routes": [
+     {
+      "points": [
+       [
+        -0.98,
+        37.6
+       ],
+       [
+        -0.4,
+        39.47
+       ],
+       [
+        0.9,
+        40.8
+       ],
+       [
+        2.2,
+        41.6
+       ],
+       [
+        2.9,
+        42.6
+       ],
+       [
+        3.6,
+        43.4
+       ],
+       [
+        4.6,
+        43.95
+       ],
+       [
+        5.6,
+        44.7
+       ],
+       [
+        6.6,
+        45.15
+       ],
+       [
+        7.6,
+        45.07
+       ],
+       [
+        9.2,
+        45.0
+       ],
+       [
+        10.3,
+        44.6
+       ],
+       [
+        11.3,
+        43.8
+       ],
+       [
+        12.1,
+        43.15
+       ],
+       [
+        13.4,
+        42.4
+       ],
+       [
+        15.0,
+        41.8
+       ],
+       [
+        16.13,
+        41.31
+       ]
+      ],
+      "label": "Hannibal 218 BC",
+      "cue": "Hannibal",
+      "icon": "fluent-emoji-flat:elephant"
+     },
+     {
+      "points": [
+       [
+        12.44,
+        37.8
+       ],
+       [
+        11.3,
+        37.4
+       ],
+       [
+        10.2,
+        37.05
+       ],
+       [
+        9.6,
+        36.6
+       ],
+       [
+        9.2,
+        36.1
+       ]
+      ],
+      "label": "Scipio 204 BC",
+      "cue": "Scipio",
+      "icon": "fluent-emoji-flat:sailboat"
+     }
+    ],
+    "markers": [
+     [
+      "Cartagena",
+      -0.98,
+      37.6,
+      "pin"
+     ],
+     [
+      "Alps",
+      7.0,
+      45.4,
+      "peak"
+     ],
+     [
+      "Cannae",
+      16.13,
+      41.31,
+      "battle"
+     ],
+     [
+      "Zama",
+      9.2,
+      36.1,
+      "battle"
+     ],
+     [
+      "Carthage",
+      10.32,
+      36.85,
+      "fluent-emoji-flat:classical-building"
+     ]
+    ],
+    "countries": [
+     "Spain"
+    ],
+    "pops": [
+     [
+      "elephants",
+      "fluent-3d:elephant"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "growth",
+   "text": "Now watch Rome grow. In two sixty-four BC, it ruled only Italy. By two oh-one BC, it also held Sicily, Sardinia and much of Spain. In one forty-six BC, it destroyed both Carthage and the Greek city of Corinth. And by forty-four BC, Roman lands circled the Mediterranean, from Spain to Syria. The Romans called it simply Mare Nostrum, our sea.",
+   "scene": {
+    "type": "map",
+    "chapter": "Master of the Mediterranean",
+    "view": {
+     "lon": 16,
+     "lat": 39,
+     "span": 58
+    },
+    "frames": [
+     [
+      "264 BC",
+      [
+       {
+        "ids": [
+         "380"
+        ],
+        "label": "Roman Republic (approx.)",
+        "color": "#6d1f5e",
+        "labelAt": [
+         13,
+         42
+        ]
+       }
+      ],
+      "only"
+     ],
+     [
+      "201 BC",
+      [
+       {
+        "ids": [
+         "380",
+         "724"
+        ],
+        "label": "Roman Republic (approx.)",
+        "color": "#6d1f5e",
+        "labelAt": [
+         5,
+         41
+        ]
+       }
+      ],
+      "held"
+     ],
+     [
+      "146 BC",
+      [
+       {
+        "ids": [
+         "380",
+         "724",
+         "788",
+         "300",
+         "807",
+         "008"
+        ],
+        "label": "Roman Republic (approx.)",
+        "color": "#6d1f5e",
+        "labelAt": [
+         12,
+         40
+        ]
+       }
+      ],
+      "destroyed"
+     ],
+     [
+      "44 BC",
+      [
+       {
+        "ids": [
+         "380",
+         "724",
+         "620",
+         "250",
+         "056",
+         "788",
+         "300",
+         "807",
+         "008",
+         "191",
+         "070",
+         "499",
+         "792",
+         "760",
+         "422",
+         "376",
+         "275",
+         "434",
+         "196",
+         "470",
+         "756"
+        ],
+        "label": "Roman Republic (approx.)",
+        "color": "#6d1f5e",
+        "labelAt": [
+         14,
+         40
+        ]
+       }
+      ],
+      "circled"
+     ]
+    ],
+    "pops": [
+     [
+      "sea",
+      "fluent-emoji-flat:water-wave"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "crisis",
+   "text": "But the Republic was built to run a city, not an empire. Generals grew richer than the state, and their soldiers were loyal to them, not to the Senate. For about a hundred years, Rome was torn by riots, rivalries and civil wars. Then one general changed everything.",
+   "scene": {
+    "type": "era",
+    "year": "49 BC",
+    "title": "The Republic Cracks",
+    "sub": "Generals, riots and civil war",
+    "icons": [
+     "lib:kings-013",
+     "fluent-3d:crossed-swords",
+     "lib:soldiers-168"
+    ],
+    "cue": "Republic"
+   }
+  },
+  {
+   "id": "caesar",
+   "text": "Julius Caesar. He spent eight years conquering Gaul, today's France and Belgium, and won a famous siege at Alesia in fifty-two BC. In forty-nine BC, he led his army across the Rubicon river into Italy, breaking the law and starting a civil war. He defeated his rival Pompey at Pharsalus, in Greece, and in Egypt he backed Cleopatra as queen, in Alexandria.",
+   "scene": {
+    "type": "map",
+    "chapter": "Julius Caesar",
+    "view": {
+     "lon": 14,
+     "lat": 40.5,
+     "span": 40
+    },
+    "markers": [
+     [
+      "Alesia",
+      4.5,
+      47.54,
+      "battle"
+     ],
+     [
+      "Rubicon",
+      12.4,
+      44.1,
+      "pin"
+     ],
+     [
+      "Pharsalus",
+      22.38,
+      39.3,
+      "battle"
+     ],
+     [
+      "Alexandria",
+      29.92,
+      31.2,
+      "fluent-emoji-flat:crown"
+     ]
+    ],
+    "countries": [
+     "France",
+     "Belgium",
+     "Greece",
+     "Egypt"
+    ],
+    "pops": [
+     [
+      "Rubicon",
+      "lib:soldiers-159"
+     ],
+     [
+      "Cleopatra",
+      "fluent-3d:crown"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "ides",
+   "text": "In forty-four BC, Caesar was named dictator for life. Weeks later, on the Ides of March, a group of senators assassinated him. Another civil war followed. Caesar's adopted heir, Octavian, ruled the West from Rome. His rival, Mark Antony, ruled the East, side by side with Cleopatra, queen of Egypt. Only one side could win.",
+   "scene": {
+    "type": "split",
+    "left": {
+     "title": "Octavian",
+     "sub": "Caesar's heir, the West",
+     "icon": "lib:kings-012",
+     "cue": "Octavian"
+    },
+    "right": {
+     "title": "Antony & Cleopatra",
+     "sub": "The East and Egypt",
+     "icon": "fluent-3d:crown",
+     "cue": "Antony"
+    },
+    "vs": "VS"
+   }
+  },
+  {
+   "id": "augustus",
+   "text": "The showdown came at Actium, off the coast of Greece, in thirty-one BC. Octavian's fleet won. A year later, his army took Alexandria, and Egypt became Roman. Back in Rome, in twenty-seven BC, the Senate gave Octavian a new name: Augustus. He never called himself king, but he was Rome's first emperor.",
+   "scene": {
+    "type": "map",
+    "chapter": "The First Emperor",
+    "view": {
+     "lon": 21,
+     "lat": 37.5,
+     "span": 30
+    },
+    "markers": [
+     [
+      "Actium",
+      20.73,
+      38.95,
+      "battle"
+     ],
+     [
+      "Alexandria",
+      29.92,
+      31.2,
+      "pin"
+     ],
+     [
+      "Rome",
+      12.48,
+      41.89,
+      "lib:kings-033"
+     ]
+    ],
+    "countries": [
+     "Greece",
+     "Egypt"
+    ],
+    "pops": [
+     [
+      "fleet",
+      "fluent-3d:ship"
+     ],
+     [
+      "Augustus",
+      "lib:kings-012"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "pax",
+   "text": "What followed was the Pax Romana, the Roman Peace: about two hundred years of relative peace and stability inside the empire. Trade boomed. Cities grew. And Rome itself became the greatest city in the Western world, home to perhaps a million people.",
+   "scene": {
+    "type": "era",
+    "year": "27 BC – 180 AD",
+    "title": "Pax Romana",
+    "sub": "Two centuries of Roman peace",
+    "icons": [
+     "lib:soldiers-168",
+     "lib:landmarks-025",
+     "fluent-3d:coin"
+    ],
+    "cue": "Pax"
+   }
+  },
+  {
+   "id": "pompeii",
+   "text": "Not everything was peaceful. In seventy-nine AD, Mount Vesuvius erupted near Naples. Ash and hot gas buried the towns of Pompeii and Herculaneum. Tragic for the people who lived there, but a gift to history: today we can still walk their streets, and see their bakeries, shops, graffiti and painted walls.",
+   "scene": {
+    "type": "map",
+    "chapter": "Vesuvius, 79 AD",
+    "view": {
+     "lon": 14.42,
+     "lat": 40.8,
+     "span": 2.0
+    },
+    "markers": [
+     [
+      "Vesuvius",
+      14.43,
+      40.82,
+      "peak"
+     ],
+     [
+      "Naples",
+      14.25,
+      40.85,
+      "pin"
+     ],
+     [
+      "Pompeii",
+      14.49,
+      40.75,
+      "fluent-emoji-flat:classical-building"
+     ]
+    ],
+    "pops": [
+     [
+      "erupted",
+      "fluent-3d:volcano"
+     ],
+     [
+      "bakeries",
+      "fluent-emoji-flat:bread"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "day",
+   "text": "Picture Rome around one hundred AD. Crowds pour into the Forum to shop, gossip and argue about politics. Water flows from public fountains, fed by long aqueducts. People meet at the public baths. At the Circus Maximus, fans cheer chariot races. And at the Colosseum, opened in eighty AD, some fifty thousand spectators watch the games.",
+   "scene": {
+    "type": "street",
+    "era": "ancient",
+    "time": "day",
+    "title": "A Day in Ancient Rome",
+    "sub": "Around 100 AD",
+    "people": [
+     [
+      "merchant",
+      1
+     ],
+     [
+      "soldier",
+      0
+     ],
+     [
+      "farmer",
+      3
+     ],
+     [
+      "scholar",
+      2
+     ],
+     [
+      "kid",
+      1
+     ],
+     [
+      "elder",
+      4
+     ],
+     [
+      "queen",
+      0
+     ]
+    ],
+    "cue": "Picture",
+    "pops": [
+     [
+      "chariot",
+      "fluent-3d:horse"
+     ],
+     [
+      "Colosseum",
+      "lib:landmarks-025"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "peak",
+   "text": "Under the emperor Trajan, in one hundred seventeen AD, the empire reached its greatest size. It stretched from Britain to the Persian Gulf, and from the Rhine and the Danube to the Sahara. Trajan conquered Dacia, in today's Romania, and marched all the way into Mesopotamia. Tens of millions of people, speaking dozens of languages, lived under Roman law.",
+   "scene": {
+    "type": "map",
+    "chapter": "The Empire at Its Peak",
+    "view": {
+     "lon": 19,
+     "lat": 40,
+     "span": 72
+    },
+    "areas": [
+     {
+      "ids": [
+       "380",
+       "724",
+       "620",
+       "250",
+       "826",
+       "056",
+       "756",
+       "040",
+       "705",
+       "191",
+       "070",
+       "688",
+       "499",
+       "008",
+       "807",
+       "300",
+       "100",
+       "642",
+       "792",
+       "760",
+       "422",
+       "376",
+       "275",
+       "400",
+       "818",
+       "434",
+       "788",
+       "012",
+       "504",
+       "196",
+       "348",
+       "368",
+       "051",
+       "442",
+       "470"
+      ],
+      "label": "Roman Empire, 117 AD (approx.)",
+      "cue": "Trajan",
+      "color": "#6d1f5e",
+      "labelAt": [
+       16,
+       38
+      ]
+     }
+    ],
+    "markers": [
+     [
+      "Britain",
+      -1.5,
+      52.8,
+      "pin"
+     ],
+     [
+      "Persian Gulf",
+      49.8,
+      28.6,
+      "pin"
+     ],
+     [
+      "Sahara",
+      6,
+      27,
+      "dot"
+     ],
+     [
+      "Dacia",
+      23.31,
+      45.62,
+      "battle"
+     ]
+    ],
+    "countries": [
+     "Romania"
+    ],
+    "pops": [
+     [
+      "Trajan",
+      "lib:soldiers-140"
+     ],
+     [
+      "law",
+      "fluent-3d:balance-scale"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "roads",
+   "text": "To hold it all together, Rome built about eighty thousand kilometres of hard-surfaced roads. Legions could march from Rome to Lyon, to Antioch, or to the north of Britain, where Hadrian's Wall, about one hundred eighteen kilometres long, was begun in one twenty-two AD. Aqueducts carried fresh water into cities, like the Pont du Gard, in France, which still stands today.",
+   "scene": {
+    "type": "map",
+    "chapter": "All Roads Lead to Rome",
+    "view": {
+     "lon": 14,
+     "lat": 45,
+     "span": 60
+    },
+    "routes": [
+     {
+      "points": [
+       [
+        12.48,
+        41.89
+       ],
+       [
+        11.2,
+        42.6
+       ],
+       [
+        10.4,
+        43.7
+       ],
+       [
+        8.9,
+        44.4
+       ],
+       [
+        7.3,
+        43.7
+       ],
+       [
+        5.4,
+        43.5
+       ],
+       [
+        4.8,
+        44.6
+       ],
+       [
+        4.83,
+        45.76
+       ]
+      ],
+      "cue": "roads",
+      "icon": "fluent-emoji-flat:horse"
+     },
+     {
+      "points": [
+       [
+        12.48,
+        41.89
+       ],
+       [
+        14.25,
+        41.08
+       ],
+       [
+        17.94,
+        40.63
+       ],
+       [
+        19.45,
+        41.31
+       ],
+       [
+        21.0,
+        41.0
+       ],
+       [
+        22.94,
+        40.64
+       ],
+       [
+        26.0,
+        40.9
+       ],
+       [
+        28.97,
+        41.0
+       ],
+       [
+        32.9,
+        39.9
+       ],
+       [
+        34.6,
+        37.4
+       ],
+       [
+        36.16,
+        36.2
+       ]
+      ],
+      "cue": "Antioch",
+      "icon": "fluent-emoji-flat:horse"
+     },
+     {
+      "points": [
+       [
+        4.83,
+        45.76
+       ],
+       [
+        3.9,
+        47.3
+       ],
+       [
+        2.35,
+        48.85
+       ],
+       [
+        1.85,
+        50.95
+       ],
+       [
+        1.1,
+        51.3
+       ],
+       [
+        -0.12,
+        51.5
+       ],
+       [
+        -1.08,
+        53.96
+       ],
+       [
+        -2.0,
+        55.0
+       ]
+      ],
+      "cue": "north",
+      "icon": "fluent-emoji-flat:horse"
+     }
+    ],
+    "markers": [
+     [
+      "Lyon",
+      4.83,
+      45.76,
+      "pin"
+     ],
+     [
+      "Antioch",
+      36.16,
+      36.2,
+      "pin"
+     ],
+     [
+      "Hadrian's Wall",
+      -2.3,
+      55.0,
+      "lib:landmarks-042"
+     ],
+     [
+      "Pont du Gard",
+      4.535,
+      43.947,
+      "lib:landmarks-090"
+     ]
+    ],
+    "countries": [
+     "France"
+    ],
+    "pops": [
+     [
+      "Aqueducts",
+      "lib:landmarks-090"
+     ],
+     [
+      "kilometres",
+      "fluent-emoji-flat:world-map"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "cracks",
+   "text": "Then the cracks appeared. Between two thirty-five and two eighty-four AD, more than twenty men claimed the title of emperor, and most of them were murdered or died in battle. Plague, rising prices and invasions struck at the same time. The empire almost fell apart.",
+   "scene": {
+    "type": "era",
+    "year": "235 AD",
+    "title": "The Crisis",
+    "sub": "Twenty emperors in fifty years",
+    "icons": [
+     "lib:kings-038",
+     "fluent-3d:crossed-swords",
+     "fluent-3d:coin"
+    ],
+    "cue": "cracks"
+   }
+  },
+  {
+   "id": "constantine",
+   "text": "To save it, Emperor Diocletian shared power among four rulers, based in cities like Trier, Milan and Nicomedia. Then Constantine took control. In three thirteen AD, an agreement made in Milan granted Christians freedom of worship, and Constantine himself became a Christian. In three thirty, he gave the empire a new capital in the east: Constantinople, today's Istanbul.",
+   "scene": {
+    "type": "map",
+    "chapter": "Constantine",
+    "view": {
+     "lon": 18,
+     "lat": 45,
+     "span": 36
+    },
+    "markers": [
+     [
+      "Trier",
+      6.64,
+      49.75,
+      "pin"
+     ],
+     [
+      "Milan",
+      9.19,
+      45.46,
+      "lib:kings-047"
+     ],
+     [
+      "Nicomedia",
+      29.92,
+      40.77,
+      "pin"
+     ],
+     [
+      "Constantinople",
+      28.98,
+      41.01,
+      "lib:landmarks-080"
+     ]
+    ],
+    "pops": [
+     [
+      "Christians",
+      "fluent-emoji-flat:church"
+     ],
+     [
+      "capital",
+      "lib:kings-038"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "split",
+   "text": "In three ninety-five AD, the empire was divided for good, between the two sons of Emperor Theodosius. The Eastern half, richer and well defended, would survive. The Western half was poorer, and its long frontiers were under growing pressure.",
+   "scene": {
+    "type": "era",
+    "year": "395 AD",
+    "title": "One Empire, Two Halves",
+    "sub": "East and West",
+    "icons": [
+     "lib:kings-058",
+     "fluent-3d:classical-building",
+     "lib:soldiers-038"
+    ],
+    "cue": "three"
+   }
+  },
+  {
+   "id": "fall",
+   "text": "Germanic peoples crossed the Rhine and the Danube. In four ten, the Visigoths sacked Rome, the first time in about eight hundred years that a foreign enemy had taken the city. The Vandals seized Carthage and sacked Rome again in four fifty-five. Finally, in four seventy-six AD, the general Odoacer removed the last Western emperor, a boy called Romulus Augustulus, at Ravenna. The Western Roman Empire was over.",
+   "scene": {
+    "type": "map",
+    "chapter": "The Fall of the West",
+    "view": {
+     "lon": 12,
+     "lat": 41.5,
+     "span": 34
+    },
+    "routes": [
+     {
+      "points": [
+       [
+        26.5,
+        43.6
+       ],
+       [
+        23.3,
+        43.2
+       ],
+       [
+        20.5,
+        43.9
+       ],
+       [
+        17.5,
+        44.7
+       ],
+       [
+        14.5,
+        45.8
+       ],
+       [
+        13.4,
+        45.8
+       ],
+       [
+        12.3,
+        45.0
+       ],
+       [
+        11.3,
+        44.4
+       ],
+       [
+        11.5,
+        43.3
+       ],
+       [
+        12.48,
+        41.89
+       ]
+      ],
+      "label": "Visigoths 410",
+      "cue": "Visigoths",
+      "icon": "fluent-emoji-flat:horse"
+     },
+     {
+      "points": [
+       [
+        -5.6,
+        36.0
+       ],
+       [
+        -2.0,
+        35.3
+       ],
+       [
+        3.0,
+        36.7
+       ],
+       [
+        7.7,
+        36.9
+       ],
+       [
+        10.32,
+        36.85
+       ],
+       [
+        11.5,
+        38.6
+       ],
+       [
+        12.3,
+        41.7
+       ]
+      ],
+      "label": "Vandals 455",
+      "cue": "Vandals",
+      "icon": "fluent-emoji-flat:sailboat"
+     }
+    ],
+    "markers": [
+     [
+      "Rome",
+      12.48,
+      41.89,
+      "battle"
+     ],
+     [
+      "Carthage",
+      10.32,
+      36.85,
+      "pin"
+     ],
+     [
+      "Ravenna",
+      12.2,
+      44.42,
+      "lib:kings-033"
+     ]
+    ],
+    "labels": [
+     [
+      "Rhine",
+      7.8,
+      50.4
+     ],
+     [
+      "Danube",
+      24.0,
+      44.0
+     ]
+    ],
+    "pops": [
+     [
+      "sacked",
+      "fluent-emoji-flat:fire"
+     ],
+     [
+      "emperor",
+      "lib:kings-012"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "east",
+   "text": "But Rome did not die in four seventy-six. In the East, the empire lived on for almost a thousand more years. Historians call it the Byzantine Empire, but its people always called themselves Romans.",
+   "scene": {
+    "type": "era",
+    "year": "476 – 1453",
+    "title": "Rome in the East",
+    "sub": "The Byzantine Empire",
+    "icons": [
+     "lib:landmarks-080",
+     "lib:kings-038",
+     "fluent-3d:ship"
+    ],
+    "cue": "Rome"
+   }
+  },
+  {
+   "id": "byzantium",
+   "text": "Emperor Justinian won back Italy, where his mosaics still shine in Ravenna, and North Africa, including Carthage. In Constantinople, he built the Hagia Sophia, finished in five thirty-seven, the largest church in the world for nearly a thousand years. Slowly, the empire shrank. And in fourteen fifty-three, the Ottoman sultan Mehmed the Second captured Constantinople. After more than two thousand years, the last Roman state was gone.",
+   "scene": {
+    "type": "map",
+    "chapter": "The Last Romans",
+    "view": {
+     "lon": 20,
+     "lat": 38.5,
+     "span": 42
+    },
+    "areas": [
+     {
+      "ids": [
+       "380",
+       "788",
+       "434",
+       "818",
+       "300",
+       "792",
+       "760",
+       "422",
+       "376",
+       "275",
+       "400",
+       "100",
+       "807",
+       "008",
+       "499",
+       "191",
+       "070",
+       "196",
+       "470"
+      ],
+      "label": "Eastern Roman Empire, 555 AD (approx.)",
+      "cue": "Justinian",
+      "color": "#6d1f5e",
+      "labelAt": [
+       25,
+       34
+      ]
+     }
+    ],
+    "markers": [
+     [
+      "Ravenna",
+      12.2,
+      44.42,
+      "pin"
+     ],
+     [
+      "Carthage",
+      10.32,
+      36.85,
+      "pin"
+     ],
+     [
+      "Constantinople",
+      28.98,
+      41.01,
+      "lib:landmarks-080"
+     ]
+    ],
+    "pops": [
+     [
+      "Hagia",
+      "fluent-emoji-flat:church"
+     ],
+     [
+      "fourteen",
+      "fluent-3d:crossed-swords"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "legacy",
+   "text": "Yet Rome never really left us. Our calendar comes from Julius Caesar, and the months July and August are named after him and Augustus. Roman law still shapes legal systems across Europe and beyond. Roman concrete, arches and domes inspired builders for two thousand years. And Latin, the language of Rome, lived on.",
+   "scene": {
+    "type": "cards",
+    "cards": [
+     [
+      "fluent-3d:spiral-calendar",
+      "Calendar",
+      "July & August",
+      "calendar"
+     ],
+     [
+      "fluent-3d:balance-scale",
+      "Roman Law",
+      "Still in our courts",
+      "law"
+     ],
+     [
+      "lib:landmarks-090",
+      "Engineering",
+      "Concrete, arches, domes",
+      "concrete"
+     ],
+     [
+      "fluent-3d:scroll",
+      "Latin",
+      "The language of Rome",
+      "Latin"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "today",
+   "text": "Latin grew into Italian, Spanish, French, Portuguese and Romanian, spoken today in Rome, Madrid, Paris, Lisbon and Bucharest, and across Latin America. Hundreds of millions of people speak languages born from Latin. And in Rome, the Pantheon, rebuilt under Hadrian almost nineteen hundred years ago, still stands, crowned by its giant concrete dome.",
+   "scene": {
+    "type": "map",
+    "chapter": "Rome Today",
+    "view": {
+     "lon": 9,
+     "lat": 44,
+     "span": 46
+    },
+    "markers": [
+     [
+      "Madrid",
+      -3.7,
+      40.42,
+      "pin"
+     ],
+     [
+      "Paris",
+      2.35,
+      48.86,
+      "pin"
+     ],
+     [
+      "Lisbon",
+      -9.14,
+      38.72,
+      "pin"
+     ],
+     [
+      "Bucharest",
+      26.1,
+      44.43,
+      "pin"
+     ],
+     [
+      "Pantheon",
+      12.48,
+      41.9,
+      "lib:landmarks-026"
+     ]
+    ],
+    "countries": [
+     "Italy",
+     "Spain",
+     "France",
+     "Portugal",
+     "Romania"
+    ],
+    "pops": [
+     [
+      "languages",
+      "fluent-emoji-flat:speech-balloon"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "recap",
+   "text": "So, the whole journey: a village on the Tiber became a Republic. The Republic defeated Carthage and mastered the Mediterranean. Caesar's heir became the first emperor. The empire peaked under Trajan, split in two, lost the West in four seventy-six, and finally ended with Constantinople in fourteen fifty-three.",
+   "scene": {
+    "type": "journey",
+    "stops": [
+     [
+      "753 BC",
+      "A village on the Tiber",
+      "fluent-3d:hut",
+      "village"
+     ],
+     [
+      "509 BC",
+      "The Republic",
+      "fluent-3d:classical-building",
+      "Republic"
+     ],
+     [
+      "146 BC",
+      "Master of the sea",
+      "fluent-3d:ship",
+      "Carthage"
+     ],
+     [
+      "27 BC",
+      "The first emperor",
+      "lib:kings-012",
+      "emperor"
+     ],
+     [
+      "117 AD",
+      "The peak",
+      "lib:soldiers-168",
+      "peaked"
+     ],
+     [
+      "1453",
+      "The last Romans",
+      "lib:landmarks-080",
+      "Constantinople"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "outro",
+   "text": "Which Roman age would you visit: the Republic, the age of Caesar, or the golden age of the empire? Tell us in the comments. Next, watch our history of the whole world. And subscribe to join us for the next story.",
+   "scene": {
+    "type": "outro"
+   }
+  }
+ ]
+}
