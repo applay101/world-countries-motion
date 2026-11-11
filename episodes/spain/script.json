@@ -1,498 +1,499 @@
 {
- "id": "spain",
- "country": {
-  "name": "Spain",
-  "iso2": "es",
-  "isoNum": "724",
-  "lon": -3.7,
-  "lat": 40.2,
-  "capital": "Madrid"
- },
- "voice": "af_heart",
- "speed": 0.96,
- "music": "spanish_guitar",
- "segments": [
-  {
-   "id": "intro",
-   "text": "Sun-drenched coasts. Snow-capped mountains. Cities that changed the course of history. This is Spain.",
-   "scene": {
-    "type": "globe"
-   }
+  "id": "spain",
+  "country": {
+    "name": "Spain",
+    "iso2": "es",
+    "isoNum": "724",
+    "lon": -3.7,
+    "lat": 40.2,
+    "capital": "Madrid"
   },
-  {
-   "id": "where",
-   "text": "Spain sits on the Iberian Peninsula, in the far south-west of Europe. It shares the peninsula with Portugal, and borders France and the tiny principality of Andorra along the Pyrenees. At the Strait of Gibraltar, only about fourteen kilometres of sea separate it from Africa.",
-   "scene": {
-    "type": "map",
-    "chapter": "Where is Spain?",
-    "view": {
-     "lon": 2.0,
-     "lat": 40.0,
-     "span": 52
+  "voice": "af_heart",
+  "speed": 0.96,
+  "music": "spanish_guitar",
+  "segments": [
+    {
+      "id": "intro",
+      "text": "Sun-drenched coasts. Snow-capped mountains. Cities that changed the course of history. This is Spain.",
+      "scene": {
+        "type": "globe"
+      }
     },
-    "labels": [
-     [
-      "Portugal",
-      -8.2,
-      39.6
-     ],
-     [
-      "France",
-      2.4,
-      46.6
-     ],
-     [
-      "Andorra",
-      1.55,
-      42.55
-     ],
-     [
-      "Morocco",
-      -6.0,
-      32.5
-     ],
-     [
-      "Atlantic Ocean",
-      -15.5,
-      42.5,
-      "sea"
-     ],
-     [
-      "Mediterranean Sea",
-      4.5,
-      38.6,
-      "sea"
-     ]
-    ],
-    "markers": [
-     [
-      "Strait of Gibraltar",
-      -5.6,
-      35.95,
-      "pin"
-     ]
-    ]
-   }
-  },
-  {
-   "id": "stats",
-   "text": "Spain covers around five hundred and six thousand square kilometres, making it the second-largest country in the European Union. Its capital is Madrid, right in the geographic heart of the country. And its population has just reached a record of almost fifty million people.",
-   "scene": {
-    "type": "stats",
-    "chapter": "Spain in numbers",
-    "view": {
-     "lon": 4.2,
-     "lat": 40.0,
-     "span": 32
+    {
+      "id": "where",
+      "text": "Spain sits on the Iberian Peninsula, in the far south-west of Europe. It shares the peninsula with Portugal, and borders France and the tiny principality of Andorra along the Pyrenees. At the Strait of Gibraltar, only about fourteen kilometres of sea separate it from Africa.",
+      "scene": {
+        "type": "map",
+        "chapter": "Where is Spain?",
+        "view": {
+          "lon": 2.0,
+          "lat": 40.0,
+          "span": 52
+        },
+        "labels": [
+          [
+            "Portugal",
+            -8.2,
+            39.6
+          ],
+          [
+            "France",
+            2.4,
+            46.6
+          ],
+          [
+            "Andorra",
+            1.55,
+            42.55
+          ],
+          [
+            "Morocco",
+            -6.0,
+            32.5
+          ],
+          [
+            "Atlantic Ocean",
+            -15.5,
+            42.5,
+            "sea"
+          ],
+          [
+            "Mediterranean Sea",
+            4.5,
+            38.6,
+            "sea"
+          ]
+        ],
+        "markers": [
+          [
+            "Strait of Gibraltar",
+            -5.6,
+            35.95,
+            "pin"
+          ]
+        ]
+      }
     },
-    "capital": [
-     "Madrid",
-     -3.7,
-     40.42
-    ],
-    "cards": [
-     {
-      "label": "Area",
-      "value": 506000,
-      "suffix": " km²",
-      "fmt": "int",
-      "cue": "covers"
-     },
-     {
-      "label": "Capital",
-      "text": "Madrid"
-     },
-     {
-      "label": "Population",
-      "value": 49.8,
-      "suffix": " million",
-      "fmt": "1dp",
-      "note": "INE, July 2026",
-      "cue": "population"
-     }
-    ]
-   }
-  },
-  {
-   "id": "regions",
-   "text": "The country is divided into seventeen autonomous communities and two autonomous cities, Ceuta and Melilla, on the North African coast. It also includes two island groups: the Balearic Islands in the Mediterranean, and the Canary Islands in the Atlantic, off the coast of Africa.",
-   "scene": {
-    "type": "map",
-    "chapter": "Regions & islands",
-    "view": {
-     "lon": -5.0,
-     "lat": 34.6,
-     "span": 46
+    {
+      "id": "stats",
+      "text": "Spain covers around five hundred and six thousand square kilometres, making it the second-largest country in the European Union. Its capital is Madrid, right in the geographic heart of the country. And its population has just reached a record of almost fifty million people.",
+      "scene": {
+        "type": "stats",
+        "chapter": "Spain in numbers",
+        "view": {
+          "lon": 4.2,
+          "lat": 40.0,
+          "span": 32
+        },
+        "capital": [
+          "Madrid",
+          -3.7,
+          40.42
+        ],
+        "cards": [
+          {
+            "label": "Area",
+            "value": 506000,
+            "suffix": " km²",
+            "fmt": "int",
+            "cue": "covers"
+          },
+          {
+            "label": "Capital",
+            "text": "Madrid"
+          },
+          {
+            "label": "Population",
+            "value": 49.8,
+            "suffix": " million",
+            "fmt": "1dp",
+            "note": "INE, July 2026",
+            "cue": "population"
+          }
+        ]
+      }
     },
-    "big": [
-     [
-      "17",
-      "autonomous communities"
-     ],
-     [
-      "2",
-      "autonomous cities"
-     ]
-    ],
-    "markers": [
-     [
-      "Ceuta",
-      -5.32,
-      35.89,
-      "dot"
-     ],
-     [
-      "Melilla",
-      -2.94,
-      35.29,
-      "dot"
-     ],
-     [
-      "Balearic Islands",
-      2.9,
-      39.6,
-      "dot"
-     ],
-     [
-      "Canary Islands",
-      -15.6,
-      28.3,
-      "dot"
-     ]
-    ]
-   }
-  },
-  {
-   "id": "geo",
-   "text": "Spain is far more mountainous than most people imagine. The Pyrenees form a wall in the north, the Sierra Nevada rises above Granada in the south, and the highest peak of all, Mount Teide, is a volcano in the Canary Islands, standing three thousand seven hundred and fifteen metres tall. The longest river, the Tagus, flows west across the plateau and reaches the Atlantic at Lisbon, in Portugal.",
-   "scene": {
-    "type": "map",
-    "chapter": "Geography",
-    "view": {
-     "lon": -5.0,
-     "lat": 34.6,
-     "span": 46
+    {
+      "id": "regions",
+      "text": "The country is divided into seventeen autonomous communities and two autonomous cities, Ceuta and Melilla, on the North African coast. It also includes two island groups: the Balearic Islands in the Mediterranean, and the Canary Islands in the Atlantic, off the coast of Africa.",
+      "scene": {
+        "type": "map",
+        "chapter": "Regions & islands",
+        "view": {
+          "lon": -5.0,
+          "lat": 34.6,
+          "span": 46
+        },
+        "big": [
+          [
+            "17",
+            "autonomous communities"
+          ],
+          [
+            "2",
+            "autonomous cities"
+          ]
+        ],
+        "markers": [
+          [
+            "Ceuta",
+            -5.32,
+            35.89,
+            "dot"
+          ],
+          [
+            "Melilla",
+            -2.94,
+            35.29,
+            "dot"
+          ],
+          [
+            "Balearic Islands",
+            2.9,
+            39.6,
+            "dot"
+          ],
+          [
+            "Canary Islands",
+            -15.6,
+            28.3,
+            "dot"
+          ]
+        ]
+      }
     },
-    "markers": [
-     [
-      "Pyrenees",
-      0.6,
-      42.65,
-      "peak"
-     ],
-     [
-      "Sierra Nevada",
-      -3.31,
-      37.05,
-      "peak"
-     ],
-     [
-      "Mount Teide · 3,715 m",
-      -16.64,
-      28.27,
-      "peak"
-     ]
-    ],
-    "river": [
-     [
-      -1.87,
-      40.33
-     ],
-     [
-      -2.9,
-      40.25
-     ],
-     [
-      -3.6,
-      39.95
-     ],
-     [
-      -4.03,
-      39.86
-     ],
-     [
-      -5.2,
-      39.85
-     ],
-     [
-      -6.4,
-      39.65
-     ],
-     [
-      -7.1,
-      39.5
-     ],
-     [
-      -8.2,
-      39.3
-     ],
-     [
-      -9.0,
-      38.75
-     ],
-     [
-      -9.2,
-      38.7
-     ]
-    ],
-    "riverLabel": "Tagus"
-   }
-  },
-  {
-   "id": "history",
-   "text": "Spain's history is layered like few others. The Romans arrived over two thousand years ago and called the land Hispania. In seven hundred and eleven, Muslim armies crossed from North Africa, beginning almost eight centuries of Al-Andalus. In fourteen ninety-two, the last Muslim kingdom, Granada, fell, and that same year Christopher Columbus sailed west for the Spanish crown. Within a century, Spain ruled one of the largest empires in history.",
-   "scene": {
-    "type": "timeline",
-    "chapter": "History",
-    "events": [
-     [
-      "218 BC",
-      "Romans arrive · Hispania"
-     ],
-     [
-      "711",
-      "Al-Andalus begins"
-     ],
-     [
-      "1492",
-      "Granada falls · Columbus sails"
-     ],
-     [
-      "1500s",
-      "Global empire"
-     ]
-    ]
-   }
-  },
-  {
-   "id": "modern",
-   "text": "After a civil war in the nineteen-thirties and nearly four decades of dictatorship, Spain returned to democracy. The constitution of nineteen seventy-eight made it a parliamentary monarchy, and in nineteen eighty-six it joined the European Community, today's European Union.",
-   "scene": {
-    "type": "timeline",
-    "chapter": "Modern Spain",
-    "events": [
-     [
-      "1936–39",
-      "Civil War"
-     ],
-     [
-      "1939–75",
-      "Dictatorship"
-     ],
-     [
-      "1978",
-      "Constitution"
-     ],
-     [
-      "1986",
-      "Joins the EU"
-     ]
-    ]
-   }
-  },
-  {
-   "id": "cities",
-   "text": "Madrid is the largest city and the seat of government. Barcelona, on the Mediterranean, is famous for the architecture of Antoni Gaudí. Valencia gave the world paella. Seville, Granada and Córdoba still carry the legacy of Al-Andalus, while Bilbao, in the Basque Country, reinvented itself around the Guggenheim Museum.",
-   "scene": {
-    "type": "cities",
-    "chapter": "Great cities",
-    "view": {
-     "lon": 3.0,
-     "lat": 40.0,
-     "span": 28
+    {
+      "id": "geo",
+      "text": "Spain is far more mountainous than most people imagine. The Pyrenees form a wall in the north, the Sierra Nevada rises above Granada in the south, and the highest peak of all, Mount Teide, is a volcano in the Canary Islands, standing three thousand seven hundred and fifteen metres tall. The longest river, the Tagus, flows west across the plateau and reaches the Atlantic at Lisbon, in Portugal.",
+      "scene": {
+        "type": "map",
+        "chapter": "Geography",
+        "view": {
+          "lon": -5.0,
+          "lat": 34.6,
+          "span": 46
+        },
+        "markers": [
+          [
+            "Pyrenees",
+            0.6,
+            42.65,
+            "peak"
+          ],
+          [
+            "Sierra Nevada",
+            -3.31,
+            37.05,
+            "peak"
+          ],
+          [
+            "Mount Teide · 3,715 m",
+            -16.64,
+            28.27,
+            "peak"
+          ]
+        ],
+        "river": [
+          [
+            -1.87,
+            40.33
+          ],
+          [
+            -2.9,
+            40.25
+          ],
+          [
+            -3.6,
+            39.95
+          ],
+          [
+            -4.03,
+            39.86
+          ],
+          [
+            -5.2,
+            39.85
+          ],
+          [
+            -6.4,
+            39.65
+          ],
+          [
+            -7.1,
+            39.5
+          ],
+          [
+            -8.2,
+            39.3
+          ],
+          [
+            -9.0,
+            38.75
+          ],
+          [
+            -9.2,
+            38.7
+          ]
+        ],
+        "riverLabel": "Tagus"
+      }
     },
-    "cities": [
-     [
-      "Madrid",
-      -3.7,
-      40.42
-     ],
-     [
-      "Barcelona",
-      2.17,
-      41.39
-     ],
-     [
-      "Valencia",
-      -0.38,
-      39.47
-     ],
-     [
-      "Seville",
-      -5.98,
-      37.39
-     ],
-     [
-      "Granada",
-      -3.6,
-      37.18
-     ],
-     [
-      "Córdoba",
-      -4.78,
-      37.89
-     ],
-     [
-      "Bilbao",
-      -2.93,
-      43.26
-     ]
-    ]
-   }
-  },
-  {
-   "id": "culture",
-   "text": "Spanish culture is loud, warm and social. Flamenco, born in Andalusia, is recognised by UNESCO as part of humanity's intangible heritage. Lunch is the main meal, dinner often starts after nine, and festivals fill the calendar, from the running of the bulls in Pamplona to the tomato fight of La Tomatina.",
-   "scene": {
-    "type": "cards",
-    "chapter": "Culture",
-    "cards": [
-     [
-      "flamenco",
-      "Flamenco",
-      "UNESCO intangible heritage",
-      "flamenco"
-     ],
-     [
-      "clock",
-      "Late dinners",
-      "often after 9 pm",
-      "dinner"
-     ],
-     [
-      "bull",
-      "San Fermín",
-      "Pamplona",
-      "running"
-     ],
-     [
-      "tomato",
-      "La Tomatina",
-      "Buñol",
-      "tomatina"
-     ]
-    ]
-   }
-  },
-  {
-   "id": "language",
-   "text": "Spain also gave the world its language. Spanish is now spoken by around six hundred and thirty-five million people, making it one of the most widely spoken languages on Earth. Inside Spain, Catalan, Galician and Basque are also official in their regions.",
-   "scene": {
-    "type": "bignum",
-    "chapter": "Language",
-    "value": 635,
-    "suffix": " million",
-    "label": "Spanish speakers worldwide",
-    "note": "Instituto Cervantes, 2025",
-    "chips": [
-     "Catalan",
-     "Galician",
-     "Basque"
-    ],
-    "cue": "six"
-   }
-  },
-  {
-   "id": "economy",
-   "text": "Today, Spain's economy is worth around one point seven trillion euros, and in twenty twenty-five it grew roughly twice as fast as the eurozone average. Tourism is a huge part of that story. In twenty twenty-five, a record ninety-six point eight million international tourists visited Spain.",
-   "scene": {
-    "type": "bars",
-    "chapter": "Economy & tourism",
-    "kpis": [
-     {
-      "label": "GDP 2025",
-      "value": 1.69,
-      "prefix": "€",
-      "suffix": " trillion",
-      "fmt": "2dp",
-      "cue": "economy"
-     },
-     {
-      "label": "Growth 2025",
-      "value": 2.8,
-      "suffix": "%",
-      "fmt": "1dp",
-      "cue": "grew"
-     }
-    ],
-    "bars": {
-     "title": "International tourists (millions)",
-     "items": [
-      [
-       "2023",
-       85.2
-      ],
-      [
-       "2024",
-       93.8
-      ],
-      [
-       "2025",
-       96.8
-      ]
-     ],
-     "cue": "tourism"
+    {
+      "id": "history",
+      "text": "Spain's history is layered like few others. The Romans arrived over two thousand years ago and called the land Hispania. In seven hundred and eleven, Muslim armies crossed from North Africa, beginning almost eight centuries of Al-Andalus. In fourteen ninety-two, the last Muslim kingdom, Granada, fell, and that same year Christopher Columbus sailed west for the Spanish crown. Within a century, Spain ruled one of the largest empires in history.",
+      "scene": {
+        "type": "timeline",
+        "chapter": "History",
+        "events": [
+          [
+            "218 BC",
+            "Romans arrive · Hispania"
+          ],
+          [
+            "711",
+            "Al-Andalus begins"
+          ],
+          [
+            "1492",
+            "Granada falls · Columbus sails"
+          ],
+          [
+            "1500s",
+            "Global empire"
+          ]
+        ]
+      }
     },
-    "note": "INE"
-   }
-  },
-  {
-   "id": "heritage",
-   "text": "They come for the beaches, the food and the history. Spain has more than fifty UNESCO World Heritage Sites, from the Alhambra in Granada to Gaudí's Sagrada Família in Barcelona.",
-   "scene": {
-    "type": "map",
-    "chapter": "World heritage",
-    "view": {
-     "lon": 3.0,
-     "lat": 40.0,
-     "span": 28
+    {
+      "id": "modern",
+      "text": "After a civil war in the nineteen-thirties and nearly four decades of dictatorship, Spain returned to democracy. The constitution of nineteen seventy-eight made it a parliamentary monarchy, and in nineteen eighty-six it joined the European Community, today's European Union.",
+      "scene": {
+        "type": "timeline",
+        "chapter": "Modern Spain",
+        "events": [
+          [
+            "1936–39",
+            "Civil War"
+          ],
+          [
+            "1939–75",
+            "Dictatorship"
+          ],
+          [
+            "1978",
+            "Constitution"
+          ],
+          [
+            "1986",
+            "Joins the EU"
+          ]
+        ]
+      }
     },
-    "big": [
-     [
-      "50+",
-      "UNESCO World Heritage Sites"
-     ]
-    ],
-    "markers": [
-     [
-      "Alhambra",
-      -3.59,
-      37.18,
-      "star"
-     ],
-     [
-      "Sagrada Família",
-      2.17,
-      41.4,
-      "star"
-     ],
-     [
-      "Santiago de Compostela",
-      -8.54,
-      42.88,
-      "star"
-     ],
-     [
-      "Toledo",
-      -4.02,
-      39.86,
-      "star"
-     ]
-    ]
-   }
-  },
-  {
-   "id": "outro",
-   "text": "Ancient and modern, passionate and relaxed. Spain is a country you don't just visit. You feel it. Subscribe, and join us for the next country on our journey around the world.",
-   "scene": {
-    "type": "outro"
-   }
+    {
+      "id": "cities",
+      "text": "Madrid is the largest city and the seat of government. Barcelona, on the Mediterranean, is famous for the architecture of Antoni Gaudí. Valencia gave the world paella. Seville, Granada and Córdoba still carry the legacy of Al-Andalus, while Bilbao, in the Basque Country, reinvented itself around the Guggenheim Museum.",
+      "scene": {
+        "type": "cities",
+        "chapter": "Great cities",
+        "view": {
+          "lon": 3.0,
+          "lat": 40.0,
+          "span": 28
+        },
+        "cities": [
+          [
+            "Madrid",
+            -3.7,
+            40.42
+          ],
+          [
+            "Barcelona",
+            2.17,
+            41.39
+          ],
+          [
+            "Valencia",
+            -0.38,
+            39.47
+          ],
+          [
+            "Seville",
+            -5.98,
+            37.39
+          ],
+          [
+            "Granada",
+            -3.6,
+            37.18
+          ],
+          [
+            "Córdoba",
+            -4.78,
+            37.89
+          ],
+          [
+            "Bilbao",
+            -2.93,
+            43.26
+          ]
+        ]
+      }
+    },
+    {
+      "id": "culture",
+      "text": "Spanish culture is loud, warm and social. Flamenco, born in Andalusia, is recognised by UNESCO as part of humanity's intangible heritage. Lunch is the main meal, dinner often starts after nine, and festivals fill the calendar, from the running of the bulls in Pamplona to the tomato fight of La Tomatina.",
+      "scene": {
+        "type": "cards",
+        "chapter": "Culture",
+        "cards": [
+          [
+            "flamenco",
+            "Flamenco",
+            "UNESCO intangible heritage",
+            "flamenco"
+          ],
+          [
+            "clock",
+            "Late dinners",
+            "often after 9 pm",
+            "dinner"
+          ],
+          [
+            "bull",
+            "San Fermín",
+            "Pamplona",
+            "running"
+          ],
+          [
+            "tomato",
+            "La Tomatina",
+            "Buñol",
+            "tomatina"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "language",
+      "text": "Spain also gave the world its language. Spanish is now spoken by around six hundred and thirty-five million people, making it one of the most widely spoken languages on Earth. Inside Spain, Catalan, Galician and Basque are also official in their regions.",
+      "scene": {
+        "type": "bignum",
+        "chapter": "Language",
+        "value": 635,
+        "suffix": " million",
+        "label": "Spanish speakers worldwide",
+        "note": "Instituto Cervantes, 2025",
+        "chips": [
+          "Catalan",
+          "Galician",
+          "Basque"
+        ],
+        "cue": "six"
+      }
+    },
+    {
+      "id": "economy",
+      "text": "Today, Spain's economy is worth around one point seven trillion euros, and in twenty twenty-five it grew roughly twice as fast as the eurozone average. Tourism is a huge part of that story. In twenty twenty-five, a record ninety-six point eight million international tourists visited Spain.",
+      "scene": {
+        "type": "bars",
+        "chapter": "Economy & tourism",
+        "kpis": [
+          {
+            "label": "GDP 2025",
+            "value": 1.69,
+            "prefix": "€",
+            "suffix": " trillion",
+            "fmt": "2dp",
+            "cue": "economy"
+          },
+          {
+            "label": "Growth 2025",
+            "value": 2.8,
+            "suffix": "%",
+            "fmt": "1dp",
+            "cue": "grew"
+          }
+        ],
+        "bars": {
+          "title": "International tourists (millions)",
+          "items": [
+            [
+              "2023",
+              85.2
+            ],
+            [
+              "2024",
+              93.8
+            ],
+            [
+              "2025",
+              96.8
+            ]
+          ],
+          "cue": "tourism"
+        },
+        "note": "INE"
+      }
+    },
+    {
+      "id": "heritage",
+      "text": "They come for the beaches, the food and the history. Spain has more than fifty UNESCO World Heritage Sites, from the Alhambra in Granada to Gaudí's Sagrada Família in Barcelona.",
+      "scene": {
+        "type": "map",
+        "chapter": "World heritage",
+        "view": {
+          "lon": 3.0,
+          "lat": 40.0,
+          "span": 28
+        },
+        "big": [
+          [
+            "50+",
+            "UNESCO World Heritage Sites"
+          ]
+        ],
+        "markers": [
+          [
+            "Alhambra",
+            -3.59,
+            37.18,
+            "star"
+          ],
+          [
+            "Sagrada Família",
+            2.17,
+            41.4,
+            "star"
+          ],
+          [
+            "Santiago de Compostela",
+            -8.54,
+            42.88,
+            "star"
+          ],
+          [
+            "Toledo",
+            -4.02,
+            39.86,
+            "star"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "outro",
+      "text": "Ancient and modern, passionate and relaxed. Spain is a country you don't just visit. You feel it. Subscribe, and join us for the next country on our journey around the world.",
+      "scene": {
+        "type": "outro"
+      }
+    }
+  ],
+  "thumb": {
+    "top": "EXPLAINED",
+    "big": "SPAIN",
+    "sub": "in 4 minutes",
+    "badge": "96.8M tourists",
+    "style": "split"
   }
- ],
- "thumb": {
-  "top": "EXPLAINED",
-  "big": "SPAIN",
-  "sub": "in 4 minutes",
-  "badge": "96.8M tourists"
- }
 }
