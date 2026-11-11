@@ -1,0 +1,10 @@
+key set: yes  model: eleven_turbo_v2_5  voices: DeclanID,MichaelID,KatieID
+eleven a 7.7
+eleven b 17.3
+voice ok 18.3 s
+eleven a 6.9
+eleven b 16.9
+voice ok 17.9 s
+eleven a 7.5
+eleven b 18.8
+voice ok 19.8 s
