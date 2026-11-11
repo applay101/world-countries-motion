@@ -80,6 +80,9 @@ A story format inspired by fast cartoon-history channels (one example got 760K v
 - Facts: only well-established history from reputable sources (Britannica, UNESCO, academic or museum sites, national archives). Dates as words in text ("five hundred fifty BC"). Neutral wording for wars, religion and modern politics; nothing graphic; no judgement of present-day governments.
 - Thumbnail: `rank` or `headline` or `flagfull` style with a strong emoji (crown, crossed-swords, exploding-head); title like "The ENTIRE History of the World in 10 Minutes".
 
+## Other countries on the map (always do this)
+Whenever the narration names another country on a map/stats/cities scene (a neighbour, a rival, a source of tourists…), that country lights up the moment its name is spoken: it fills with its own flag, gets a glowing outline that draws itself and a round-flag badge. This is automatic for every label or marker whose name is a country (e.g. ["China", 104, 35, "dot"]), and you can add more with `"countries": ["China", "South Korea"]` on the scene. Use the spoken name (aliases like "the United States", "UK", "UAE" work). Never just print another country's name without highlighting it.
+
 ## Data graphics (world-scale videos; work on any map scene)
 - `arcs`: [{from: [lon,lat], to: [lon,lat], label?, cue, color?}]: glowing curved flight/trade/migration lines with a travelling light and pulsing ends.
 - `bubbles`: [[name, lon, lat, value, iso2, cueWord?], …] + optional `bubbleFmt` ("{v}M"): round flags sized by the value, pushed apart so they never overlap ("countries resized by population").

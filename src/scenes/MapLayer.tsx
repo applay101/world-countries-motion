@@ -195,6 +195,27 @@ export const MapLayer: React.FC<{ t: number; seg: Seg; segIdx: number; view?: Vi
         <text x={x + dd / 2} y={y - h - 30} textAnchor="middle" fontFamily={TITLE} fontWeight={800} fontSize={34} fill="#fff" stroke="rgba(5,10,20,.85)" strokeWidth={7} paintOrder="stroke" opacity={cl(p * 2)}>{lab ?? String(val)}</text>
         <text x={x} y={y + 40} textAnchor="middle" fontFamily={TITLE} fontWeight={700} fontSize={26} fill="#fff" stroke="rgba(5,10,20,.85)" strokeWidth={6} paintOrder="stroke" opacity={cl(p * 2)}>{name}</text>
       </g>); }); }
+  // neighbouring / mentioned countries: filled with their own flag, glowing outline and a round-flag badge when their name is spoken
+  ((sc._countries as { name: string; id: string; iso2: string }[] | undefined) ?? []).forEach((cn, ci, arr) => {
+    const c = cue(seg, cn.name, ci, arr.length); const p = pr(t, c - 0.15, 0.9, eOut) * vis; if (p <= 0) return;
+    const f = FEATS.find((x) => String(x.id).padStart(3, '0') === cn.id); if (!f) return;
+    const d = path(f) || ''; const mainF = f.geometry.type === 'MultiPolygon'
+      ? { ...f, geometry: { type: 'Polygon', coordinates: f.geometry.coordinates.reduce((a: any, b: any) => (geoArea({ type: 'Polygon', coordinates: b } as any) > geoArea({ type: 'Polygon', coordinates: a } as any) ? b : a)) } } : f;
+    const bb = path.bounds(mainF); const bw = bb[1][0] - bb[0][0], bh = bb[1][1] - bb[0][1]; const [cx, cy] = path.centroid(mainF);
+    const pop = pr(t, c + 0.2, 0.6, eBack); const flash = Math.max(0, 1 - (t - c) / 0.5);
+    items.unshift(<g key={'cn' + ci}>
+      <clipPath id={'cnc' + ci}><path d={d} /></clipPath>
+      <path d={d} fill="none" stroke={GOLD} strokeWidth={14} opacity={(0.5 + 0.2 * Math.sin(t * 3)) * p} filter="url(#glow)" />
+      <g clipPath={`url(#cnc${ci})`} opacity={p}>
+        <image href={staticFile(`flags/${cn.iso2}.svg`)} x={bb[0][0] - bw * 0.05} y={bb[0][1] - bh * 0.05} width={bw * 1.1} height={bh * 1.1} preserveAspectRatio="xMidYMid slice" />
+        <rect x={bb[0][0] - bw} y={bb[0][1] - bh} width={bw * 3} height={bh * 3} fill="#fff" opacity={0.6 * flash} />
+      </g>
+      <path d={d} fill="none" stroke="#fff" strokeWidth={3} strokeLinejoin="round" pathLength={1000} strokeDasharray={`${1000 * p} 1000`} />
+      {bw > 40 ? <g transform={`translate(${cx},${cy - Math.min(bh * 0.25, 60)}) scale(${pop})`}>
+        <circle r={36} fill="#fff" /><SvgIcon name={'circle-flags:' + cn.iso2} x={0} y={0} size={64} />
+      </g> : null}
+    </g>);
+  });
   // routes: a dashed journey/conquest/trade line that draws itself, with an icon travelling at its head
   ((sc.routes as { points: [number, number][]; label?: string; cue?: string; icon?: string; color?: string }[] | undefined) ?? []).forEach((r, ri, arr) => {
     const c = cue(seg, r.cue ?? r.label ?? '', ri, arr.length); const p = pr(t, c - 0.1, 2.6, (x) => 1 - Math.pow(1 - x, 2)) * vis;
