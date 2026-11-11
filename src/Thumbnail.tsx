@@ -26,15 +26,16 @@ export const Thumbnail: React.FC = () => {
   return (
     <AbsoluteFill style={{ background: '#02050c', overflow: 'hidden' }}>
       <div style={{ position: 'absolute', left: 0, top: 0, width: 1920, height: 1080, transform: `scale(${S})`, transformOrigin: '0 0' }}>
-        <MapLayer t={t} seg={{ ...EP.segments[i], scene: { type: 'map' } } as any} segIdx={i} view={focus} />
+        <div style={{ position: 'absolute', inset: 0, filter: 'saturate(1.35) contrast(1.12) brightness(1.08)' }}><MapLayer t={t} seg={{ ...EP.segments[i], scene: { type: 'map' } } as any} segIdx={i} view={focus} /></div>
       </div>
       <AbsoluteFill style={{ background: 'linear-gradient(90deg, rgba(2,5,12,.95) 0%, rgba(2,5,12,.75) 34%, rgba(2,5,12,0) 56%)' }} />
       <AbsoluteFill style={{ background: 'radial-gradient(ellipse at 70% 50%, rgba(255,190,60,.18), rgba(0,0,0,0) 55%)' }} />
+      <AbsoluteFill style={{ boxShadow: 'inset 0 0 160px rgba(0,0,0,.75)' }} />
       <div style={{ position: 'absolute', left: 54, top: 60, width: 640 }}>
         {th.top ? <div style={{ display: 'inline-block', fontFamily: TITLE, fontWeight: 800, fontSize: 56, color: INK, background: GOLD, padding: '6px 22px 10px', borderRadius: 14, transform: 'rotate(-2deg)', boxShadow: '0 10px 30px rgba(0,0,0,.6)' }}>{th.top}</div> : null}
-        <div style={{ fontFamily: TITLE, fontWeight: 800, fontSize: th.big.length > 9 ? 120 : 160, lineHeight: 0.95, color: '#fff', marginTop: 22, letterSpacing: 2,
+        <div style={{ fontFamily: TITLE, fontWeight: 800, fontSize: th.big.length > 9 ? 124 : th.big.length > 6 ? 158 : 196, whiteSpace: 'nowrap', lineHeight: 0.95, color: '#fff', marginTop: 22, letterSpacing: 2,
           textShadow: '3px 3px 0 #000, -3px 3px 0 #000, 3px -3px 0 #000, -3px -3px 0 #000, 0 4px 0 #000, 0 -4px 0 #000, 4px 0 0 #000, -4px 0 0 #000, 0 14px 0 rgba(0,0,0,.55), 0 0 60px rgba(0,0,0,.8)' }}>{th.big}</div>
-        {th.sub ? <div style={{ fontFamily: TITLE, fontWeight: 800, fontSize: 60, color: GOLD, marginTop: 14, textShadow: '3px 3px 0 #000, -3px 3px 0 #000, 3px -3px 0 #000, -3px -3px 0 #000, 0 4px 0 #000, 0 -4px 0 #000, 4px 0 0 #000, -4px 0 0 #000, 0 14px 0 rgba(0,0,0,.55), 0 0 40px rgba(0,0,0,.8)' }}>{th.sub}</div> : null}
+        {th.sub ? <div style={{ fontFamily: TITLE, fontWeight: 800, fontSize: Math.min(68, Math.round(700 / (th.sub.length * 0.66))), whiteSpace: 'nowrap', color: GOLD, marginTop: 14, textShadow: '3px 3px 0 #000, -3px 3px 0 #000, 3px -3px 0 #000, -3px -3px 0 #000, 0 4px 0 #000, 0 -4px 0 #000, 4px 0 0 #000, -4px 0 0 #000, 0 6px 0 #000, 0 0 40px rgba(0,0,0,.9)' }}>{th.sub}</div> : null}
         {th.badge ? <div style={{ display: 'inline-block', marginTop: 26, fontFamily: TITLE, fontWeight: 800, fontSize: 62, color: INK, background: GOLD, borderRadius: 22, padding: '4px 26px 10px',
           transform: 'rotate(-2deg)', boxShadow: '0 0 0 5px #000, 0 20px 50px rgba(0,0,0,.6)' }}>{th.badge}</div> : null}
       </div>
