@@ -1,6 +1,6 @@
 {
  "id": "rome-history",
- "rev": 1,
+ "rev": 2,
  "country": {
   "name": "Rome",
   "iso2": "it",
@@ -376,7 +376,6 @@
         41.31
        ]
       ],
-      "label": "Hannibal 218 BC",
       "cue": "Hannibal",
       "icon": "fluent-emoji-flat:elephant"
      },
@@ -639,14 +638,14 @@
   },
   {
    "id": "ides",
-   "text": "In forty-four BC, Caesar was named dictator for life. Weeks later, on the Ides of March, a group of senators assassinated him. Another civil war followed. Caesar's adopted heir, Octavian, ruled the West from Rome. His rival, Mark Antony, ruled the East, side by side with Cleopatra, queen of Egypt. Only one side could win.",
+   "text": "Caesar was named dictator for life. Weeks later, on the Ides of March, forty-four BC, a group of senators assassinated him. His adopted heir, Octavian, took over the West, from Rome. His general, Mark Antony, took the East, side by side with Cleopatra, queen of Egypt. Another civil war followed, and only one side could win.",
    "scene": {
     "type": "split",
     "left": {
-     "title": "Octavian",
-     "sub": "Caesar's heir, the West",
+     "title": "Caesar's Heir",
+     "sub": "Octavian · the West",
      "icon": "lib:kings-012",
-     "cue": "Octavian"
+     "cue": "Caesar"
     },
     "right": {
      "title": "Antony & Cleopatra",
@@ -654,7 +653,17 @@
      "icon": "fluent-3d:crown",
      "cue": "Antony"
     },
-    "vs": "VS"
+    "vs": "VS",
+    "pops": [
+     [
+      "senators",
+      "fluent-3d:classical-building"
+     ],
+     [
+      "civil",
+      "fluent-3d:crossed-swords"
+     ]
+    ]
    }
   },
   {
@@ -823,8 +832,8 @@
     "chapter": "The Empire at Its Peak",
     "view": {
      "lon": 19,
-     "lat": 40,
-     "span": 72
+     "lat": 42.5,
+     "span": 76
     },
     "areas": [
      {
