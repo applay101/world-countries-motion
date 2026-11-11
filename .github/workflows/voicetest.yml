@@ -1,0 +1,35 @@
+name: Voice test
+# Push tools/voicetest/run.txt to make one short sample per ElevenLabs voice (committed as tools/voicetest/out/*.mp3 + log).
+on:
+  push:
+    branches: [main]
+    paths: ['tools/voicetest/run.txt']
+permissions:
+  contents: write
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.12' }
+      - run: sudo apt-get install -y -qq ffmpeg > /dev/null && pip install -q numpy soundfile
+      - name: Samples
+        env:
+          ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}
+          IDS: ${{ vars.ELEVEN_VOICE_ID }}
+          ELEVEN_MODEL: ${{ vars.ELEVEN_MODEL }}
+        run: |
+          mkdir -p tools/voicetest/out; L=tools/voicetest/out/log.txt
+          echo "key set: $([ -n "$ELEVENLABS_API_KEY" ] && echo yes || echo NO)  model: ${ELEVEN_MODEL:-default}  voices: $IDS" > $L
+          i=0
+          for v in $(echo "$IDS" | tr ',' ' '); do
+            i=$((i+1)); rm -rf tools/voicetest/ep/build
+            ELEVEN_VOICE_ID=$v python pipeline/voice.py tools/voicetest/ep >> $L 2>&1 || echo "voice $i failed" >> $L
+            [ -f tools/voicetest/ep/build/voice.wav ] && ffmpeg -v error -y -i tools/voicetest/ep/build/voice.wav -b:a 128k tools/voicetest/out/voice$i.mp3
+          done
+          cat $L
+      - run: |
+          git config user.name voice-bot && git config user.email voice-bot@users.noreply.github.com
+          git add tools/voicetest/out && git commit -q -m "voice test samples [skip ci]" && git pull -q --rebase origin main && git push -q origin HEAD:main

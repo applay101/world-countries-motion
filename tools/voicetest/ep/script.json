@@ -1,0 +1,4 @@
+{"id": "voicetest", "segments": [
+ {"id": "a", "text": "Forty-two million people flew here last year. More than ever before. This is Japan.", "scene": {"type": "hook"}},
+ {"id": "b", "text": "From the snowy peaks of Hokkaido to the warm beaches of Okinawa, this island nation stretches almost three thousand kilometres across the Pacific Ocean.", "scene": {"type": "map"}}
+]}
