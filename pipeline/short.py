@@ -4,7 +4,7 @@ Usage: python pipeline/short.py out/<id>.mp4 build/short_frame.png out/<id>-shor
 
 Picks the hook (segment 0) plus the strongest segments (rank #1, map/cities scenes with many
 markers, big numbers), keeps them in story order, and composites them as: blurred full-bleed
-background + the episode video in the middle band + the ShortFrame overlay (title + call to action).
+background + the full episode frame (uncropped) in the middle band + the ShortFrame overlay (title + call to action).
 script.json can force the choice with "short": {"segments": ["id", ...]}.
 """
 import json, subprocess, sys
@@ -58,8 +58,9 @@ n = len(wins)
 parts.append(f"{labels}concat=n={n}:v=1:a=1[vc][ac]")
 parts.append("[vc]split[sa][sb]")
 parts.append("[sa]scale=-2:1920,crop=1080:1920,boxblur=28:4,eq=brightness=-0.18:saturation=1.2[bg]")
-parts.append("[sb]scale=1700:-2,crop=1080:ih[fg]")
-parts.append("[bg][fg]overlay=0:470[m]")
+# the whole 16:9 frame stays visible (no side crop), framed with a white edge, inside YouTube's Shorts safe zone
+parts.append("[sb]scale=1040:-2,pad=1052:597:6:6:white[fg]")
+parts.append("[bg][fg]overlay=14:598[m]")
 parts.append(f"[m][{n}:v]overlay=0:0,format=yuv420p[out]")
 cmd = ['ffmpeg', '-y', '-loglevel', 'error', *inputs, '-loop', '1', '-framerate', '30', '-t', '%.3f' % total, '-i', frame,
        '-filter_complex', ';'.join(parts), '-map', '[out]', '-map', '[ac]', '-r', '30', '-c:v', 'libx264', '-preset', 'veryfast', '-crf', '20',
