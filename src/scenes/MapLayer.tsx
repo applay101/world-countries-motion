@@ -250,7 +250,7 @@ export const MapLayer: React.FC<{ t: number; seg: Seg; segIdx: number; view?: Vi
     let big: any = null, bigA = -1;
     fs.forEach((f) => { const ar = path.area(f); if (ar > bigA) { bigA = ar; big = f; } });
     areaEls.push(<g key={'a' + ai}>
-      {fs.map((f, k) => { const q = cl(p * 1.6 - k * 0.12); return <path key={k} d={path(f) || ''} fill={col} fillOpacity={0.55 * q} stroke={col} strokeWidth={3} strokeOpacity={0.9 * q} />; })}
+      {fs.map((f, k) => { const q = cl(p * 1.6 - (k / Math.max(1, fs.length)) * 0.6); return <path key={k} d={path(f) || ''} fill={col} fillOpacity={0.55 * q} stroke={col} strokeWidth={3} strokeOpacity={0.9 * q} />; })}
     </g>);
     if (a.label && big) { const [x, y] = a.labelAt ? pt(a.labelAt[0], a.labelAt[1]) : path.centroid(big);
       areaEls.push(<text key={'al' + ai} x={x} y={y} textAnchor="middle" fontFamily={DISPLAY} fontWeight={HIST ? 900 : 800} fontSize={HIST ? 46 : 40} fill={HIST ? '#fff8e6' : '#fff'} stroke="rgba(60,25,8,.9)" strokeWidth={9} paintOrder="stroke"

@@ -1,0 +1,1355 @@
+{
+ "id": "world-history",
+ "rev": 1,
+ "country": {
+  "name": "Our World",
+  "iso2": "un",
+  "isoNum": "000",
+  "lon": 30,
+  "lat": 20,
+  "capital": ""
+ },
+ "voice": "bm_george",
+ "speed": 1.0,
+ "music": "ambient",
+ "flagOnMap": false,
+ "theme": {
+  "map": "parchment",
+  "accent": "#a8321e"
+ },
+ "thumb": {
+  "style": "headline",
+  "top": "10 MINUTES",
+  "big": "WORLD HISTORY",
+  "sub": "Every Empire",
+  "badge": "300,000 YEARS",
+  "emoji": "fluent-emoji-flat:crown"
+ },
+ "short": {
+  "title": "WORLD HISTORY",
+  "sub": "Every empire",
+  "segments": [
+   "timelapse",
+   "mongols"
+  ]
+ },
+ "segments": [
+  {
+   "id": "intro",
+   "text": "Three hundred thousand years ago, we were a handful of hunters. Now we are eight billion. This is our world.",
+   "scene": {
+    "type": "dive",
+    "pops": [
+     [
+      "eight",
+      "fluent-emoji-flat:globe-showing-europe-africa"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "africa",
+   "text": "Our oldest known fossils come from Jebel Irhoud, in Morocco, and they are about three hundred thousand years old. From Africa, people slowly spread across the planet. They reached Lake Mungo, in Australia, by around forty-two thousand years ago. They painted the caves of Lascaux. And they reached Monte Verde, in Chile, more than fourteen thousand years ago.",
+   "scene": {
+    "type": "map",
+    "chapter": "The First Humans",
+    "view": {
+     "lon": 30,
+     "lat": 12,
+     "span": 170
+    },
+    "markers": [
+     [
+      "Jebel Irhoud",
+      -8.87,
+      31.85,
+      "pin"
+     ],
+     [
+      "Lake Mungo",
+      143.0,
+      -33.7,
+      "pin"
+     ],
+     [
+      "Lascaux",
+      1.17,
+      45.05,
+      "pin"
+     ],
+     [
+      "Monte Verde",
+      -73.2,
+      -41.5,
+      "pin"
+     ]
+    ],
+    "countries": [
+     "Morocco",
+     "Australia",
+     "Chile"
+    ],
+    "routes": [
+     {
+      "points": [
+       [
+        38,
+        8
+       ],
+       [
+        43.4,
+        12.6
+       ],
+       [
+        50,
+        18
+       ],
+       [
+        60,
+        24
+       ],
+       [
+        72,
+        21
+       ],
+       [
+        90,
+        20
+       ],
+       [
+        100,
+        12
+       ],
+       [
+        110,
+        0
+       ],
+       [
+        125,
+        -8
+       ],
+       [
+        133,
+        -20
+       ],
+       [
+        143,
+        -33.7
+       ]
+      ],
+      "label": "Out of Africa",
+      "cue": "spread",
+      "icon": "fluent-emoji-flat:footprints"
+     },
+     {
+      "points": [
+       [
+        38,
+        8
+       ],
+       [
+        33,
+        28
+       ],
+       [
+        36,
+        36
+       ],
+       [
+        27,
+        41
+       ],
+       [
+        15,
+        45
+       ],
+       [
+        1.17,
+        45.05
+       ]
+      ],
+      "cue": "painted"
+     },
+     {
+      "points": [
+       [
+        -160,
+        63
+       ],
+       [
+        -140,
+        60
+       ],
+       [
+        -125,
+        50
+       ],
+       [
+        -112,
+        35
+       ],
+       [
+        -98,
+        20
+       ],
+       [
+        -82,
+        9
+       ],
+       [
+        -77,
+        -5
+       ],
+       [
+        -72,
+        -25
+       ],
+       [
+        -73.2,
+        -41.5
+       ]
+      ],
+      "cue": "Monte"
+     }
+    ]
+   }
+  },
+  {
+   "id": "farming",
+   "text": "Then, around ten thousand BC, as the last ice age ended, something changed forever. People began to plant seeds, tame animals and build permanent villages. Farming meant more food and more children, and for the first time, a reason to stay in one place.",
+   "scene": {
+    "type": "era",
+    "year": "10,000 BC",
+    "title": "The Farming Revolution",
+    "sub": "From hunters to farmers",
+    "icons": [
+     "fluent-emoji-flat:sheaf-of-rice",
+     "fluent-emoji-flat:ear-of-corn",
+     "fluent-emoji-flat:hut"
+    ],
+    "cue": "ten"
+   }
+  },
+  {
+   "id": "farmers",
+   "text": "It began in the Fertile Crescent. At Göbekli Tepe, people raised huge carved stone pillars about eleven and a half thousand years ago. Jericho became one of the oldest towns on Earth. And Çatalhöyük was home to thousands of people, in mud-brick houses with no streets, entered through the roof. Farming also began on its own in other places, from East Asia to Central America.",
+   "scene": {
+    "type": "map",
+    "chapter": "The First Farmers",
+    "view": {
+     "lon": 37,
+     "lat": 34.5,
+     "span": 24
+    },
+    "areas": [
+     {
+      "ids": [
+       "368",
+       "760",
+       "422",
+       "376",
+       "275",
+       "400"
+      ],
+      "label": "Fertile Crescent (approx.)",
+      "cue": "Fertile",
+      "color": "#5f7a2a",
+      "labelAt": [
+       41.5,
+       33.2
+      ]
+     }
+    ],
+    "markers": [
+     [
+      "Göbekli Tepe",
+      38.92,
+      37.22,
+      "star"
+     ],
+     [
+      "Jericho",
+      35.44,
+      31.87,
+      "pin"
+     ],
+     [
+      "Çatalhöyük",
+      32.83,
+      37.67,
+      "fluent-emoji-flat:house"
+     ]
+    ],
+    "pops": [
+     [
+      "Farming",
+      "fluent-emoji-flat:sheaf-of-rice"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "writing",
+   "text": "By about thirty-two hundred BC, some villages had grown into cities. Cities needed rulers, soldiers, priests and, above all, a way to keep records. So in Mesopotamia, scribes began pressing marks into wet clay. Writing was born, and with it, recorded history.",
+   "scene": {
+    "type": "era",
+    "year": "3200 BC",
+    "title": "Cities, Kings & Writing",
+    "sub": "The first civilizations",
+    "icons": [
+     "fluent-emoji-flat:writing-hand",
+     "fluent-emoji-flat:crown",
+     "fluent-emoji-flat:classical-building"
+    ],
+    "cue": "thirty"
+   }
+  },
+  {
+   "id": "rivers",
+   "text": "Four great river civilizations took shape. Uruk, between the Tigris and the Euphrates, was one of the first true cities. Along the Nile, Egypt was united around thirty-one hundred BC, and its kings later built the pyramids of Giza. In the Indus Valley, Mohenjo-daro had brick streets and covered drains. And in China, Shang kings carved writing onto oracle bones at Anyang.",
+   "scene": {
+    "type": "map",
+    "chapter": "The First Civilizations",
+    "view": {
+     "lon": 72,
+     "lat": 31,
+     "span": 100
+    },
+    "markers": [
+     [
+      "Uruk",
+      45.64,
+      31.32,
+      "fluent-emoji-flat:classical-building"
+     ],
+     [
+      "Giza",
+      31.13,
+      29.98,
+      "star"
+     ],
+     [
+      "Mohenjo-daro",
+      68.14,
+      27.33,
+      "pin"
+     ],
+     [
+      "Anyang",
+      114.35,
+      36.1,
+      "fluent-emoji-flat:scroll"
+     ]
+    ],
+    "countries": [
+     "Egypt",
+     "China"
+    ]
+   }
+  },
+  {
+   "id": "empires",
+   "text": "The first empire may have been built around twenty-three hundred BC, by Sargon of Akkad. But the true age of giant empires began in five hundred fifty BC, when Cyrus the Great founded the Persian Empire, the largest the world had yet seen.",
+   "scene": {
+    "type": "era",
+    "year": "550 BC",
+    "title": "The Age of Empires",
+    "sub": "Conquerors and capitals",
+    "icons": [
+     "fluent-emoji-flat:crown",
+     "fluent-emoji-flat:crossed-swords",
+     "fluent-emoji-flat:horse"
+    ],
+    "cue": "five"
+   }
+  },
+  {
+   "id": "timelapse",
+   "text": "Watch the map. By five hundred BC, Persia stretched from Egypt to the Indus River. By three twenty-three BC, Alexander the Great had conquered it all. In two twenty-one BC, the Qin dynasty united China for the first time, while the Maurya Empire ruled much of India. And by one hundred seventeen AD, Rome ruled the whole Mediterranean, while Han China ruled the East.",
+   "scene": {
+    "type": "map",
+    "chapter": "Empires Rise and Fall",
+    "view": {
+     "lon": 62,
+     "lat": 35,
+     "span": 142
+    },
+    "frames": [
+     [
+      "500 BC",
+      [
+       {
+        "ids": [
+         "364",
+         "368",
+         "792",
+         "760",
+         "422",
+         "376",
+         "275",
+         "400",
+         "818",
+         "004",
+         "795",
+         "860",
+         "762",
+         "051",
+         "031",
+         "586",
+         "196",
+         "414"
+        ],
+        "label": "Persian Empire (approx.)",
+        "color": "#7a3b8a",
+        "labelAt": [
+         54,
+         33
+        ]
+       }
+      ],
+      "five"
+     ],
+     [
+      "323 BC",
+      [
+       {
+        "ids": [
+         "300",
+         "807",
+         "792",
+         "760",
+         "422",
+         "376",
+         "275",
+         "400",
+         "818",
+         "368",
+         "364",
+         "004",
+         "795",
+         "860",
+         "762",
+         "586",
+         "414",
+         "196"
+        ],
+        "label": "Empire of Alexander (approx.)",
+        "color": "#1f5f8b",
+        "labelAt": [
+         50,
+         31
+        ]
+       }
+      ],
+      "three"
+     ],
+     [
+      "221 BC",
+      [
+       {
+        "ids": [
+         "156"
+        ],
+        "label": "Qin China (approx.)",
+        "color": "#a86b12",
+        "labelAt": [
+         104,
+         33
+        ]
+       },
+       {
+        "ids": [
+         "356",
+         "586",
+         "050",
+         "524"
+        ],
+        "label": "Maurya Empire (approx.)",
+        "color": "#2f7a4a",
+        "labelAt": [
+         78,
+         21
+        ]
+       }
+      ],
+      "two"
+     ],
+     [
+      "117 AD",
+      [
+       {
+        "ids": [
+         "380",
+         "724",
+         "620",
+         "250",
+         "826",
+         "056",
+         "756",
+         "040",
+         "705",
+         "191",
+         "070",
+         "688",
+         "499",
+         "008",
+         "807",
+         "300",
+         "100",
+         "642",
+         "792",
+         "760",
+         "422",
+         "376",
+         "275",
+         "400",
+         "818",
+         "434",
+         "788",
+         "012",
+         "504",
+         "196",
+         "348",
+         "368",
+         "051"
+        ],
+        "label": "Roman Empire (approx.)",
+        "color": "#9b2915",
+        "labelAt": [
+         24,
+         37
+        ]
+       },
+       {
+        "ids": [
+         "156"
+        ],
+        "label": "Han China (approx.)",
+        "color": "#a86b12",
+        "labelAt": [
+         104,
+         33
+        ]
+       }
+      ],
+      "one"
+     ]
+    ],
+    "pops": [
+     [
+      "Alexander",
+      "fluent-emoji-flat:horse"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "rivals",
+   "text": "Two superpowers now ruled at opposite ends of the known world: Rome and Han China. Each governed tens of millions of people. Their armies never met, and they knew very little about each other. But their goods did meet, carried along one of the greatest trade networks in history.",
+   "scene": {
+    "type": "split",
+    "left": {
+     "title": "Rome",
+     "sub": "Ruled the Mediterranean",
+     "icon": "fluent-emoji-flat:classical-building",
+     "value": "117 AD",
+     "cue": "Rome"
+    },
+    "right": {
+     "title": "Han China",
+     "sub": "Capital: Chang'an",
+     "icon": "fluent-emoji-flat:dragon",
+     "value": "206 BC – 220 AD",
+     "cue": "Han"
+    },
+    "vs": "VS"
+   }
+  },
+  {
+   "id": "silkroad",
+   "text": "The Silk Road. Caravans left Chang'an, crossed the desert oasis of Dunhuang, climbed the mountains to Samarkand and reached Antioch, near the Mediterranean. From there, goods sailed on to Rome. Silk, spices, glass and horses changed hands many times. And ideas travelled too, as Buddhism spread from India into China, while paper, invented in China, slowly made its way west.",
+   "scene": {
+    "type": "map",
+    "chapter": "The Silk Road",
+    "view": {
+     "lon": 60,
+     "lat": 38,
+     "span": 118
+    },
+    "routes": [
+     {
+      "points": [
+       [
+        108.94,
+        34.34
+       ],
+       [
+        103.8,
+        36.06
+       ],
+       [
+        94.66,
+        40.14
+       ],
+       [
+        87,
+        41.5
+       ],
+       [
+        75.99,
+        39.47
+       ],
+       [
+        66.96,
+        39.65
+       ],
+       [
+        62.2,
+        37.6
+       ],
+       [
+        51.4,
+        35.7
+       ],
+       [
+        44.4,
+        33.1
+       ],
+       [
+        36.16,
+        36.2
+       ],
+       [
+        25,
+        35
+       ],
+       [
+        12.5,
+        41.9
+       ]
+      ],
+      "cue": "Silk",
+      "icon": "fluent-emoji-flat:camel"
+     }
+    ],
+    "markers": [
+     [
+      "Chang'an",
+      108.94,
+      34.34,
+      "pin"
+     ],
+     [
+      "Dunhuang",
+      94.66,
+      40.14,
+      "dot"
+     ],
+     [
+      "Samarkand",
+      66.96,
+      39.65,
+      "dot"
+     ],
+     [
+      "Antioch",
+      36.16,
+      36.2,
+      "dot"
+     ],
+     [
+      "Rome",
+      12.5,
+      41.9,
+      "pin"
+     ]
+    ],
+    "countries": [
+     "India",
+     "China"
+    ],
+    "pops": [
+     [
+      "ideas",
+      "fluent-emoji-flat:light-bulb"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "middle",
+   "text": "In four seventy-six AD, the last Western Roman emperor lost his throne. But in the East, Rome lived on from Constantinople for almost a thousand years. In Baghdad, scholars at the House of Wisdom translated Greek books and advanced mathematics. Charlemagne was crowned emperor in eight hundred and ruled from Aachen. And Tang dynasty Chang'an was one of the largest cities on Earth.",
+   "scene": {
+    "type": "map",
+    "chapter": "The Middle Ages",
+    "view": {
+     "lon": 42,
+     "lat": 38,
+     "span": 120
+    },
+    "markers": [
+     [
+      "Constantinople",
+      28.98,
+      41.01,
+      "fluent-emoji-flat:classical-building"
+     ],
+     [
+      "Baghdad",
+      44.36,
+      33.31,
+      "fluent-emoji-flat:books"
+     ],
+     [
+      "Aachen",
+      6.08,
+      50.78,
+      "fluent-emoji-flat:crown"
+     ],
+     [
+      "Chang'an",
+      108.94,
+      34.34,
+      "pin"
+     ]
+    ],
+    "pops": [
+     [
+      "mathematics",
+      "fluent-emoji-flat:abacus"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "market",
+   "text": "Picture a market town around the year twelve hundred. Most people were farmers who rarely travelled far from home. Merchants from Venice and Genoa brought pepper, silk and sugar from distant lands. Castles, cathedrals and the first universities rose across Europe. Meanwhile, far to the east, a storm was gathering on the steppe.",
+   "scene": {
+    "type": "street",
+    "era": "medieval",
+    "time": "day",
+    "title": "A Medieval Market",
+    "sub": "Europe, around 1200",
+    "people": [
+     [
+      "merchant",
+      1
+     ],
+     [
+      "farmer",
+      2
+     ],
+     [
+      "soldier",
+      0
+     ],
+     [
+      "elder",
+      3
+     ],
+     [
+      "kid",
+      1
+     ],
+     [
+      "queen",
+      0
+     ]
+    ],
+    "cue": "Picture"
+   }
+  },
+  {
+   "id": "mongols",
+   "text": "Then, out of the steppe, came the Mongols. In twelve oh-six, Genghis Khan united the Mongol tribes. Within a few decades, his armies swept across Central Asia, Persia and the lands of the Rus. By twelve seventy-nine, his grandson Kublai Khan ruled all of China, and the Mongol Empire covered about twenty-four million square kilometres, the largest connected land empire in history.",
+   "scene": {
+    "type": "map",
+    "chapter": "The Mongol Storm",
+    "view": {
+     "lon": 78,
+     "lat": 46,
+     "span": 125
+    },
+    "frames": [
+     [
+      "1206",
+      [
+       {
+        "ids": [
+         "496"
+        ],
+        "label": "Mongols (approx.)",
+        "color": "#8a5a12",
+        "labelAt": [
+         103,
+         47
+        ]
+       }
+      ],
+      "twelve"
+     ],
+     [
+      "1240",
+      [
+       {
+        "ids": [
+         "496",
+         "398",
+         "860",
+         "795",
+         "417",
+         "762",
+         "004",
+         "364",
+         "804"
+        ],
+        "label": "Mongol Empire (approx.)",
+        "color": "#8a5a12",
+        "labelAt": [
+         75,
+         45
+        ]
+       }
+      ],
+      "Within"
+     ],
+     [
+      "1279",
+      [
+       {
+        "ids": [
+         "496",
+         "156",
+         "408",
+         "410",
+         "643",
+         "804",
+         "398",
+         "860",
+         "795",
+         "417",
+         "762",
+         "004",
+         "364",
+         "368",
+         "268",
+         "051",
+         "031"
+        ],
+        "label": "Mongol Empire (approx.)",
+        "color": "#8a5a12",
+        "labelAt": [
+         88,
+         44
+        ]
+       }
+      ],
+      "seventy-nine"
+     ]
+    ],
+    "big": [
+     [
+      "24M",
+      "km² in 1279"
+     ]
+    ],
+    "pops": [
+     [
+      "Genghis",
+      "fluent-emoji-flat:horse"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "plague",
+   "text": "Busy trade routes carried goods, but they also carried disease. In thirteen forty-seven, the Black Death reached Messina, in Sicily, and spread across Europe, killing tens of millions of people. Slowly, Europe recovered. In Mainz, Gutenberg's printing press made books cheap and fast to produce. And in fourteen fifty-three, the Ottomans captured Constantinople, ending the Byzantine Empire.",
+   "scene": {
+    "type": "map",
+    "chapter": "Plague and Printing",
+    "view": {
+     "lon": 17,
+     "lat": 44,
+     "span": 42
+    },
+    "markers": [
+     [
+      "Messina",
+      15.55,
+      38.19,
+      "pin"
+     ],
+     [
+      "Mainz",
+      8.27,
+      50.0,
+      "fluent-emoji-flat:books"
+     ],
+     [
+      "Constantinople",
+      28.98,
+      41.01,
+      "battle"
+     ]
+    ],
+    "pops": [
+     [
+      "printing",
+      "fluent-emoji-flat:scroll"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "explore",
+   "text": "Now Europe turned to the oceans. In fourteen ninety-two, Christopher Columbus sailed west, hoping to reach Asia. Instead, he reached the Caribbean. Two halves of the world that had been apart for thousands of years were suddenly connected, for better and for worse.",
+   "scene": {
+    "type": "era",
+    "year": "1492",
+    "title": "Worlds Collide",
+    "sub": "The Age of Exploration",
+    "icons": [
+     "fluent-emoji-flat:sailboat",
+     "fluent-emoji-flat:compass",
+     "fluent-emoji-flat:world-map"
+    ],
+    "cue": "fourteen"
+   }
+  },
+  {
+   "id": "voyages",
+   "text": "Columbus first landed on an island he named San Salvador. Six years later, Vasco da Gama sailed from Lisbon, around Africa, to Calicut, in India. And in fifteen twenty-two, the ship Victoria returned to Seville, completing the first voyage around the world, begun by Magellan and finished by Elcano. Maize, potatoes, silver and spices crossed the seas, but so did diseases that devastated the native peoples of the Americas.",
+   "scene": {
+    "type": "map",
+    "chapter": "The Age of Exploration",
+    "view": {
+     "lon": -8,
+     "lat": 10,
+     "span": 190
+    },
+    "routes": [
+     {
+      "points": [
+       [
+        -6.95,
+        37.22
+       ],
+       [
+        -15.4,
+        28.1
+       ],
+       [
+        -40,
+        26
+       ],
+       [
+        -60,
+        25
+       ],
+       [
+        -74.5,
+        24.06
+       ]
+      ],
+      "label": "Columbus 1492",
+      "cue": "Columbus",
+      "icon": "fluent-emoji-flat:sailboat"
+     },
+     {
+      "points": [
+       [
+        -9.14,
+        38.72
+       ],
+       [
+        -17,
+        14
+       ],
+       [
+        -25,
+        -10
+       ],
+       [
+        0,
+        -30
+       ],
+       [
+        18.4,
+        -34.6
+       ],
+       [
+        35,
+        -25
+       ],
+       [
+        39.7,
+        -3.2
+       ],
+       [
+        60,
+        5
+       ],
+       [
+        75.78,
+        11.25
+       ]
+      ],
+      "label": "Da Gama 1498",
+      "cue": "Vasco",
+      "icon": "fluent-emoji-flat:sailboat"
+     },
+     {
+      "points": [
+       [
+        -6.3,
+        36.8
+       ],
+       [
+        -20,
+        10
+       ],
+       [
+        -35,
+        -8
+       ],
+       [
+        -50,
+        -30
+       ],
+       [
+        -62,
+        -45
+       ],
+       [
+        -68.5,
+        -52.6
+       ]
+      ],
+      "label": "Magellan 1519",
+      "cue": "Magellan",
+      "icon": "fluent-emoji-flat:sailboat"
+     }
+    ],
+    "markers": [
+     [
+      "San Salvador",
+      -74.5,
+      24.06,
+      "pin"
+     ],
+     [
+      "Lisbon",
+      -9.14,
+      38.72,
+      "dot"
+     ],
+     [
+      "Calicut",
+      75.78,
+      11.25,
+      "pin"
+     ],
+     [
+      "Seville",
+      -5.98,
+      37.39,
+      "dot"
+     ]
+    ],
+    "countries": [
+     "India"
+    ],
+    "pops": [
+     [
+      "potatoes",
+      "fluent-emoji-flat:potato"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "atlantic",
+   "text": "This new Atlantic world came at a terrible human cost. Over more than three centuries, more than ten million Africans were forcibly carried across the ocean and enslaved in the Americas, one of the largest forced migrations in history. Their labour built plantations and fortunes, and their descendants shaped the cultures of the Americas.",
+   "scene": {
+    "type": "map",
+    "chapter": "The Atlantic World",
+    "view": {
+     "lon": -28,
+     "lat": 6,
+     "span": 125
+    },
+    "arcs": [
+     {
+      "from": [
+       2.09,
+       6.36
+      ],
+      "to": [
+       -38.5,
+       -12.97
+      ],
+      "cue": "Africans",
+      "color": "#5a1408"
+     },
+     {
+      "from": [
+       -17.4,
+       14.67
+      ],
+      "to": [
+       -76.8,
+       18.0
+      ],
+      "cue": "forcibly",
+      "color": "#5a1408"
+     },
+     {
+      "from": [
+       13.23,
+       -8.84
+      ],
+      "to": [
+       -43.2,
+       -22.9
+      ],
+      "cue": "enslaved",
+      "color": "#5a1408"
+     }
+    ]
+   }
+  },
+  {
+   "id": "industry",
+   "text": "Then came the biggest change since farming. Around seventeen sixty, in Britain, machines began to replace human and animal muscle. Steam engines, burning coal, drove factories, trains and ships. For the first time in history, economies began to grow year after year, and the modern world was born.",
+   "scene": {
+    "type": "era",
+    "year": "1760",
+    "title": "The Industrial Revolution",
+    "sub": "Steam, coal and machines",
+    "icons": [
+     "fluent-emoji-flat:factory",
+     "fluent-emoji-flat:locomotive",
+     "fluent-emoji-flat:light-bulb"
+    ],
+    "cue": "seventeen"
+   }
+  },
+  {
+   "id": "revolutions",
+   "text": "It was also an age of revolutions. In Manchester, cotton mills ran day and night. In Philadelphia, in seventeen seventy-six, American colonists declared independence. In Paris, the French Revolution of seventeen eighty-nine shook Europe's kings. Haiti won its independence in eighteen oh-four, and much of Latin America soon followed. That same year, the world's population reached one billion.",
+   "scene": {
+    "type": "map",
+    "chapter": "The Age of Revolutions",
+    "view": {
+     "lon": -36,
+     "lat": 28,
+     "span": 108
+    },
+    "markers": [
+     [
+      "Manchester",
+      -2.24,
+      53.48,
+      "fluent-emoji-flat:factory"
+     ],
+     [
+      "Philadelphia",
+      -75.16,
+      39.95,
+      "pin"
+     ],
+     [
+      "Paris",
+      2.35,
+      48.86,
+      "pin"
+     ],
+     [
+      "Haiti",
+      -72.33,
+      18.9,
+      "pin"
+     ]
+    ],
+    "pops": [
+     [
+      "billion",
+      "fluent-emoji-flat:people-hugging"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "wars",
+   "text": "By nineteen fourteen, a handful of European empires ruled much of the planet. That year, their rivalry exploded into the First World War, which destroyed four empires. Just twenty-one years later, in nineteen thirty-nine, a second world war began, the deadliest conflict in history. Estimates of the dead range from thirty-five to sixty million people.",
+   "scene": {
+    "type": "era",
+    "year": "1914",
+    "title": "The World at War",
+    "sub": "Two world wars",
+    "icons": [
+     "fluent-emoji-flat:crossed-swords",
+     "fluent-emoji-flat:airplane",
+     "fluent-emoji-flat:dove"
+    ],
+    "cue": "nineteen"
+   }
+  },
+  {
+   "id": "neworder",
+   "text": "In nineteen forty-five, fifty-one countries founded the United Nations, signing its charter in San Francisco. Soon the world was divided between two superpowers, America and the Soviet Union, in the Cold War. Old empires broke apart, and dozens of new nations were born. In nineteen eighty-nine, the Berlin Wall fell, and two years later the Soviet Union, ruled from Moscow, dissolved.",
+   "scene": {
+    "type": "map",
+    "chapter": "A New World Order",
+    "view": {
+     "lon": -40,
+     "lat": 38,
+     "span": 190
+    },
+    "markers": [
+     [
+      "San Francisco",
+      -122.42,
+      37.77,
+      "fluent-emoji-flat:handshake"
+     ],
+     [
+      "Berlin",
+      13.4,
+      52.52,
+      "pin"
+     ],
+     [
+      "Moscow",
+      37.62,
+      55.75,
+      "pin"
+     ]
+    ],
+    "countries": [
+     "America"
+    ]
+   }
+  },
+  {
+   "id": "billions",
+   "text": "Eight billion. That is how many of us there were on the fifteenth of November, twenty twenty-two, according to the United Nations. In just over two hundred years, our numbers grew eightfold. Along the way, people walked on the Moon in nineteen sixty-nine, and the internet connected the whole planet.",
+   "scene": {
+    "type": "bignum",
+    "value": 8,
+    "fmt": "int",
+    "suffix": " BILLION",
+    "label": "people on Earth",
+    "note": "United Nations, 15 November 2022",
+    "chips": [
+     "1 billion in 1804",
+     "4 billion in 1974",
+     "8 billion in 2022"
+    ],
+    "cue": "Eight",
+    "pops": [
+     [
+      "Moon",
+      "fluent-emoji-flat:full-moon"
+     ],
+     [
+      "internet",
+      "fluent-emoji-flat:globe-with-meridians"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "today",
+   "text": "Today, more than half of humanity lives in cities. Tokyo, Delhi, Shanghai, São Paulo and Cairo are each home to more than twenty million people. All of it, every road, every border and every language, grew from a few small bands of hunters, in just three hundred thousand years.",
+   "scene": {
+    "type": "cities",
+    "chapter": "Our World Today",
+    "view": {
+     "lon": 32,
+     "lat": 8,
+     "span": 230
+    },
+    "cities": [
+     [
+      "Tokyo",
+      139.69,
+      35.69
+     ],
+     [
+      "Delhi",
+      77.21,
+      28.61
+     ],
+     [
+      "Shanghai",
+      121.47,
+      31.23
+     ],
+     [
+      "São Paulo",
+      -46.63,
+      -23.55
+     ],
+     [
+      "Cairo",
+      31.24,
+      30.04
+     ]
+    ]
+   }
+  },
+  {
+   "id": "journey",
+   "text": "So here is the whole journey. Hundreds of thousands of years as hunters. Then farming, then writing and cities. Great empires, from Rome to China. Ships that joined the oceans, and machines that remade the planet. Every empire that once looked eternal is gone, but each one helped shape the world we live in today.",
+   "scene": {
+    "type": "journey",
+    "stops": [
+     [
+      "Ice Age",
+      "First humans",
+      "fluent-emoji-flat:footprints",
+      "hunters"
+     ],
+     [
+      "10,000 BC",
+      "Farming",
+      "fluent-emoji-flat:sheaf-of-rice",
+      "farming"
+     ],
+     [
+      "3200 BC",
+      "Writing",
+      "fluent-emoji-flat:writing-hand",
+      "writing"
+     ],
+     [
+      "117 AD",
+      "Great empires",
+      "fluent-emoji-flat:classical-building",
+      "empires"
+     ],
+     [
+      "1492",
+      "Oceans joined",
+      "fluent-emoji-flat:sailboat",
+      "Ships"
+     ],
+     [
+      "1760",
+      "Machines",
+      "fluent-emoji-flat:factory",
+      "machines"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "outro",
+   "text": "If you could live in any era from this video, which one would you choose? Tell us in the comments. And subscribe to Zoom World Travel, to join our next journey through history.",
+   "scene": {
+    "type": "outro"
+   }
+  }
+ ]
+}

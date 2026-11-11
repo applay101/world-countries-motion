@@ -3,7 +3,7 @@
 Write one idea per line, starting with "- [ ]". The automatic run takes the first unchecked idea before looking for trending topics, then marks it "- [x]".
 Ideas can be in Persian or English. Lines tagged [tutorial] are used by the 14:47 run; the other runs (08:47, 11:47, 17:47, 21:47) use the others. Every number must be verified from official or reputable sources at production time.
 
-- [ ] HISTORY: The ENTIRE History of the World in 10 Minutes (world map; frames timelapse of the great empires + era cards + street scenes; the biggest proven format)
+- [x] HISTORY: The ENTIRE History of the World in 10 Minutes (world map; frames timelapse of the great empires + era cards + street scenes; the biggest proven format)
 - [ ] The ONLY countries where you can't buy Coca-Cola (world map highlight; verify with reputable sources)
 - [ ] The World: Every Era (3000 BC – 2026): every great empire on one map timelapse (frames), biggest to smallest
 - [ ] POV: You live in ancient Rome for a day (street + crowd scenes, history facts)
