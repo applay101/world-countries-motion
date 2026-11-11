@@ -20,7 +20,8 @@
     "top": "WORLD'S #1",
     "big": "JAPAN",
     "sub": "5 reasons why",
-    "badge": "42.7M visitors"
+    "badge": "42.7M visitors",
+    "emoji": "fluent-emoji-flat:star-struck"
   },
   "segments": [
     {
@@ -105,6 +106,12 @@
             139.69,
             35.69,
             "star"
+          ]
+        ],
+        "pops": [
+          [
+            "number",
+            "fluent-emoji-flat:1st-place-medal"
           ]
         ]
       }
@@ -191,6 +198,20 @@
             35.36,
             "peak"
           ]
+        ],
+        "pops": [
+          [
+            "Snowy",
+            "fluent-emoji-flat:snowflake"
+          ],
+          [
+            "subtropical",
+            "fluent-emoji-flat:palm-tree"
+          ],
+          [
+            "Rising",
+            "fluent-emoji-flat:snow-capped-mountain"
+          ]
         ]
       }
     },
@@ -252,6 +273,16 @@
             139.55,
             35.32,
             "pin"
+          ]
+        ],
+        "pops": [
+          [
+            "deer",
+            "fluent-emoji-flat:deer"
+          ],
+          [
+            "castle",
+            "fluent-emoji-flat:japanese-castle"
           ]
         ]
       }
@@ -316,25 +347,25 @@
         "rank": 2,
         "cards": [
           [
-            "bowl",
+            "fluent-emoji-flat:steaming-bowl",
             "Food",
             "ramen · sushi",
             "Ramen"
           ],
           [
-            "flower",
+            "fluent-emoji-flat:cherry-blossom",
             "Cherry blossoms",
             "spring · sakura",
             "Cherry"
           ],
           [
-            "mountain",
+            "fluent-emoji-flat:hot-springs",
             "Hot springs",
             "onsen",
             "Steaming"
           ],
           [
-            "torii",
+            "fluent-emoji-flat:shinto-shrine",
             "Shrines",
             "& temples",
             "shrines"
@@ -441,6 +472,12 @@
             33.59,
             "dot"
           ]
+        ],
+        "pops": [
+          [
+            "bullet",
+            "fluent-emoji-flat:bullet-train"
+          ]
         ]
       }
     },
@@ -479,7 +516,17 @@
           ],
           "cue": "welcomed"
         },
-        "note": "JNTO"
+        "note": "JNTO",
+        "pops": [
+          [
+            "record",
+            "fluent-emoji-flat:fire"
+          ],
+          [
+            "spent",
+            "fluent-emoji-flat:money-bag"
+          ]
+        ]
       }
     },
     {
@@ -517,6 +564,12 @@
             121.0,
             23.7,
             "dot"
+          ]
+        ],
+        "pops": [
+          [
+            "record",
+            "fluent-emoji-flat:chart-increasing"
           ]
         ]
       }
@@ -570,11 +623,17 @@
       "id": "outro",
       "text": "Ancient and futuristic, calm and electric. Five reasons, one remarkable country. Which reason surprised you most? Tell us in the comments. Subscribe, and join us for the next country on our journey around the world.",
       "scene": {
-        "type": "outro"
+        "type": "outro",
+        "pops": [
+          [
+            "comments",
+            "fluent-emoji-flat:speech-balloon"
+          ]
+        ]
       }
     }
   ],
-  "rev": 3,
+  "rev": 4,
   "short": {
     "title": "JAPAN",
     "sub": "World's #1. Why?"

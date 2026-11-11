@@ -1,5 +1,6 @@
 // Infographic overlays: stat cards, big numbers, timeline, culture cards, KPI + bar chart, outro, captions, chapter chip.
 import React from 'react';
+import { Icon, isIcon } from '../lib/Icon';
 import { EP, W, H, GOLD, INK, TITLE, BODY, Seg, cl, pr, lerp, eOut, eBack, eExpo, cue, segWindow, fadeWin, fmtNum, E } from '../lib/core';
 import { FlagWave } from './Three';
 import CH from '../../channel.json';
@@ -125,7 +126,7 @@ export const Cards: React.FC<{ t: number; seg: Seg; i: number }> = ({ t, seg, i 
         return (
           <div key={k} style={{ ...glass, height: 420, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 22, padding: 24,
             transform: `translateY(${(1 - p) * 120}px) rotate(${(1 - p) * (k % 2 ? 6 : -6)}deg)`, opacity: cl(p * 2) }}>
-            <div style={{ width: 150, height: 150, borderRadius: 150, background: 'radial-gradient(circle, rgba(255,201,74,.18), rgba(255,201,74,0) 70%)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{ICON[icon]?.(110)}</div>
+            <div style={{ width: 150, height: 150, borderRadius: 150, background: 'radial-gradient(circle, rgba(255,201,74,.18), rgba(255,201,74,0) 70%)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{isIcon(icon) ? <Icon name={icon} size={118} style={{ transform: `scale(${0.6 + 0.4 * p}) rotate(${(1 - p) * -20}deg)`, filter: 'drop-shadow(0 10px 18px rgba(0,0,0,.45))' }} /> : ICON[icon]?.(110)}</div>
             <div style={{ fontFamily: TITLE, fontWeight: 800, fontSize: 40, color: '#fff', textAlign: 'center' }}>{title}</div>
             <div style={{ fontFamily: BODY, fontWeight: 500, fontSize: 25, color: '#a9bcd6', textAlign: 'center' }}>{sub}</div>
           </div>

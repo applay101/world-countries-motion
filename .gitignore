@@ -7,3 +7,4 @@ public/flag.png
 public/flag.svg
 out/
 __pycache__/
+src/data/icons.json

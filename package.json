@@ -10,6 +10,9 @@
   "dependencies": {
     "@fontsource/inter": "^5.1.0",
     "@fontsource/montserrat": "^5.1.0",
+    "@iconify-json/circle-flags": "^1.2.14",
+    "@iconify-json/fluent-emoji-flat": "^1.2.6",
+    "@iconify-json/lucide": "^1.2.153",
     "@react-three/fiber": "^8.17.10",
     "@remotion/bundler": "4.0.542",
     "@remotion/cli": "4.0.542",

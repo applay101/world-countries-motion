@@ -6,13 +6,14 @@ import { EP, GOLD, INK, TITLE, BODY, segIndexAt, INTRO_END } from './lib/core';
 import { MapLayer } from './scenes/MapLayer';
 import { FlagWave, usePreload } from './scenes/Three';
 import CH from '../channel.json';
+import { Icon } from './lib/Icon';
 
 const useFonts = () => {
   const [h] = useState(() => delayRender('fonts'));
   useEffect(() => { Promise.all(['800 40px Montserrat', '700 40px Inter'].map((f) => document.fonts.load(f))).then(() => continueRender(h)).catch(() => continueRender(h)); }, [h]);
 };
 
-type Th = { style?: string; top?: string; big: string; sub?: string; badge?: string; rank?: string; question?: string;
+type Th = { style?: string; emoji?: string; top?: string; big: string; sub?: string; badge?: string; rank?: string; question?: string;
   left?: { label: string; value: string }; right?: { label: string; value: string }; items?: string[] };
 
 const YEL = '#FFD23F', RED = '#ff3b30';
@@ -224,7 +225,7 @@ export const Thumbnail: React.FC = () => {
         <AbsoluteFill style={{ background: 'linear-gradient(0deg, rgba(2,5,12,.95) 0%, rgba(2,5,12,.6) 38%, rgba(2,5,12,0) 62%)' }} />
         <Vig a={0.6} />
         {th.top ? <Tag style={{ position: 'absolute', left: 46, top: 40 }}>{th.top}</Tag> : null}
-        <Flag x={1080} y={30} w={160} h={160} round />
+        <div style={{ position: 'absolute', left: 1076, top: 30, borderRadius: '50%', boxShadow: '0 0 0 7px #fff, 0 0 0 12px #000, 0 16px 30px rgba(0,0,0,.6)' }}><Icon name={'circle-flags:' + C.iso2} size={160} /></div>
         <div style={{ position: 'absolute', left: 0, right: 0, bottom: 44, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
           <T size={fit(th.big, 1180, 190)}>{th.big}</T>
           {th.sub ? <div style={{ marginTop: 14, padding: '2px 28px 8px', background: YEL, transform: 'rotate(-2deg) skewX(-8deg)', boxShadow: '0 0 0 5px #000' }}>
@@ -251,5 +252,10 @@ export const Thumbnail: React.FC = () => {
         <Brand />
       </>);
   }
-  return <AbsoluteFill style={{ background: '#02050c', overflow: 'hidden' }}>{body}</AbsoluteFill>;
+  const POS: Record<string, [number, number, number]> = { classic: [560, 470, -12], split: [470, 300, 12], bignum: [80, 470, -12], question: [690, 470, 10],
+    versus: [1060, 520, 12], flagfull: [70, 70, -12], rank: [300, 505, 10], spotlight: [60, 520, -10], steps: [930, 520, 12], headline: [70, 220, -12] };
+  const [ex, ey, er] = POS[style] ?? POS.classic;
+  const sticker = th.emoji ? <div style={{ position: 'absolute', left: ex, top: ey, transform: `rotate(${er}deg)`, filter: 'drop-shadow(0 0 0 #000) drop-shadow(0 14px 22px rgba(0,0,0,.7))' }}>
+    <Icon name={th.emoji} size={190} style={{ filter: 'drop-shadow(5px 0 0 #fff) drop-shadow(-5px 0 0 #fff) drop-shadow(0 5px 0 #fff) drop-shadow(0 -5px 0 #fff)' }} /></div> : null;
+  return <AbsoluteFill style={{ background: '#02050c', overflow: 'hidden' }}>{body}{sticker}</AbsoluteFill>;
 };

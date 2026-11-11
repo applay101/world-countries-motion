@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { AbsoluteFill, Img, continueRender, delayRender, staticFile } from 'remotion';
 import { EP, GOLD, INK, TITLE, BODY } from './lib/core';
 import CH from '../channel.json';
+import { Icon } from './lib/Icon';
 
 const OL = '4px 4px 0 #000, -4px 4px 0 #000, 4px -4px 0 #000, -4px -4px 0 #000, 0 6px 0 #000, 0 -5px 0 #000, 5px 0 0 #000, -5px 0 0 #000, 0 12px 30px rgba(0,0,0,.8)';
 const fit = (s: string, maxW: number, max: number, k = 0.72) => Math.round(Math.min(max, maxW / Math.max(1, s.length * k)));
@@ -11,7 +12,7 @@ const fit = (s: string, maxW: number, max: number, k = 0.72) => Math.round(Math.
 export const ShortFrame: React.FC = () => {
   const [h] = useState(() => delayRender('fonts'));
   useEffect(() => { Promise.all(['800 40px Montserrat', '700 40px Inter'].map((f) => document.fonts.load(f))).then(() => continueRender(h)).catch(() => continueRender(h)); }, [h]);
-  const th = ((EP as any).thumb ?? {}) as { top?: string; big?: string; sub?: string };
+  const th = ((EP as any).thumb ?? {}) as { top?: string; big?: string; sub?: string; emoji?: string };
   const sh = ((EP as any).short ?? {}) as { title?: string; sub?: string };
   const big = (sh.title ?? th.big ?? EP.country.name).toUpperCase();
   const sub = sh.sub ?? th.sub ?? '';
@@ -21,12 +22,13 @@ export const ShortFrame: React.FC = () => {
       <div style={{ position: 'absolute', left: 0, top: 0, width: 1080, height: 520, background: 'linear-gradient(180deg, rgba(3,5,11,.92) 0%, rgba(3,5,11,.8) 78%, rgba(3,5,11,0) 100%)' }} />
       <div style={{ position: 'absolute', left: 0, right: 0, top: 90, display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 22 }}>
-          <Img src={staticFile('flag.png')} style={{ width: 96, height: 72, borderRadius: 8, boxShadow: '0 0 0 4px #000, 0 10px 20px rgba(0,0,0,.6)', objectFit: 'cover' }} />
+          <div style={{ borderRadius: '50%', boxShadow: '0 0 0 5px #fff, 0 0 0 9px #000' }}><Icon name={'circle-flags:' + EP.country.iso2} size={86} /></div>
           {th.top ? <div style={{ fontFamily: TITLE, fontWeight: 800, fontSize: 52, color: INK, background: GOLD, padding: '4px 24px 9px', borderRadius: 14, transform: 'rotate(-2deg)', boxShadow: '0 0 0 4px #000' }}>{th.top}</div> : null}
         </div>
         <div style={{ fontFamily: TITLE, fontWeight: 800, fontSize: fit(big, 980, 170), lineHeight: 1, color: '#fff', marginTop: 28, textShadow: OL, whiteSpace: 'nowrap' }}>{big}</div>
         {sub ? <div style={{ fontFamily: TITLE, fontWeight: 800, fontSize: fit(sub, 980, 72, 0.62), color: GOLD, marginTop: 16, textShadow: OL, whiteSpace: 'nowrap' }}>{sub}</div> : null}
       </div>
+      {th.emoji ? <div style={{ position: 'absolute', right: 40, top: 300, transform: 'rotate(12deg)', filter: 'drop-shadow(0 12px 20px rgba(0,0,0,.7))' }}><Icon name={th.emoji} size={150} /></div> : null}
       {/* bottom band */}
       <div style={{ position: 'absolute', left: 0, bottom: 0, width: 1080, height: 520, background: 'linear-gradient(0deg, rgba(3,5,11,.95) 0%, rgba(3,5,11,.85) 70%, rgba(3,5,11,0) 100%)' }} />
       <div style={{ position: 'absolute', left: 0, right: 0, bottom: 230, display: 'flex', justifyContent: 'center' }}>

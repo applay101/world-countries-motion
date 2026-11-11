@@ -47,7 +47,10 @@ Before writing, look at the last 3 episodes (`ls -t episodes/`, read their scrip
     - `stats`: like map plus `capital` [name, lon, lat] and `cards` [{label, value, suffix, fmt: int|1dp|2dp, note} or {label, text}]. Set the view lon about 0.15×span east of the country so it sits left of the panel.
     - `cities`: `view`, `cities` [[name, lon, lat]]
     - `timeline`: `events` [[year label, short text]] (3 to 5)
-    - `cards`: `cards` [[icon, title, subtitle, cueWord?]] (icons: flamenco, clock, bull, tomato, flower, train, torii, bowl, mountain, star)
+    - `cards`: `cards` [[icon, title, subtitle, cueWord?]] (icon: a library icon like "fluent-emoji-flat:steaming-bowl" (preferred, modern colour emoji) or a built-in one: flamenco, clock, bull, tomato, flower, train, torii, bowl, mountain, star)
+  - **Digital icon library** (in node_modules, free licences): `fluent-emoji-flat:<name>` (≈3,000 Microsoft Fluent colour emoji, e.g. fire, rocket, airplane, money-bag, chart-increasing, star-struck, exploding-head, red-heart, trophy, 1st-place-medal, globe-showing-europe-africa, passport-control, house, palm-tree, snow-capped-mountain, camel, sushi, pizza, steaming-bowl, beach-with-umbrella, castle, classical-building, bullet-train, speech-balloon), `lucide:<name>` (line icons) and `circle-flags:<iso2>` (round flags). List names: `python3 -c "import json;print(list(json.load(open('node_modules/@iconify-json/fluent-emoji-flat/icons.json'))['icons']))"`. Use them for:
+    - `scene.pops` [[cueWord, icon]] on any segment: the emoji bounces in when the word is spoken (1–3 per segment, on about half the segments; they make videos feel modern, don't overdo it).
+    - `cards` icons, and `thumb.emoji` (a big sticker emoji on the thumbnail and the Short, e.g. "fluent-emoji-flat:exploding-head" for a shock, "fluent-emoji-flat:thinking-face" for a question).
     - `bignum`: `value`, `fmt`, `suffix`, `label`, `note`, `chips` [], `cue` (spoken word that starts the count)
     - `bars`: `kpis` [{label, value, prefix, suffix, fmt, cue}] and `bars` {title, items [[label, value]], cue}, `note`
     - stats `cards` also take `cue` (the spoken word that reveals the card)

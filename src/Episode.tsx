@@ -1,5 +1,6 @@
 // One country episode: globe intro -> narrated map chapters with infographics -> outro. 1920x1080.
 import React, { useEffect, useState } from 'react';
+import { Icon } from './lib/Icon';
 import { AbsoluteFill, continueRender, delayRender, useCurrentFrame, useVideoConfig } from 'remotion';
 import { EP, W, H, GOLD, INK, TITLE, BODY, cl, pr, eBack, eOut, segIndexAt, spokenAt, E, INTRO_END, INTRO_TYPE } from './lib/core';
 import { FlagIntro, HookIntro } from './scenes/Intros';
@@ -19,6 +20,22 @@ const useFonts = () => {
 const FIRST_MAP = { start: INTRO_END };
 
 // countdown badge (#5 … #1) for list-style episodes: any segment with scene.rank
+// Emoji pops: scene.pops [[cueWord, "fluent-emoji-flat:<name>"]] bounce in when the word is spoken
+const EmojiPops: React.FC<{ t: number }> = ({ t }) => {
+  const i = segIndexAt(t), seg = EP.segments[i];
+  const pops = ((seg?.scene as any)?.pops ?? []) as [string, string][];
+  return (<>{pops.map(([w, name], k) => {
+    const at = spokenAt(seg, w) ?? seg.start + 1 + k * 2; const age = t - at + 0.1;
+    if (age < 0 || age > 2.1) return null;
+    const pin = eBack(cl(age / 0.35)), out = cl((age - 1.75) / 0.35);
+    const side = ['bars', 'stats', 'bignum', 'checklist'].includes(seg.scene.type) ? 1 : k % 2; const left = side ? 200 : 1530, top = 560 - (k % 3) * 40;
+    return (<div key={k} style={{ position: 'absolute', left, top, width: 190, height: 190, transform: `translateY(${-age * 24}px) scale(${pin * (1 - out * 0.6)}) rotate(${(k % 2 ? -1 : 1) * (14 - pin * 10 + Math.sin(age * 6) * 4)}deg)`, opacity: 1 - out }}>
+      <div style={{ position: 'absolute', inset: -30, borderRadius: '50%', border: `6px solid ${GOLD}`, opacity: cl(1 - age / 0.6), transform: `scale(${0.6 + age * 1.4})` }} />
+      <Icon name={name} size={190} style={{ filter: 'drop-shadow(0 14px 24px rgba(0,0,0,.55))' }} />
+    </div>);
+  })}</>);
+};
+
 const RankBadge: React.FC<{ t: number }> = ({ t }) => {
   const k = EP.segments.findIndex((s, j) => s.scene.rank && t >= s.start - 0.3 && t < (EP.segments[j + 1]?.start ?? EP.duration) - 0.3);
   if (k < 0) return null;
@@ -95,6 +112,7 @@ export const Episode: React.FC = () => {
       <LightSweep t={t} />
       <ChapterHero t={t} />
       {INTRO_TYPE === 'hook' && t < INTRO_END ? null : <Captions t={t} />}
+      <EmojiPops t={t} />
       <RankBadge t={t} />
       <Progress t={t} />
       <AbsoluteFill style={{ background: '#fff7e0', opacity: flash, mixBlendMode: 'screen' }} />
