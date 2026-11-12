@@ -1,0 +1,1028 @@
+{
+ "id": "flags-that-break-the-rules",
+ "country": {
+  "name": "Nepal",
+  "iso2": "np",
+  "isoNum": "524",
+  "lon": 84.1,
+  "lat": 28.4,
+  "capital": "Kathmandu"
+ },
+ "voice": "am_michael",
+ "speed": 1.0,
+ "music": "pulse",
+ "theme": {
+  "map": "blueprint",
+  "accent": "#FFD23F"
+ },
+ "thumb": {
+  "style": "split",
+  "top": "FLAG RULES",
+  "big": "RULE BREAKERS",
+  "sub": "8 rules broken",
+  "badge": "1 of 195",
+  "emoji": "fluent-emoji-flat:exploding-head"
+ },
+ "short": {
+  "title": "NOT A RECTANGLE",
+  "sub": "Flag rule breakers",
+  "segments": [
+   "intro",
+   "nepal",
+   "philippines"
+  ]
+ },
+ "segments": [
+  {
+   "id": "intro",
+   "text": "Almost two hundred national flags. Every one is a rectangle, except one. This is Nepal.",
+   "scene": {
+    "type": "hook",
+    "lines": [
+     [
+      "~200 FLAGS",
+      "Almost"
+     ],
+     [
+      "ALL RECTANGLES",
+      "rectangle"
+     ],
+     [
+      "EXCEPT ONE",
+      "except"
+     ],
+     [
+      "NEPAL",
+      "Nepal"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "overview",
+   "text": "Flags follow unwritten rules: the shape, the colours, what you can and cannot put on them. Today, eight rules, and the countries that broke them. From Nepal in the Himalayas to Qatar in the Gulf, from Mozambique to Paraguay, from Denmark to the Philippines, where one flag even flips upside down.",
+   "scene": {
+    "type": "map",
+    "chapter": "Eight rules, broken",
+    "view": {
+     "lon": 35,
+     "lat": 18,
+     "span": 300
+    },
+    "markers": [
+     [
+      "Nepal",
+      84.1,
+      28.4,
+      "pin"
+     ],
+     [
+      "Qatar",
+      51.2,
+      25.3,
+      "pin"
+     ],
+     [
+      "Mozambique",
+      35.5,
+      -18.5,
+      "pin"
+     ],
+     [
+      "Paraguay",
+      -58.4,
+      -23.4,
+      "pin"
+     ],
+     [
+      "Denmark",
+      9.5,
+      56.0,
+      "pin"
+     ],
+     [
+      "Philippines",
+      122.0,
+      12.0,
+      "pin"
+     ]
+    ],
+    "pops": [
+     [
+      "rules",
+      "lib:kings-049"
+     ],
+     [
+      "flips",
+      "fluent-3d:counterclockwise-arrows-button"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "nepal",
+   "text": "Rule one: a flag is a rectangle. Nepal said no. Over Kathmandu, over the lakes of Pokhara and up toward Mount Everest flies a flag made of two stacked triangles, crimson with a blue border. It is the only national flag in the modern world that is not a rectangle.",
+   "scene": {
+    "type": "map",
+    "chapter": "Rule 1: a flag is a rectangle",
+    "view": {
+     "lon": 84.4,
+     "lat": 28.2,
+     "span": 19
+    },
+    "markers": [
+     [
+      "Kathmandu",
+      85.32,
+      27.71,
+      "star"
+     ],
+     [
+      "Pokhara",
+      83.99,
+      28.21,
+      "pin"
+     ],
+     [
+      "Mount Everest",
+      86.925,
+      27.988,
+      "peak"
+     ]
+    ],
+    "pops": [
+     [
+      "triangles",
+      "fluent-3d:triangular-flag"
+     ],
+     [
+      "only",
+      "fluent-3d:exploding-head"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "nepal-design",
+   "text": "The two pennants carry a white moon on top and a white sun below, often read as a wish that the nation lasts as long as both. The design became official in nineteen sixty-two. And the constitution includes step-by-step geometry, so anyone can draw it exactly right.",
+   "scene": {
+    "type": "cards",
+    "chapter": "Rule 1: a flag is a rectangle",
+    "cards": [
+     [
+      "fluent-3d:crescent-moon",
+      "The moon",
+      "on the top pennant",
+      "moon"
+     ],
+     [
+      "fluent-3d:sun",
+      "The sun",
+      "on the lower pennant",
+      "sun"
+     ],
+     [
+      "fluent-3d:spiral-calendar",
+      "1962",
+      "made official",
+      "official"
+     ],
+     [
+      "fluent-3d:triangular-ruler",
+      "Geometry",
+      "written into the constitution",
+      "geometry"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "square",
+   "text": "Others bend the rule. In Switzerland, from Geneva to Bern to Zurich, the flag is a perfect square: a white cross on red. Only one other country flies a square national flag: Vatican City, inside Rome. Two squares, out of almost two hundred.",
+   "scene": {
+    "type": "map",
+    "chapter": "Rule 1: a flag is a rectangle",
+    "view": {
+     "lon": 10.2,
+     "lat": 44.6,
+     "span": 16
+    },
+    "markers": [
+     [
+      "Geneva",
+      6.14,
+      46.2,
+      "pin"
+     ],
+     [
+      "Bern",
+      7.45,
+      46.95,
+      "star"
+     ],
+     [
+      "Zurich",
+      8.54,
+      47.37,
+      "pin"
+     ],
+     [
+      "Vatican City",
+      12.45,
+      41.9,
+      "star"
+     ]
+    ],
+    "countries": [
+     "Switzerland",
+     "Vatican City"
+    ],
+    "pops": [
+     [
+      "square",
+      "fluent-3d:white-large-square"
+     ],
+     [
+      "cross",
+      "fluent-3d:red-square"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "qatar",
+   "text": "Then Qatar stretched it. Its official ratio is eleven by twenty-eight, the only national flag more than twice as wide as it is tall. Maroon, with a white band of nine sharp points, it flies over Doha, Al Khor, Mesaieed and the oil town of Dukhan, between Saudi Arabia and Bahrain.",
+   "scene": {
+    "type": "map",
+    "chapter": "Rule 1: a flag is a rectangle",
+    "view": {
+     "lon": 50.9,
+     "lat": 25.4,
+     "span": 6.5
+    },
+    "labels": [
+     [
+      "Persian Gulf",
+      52.6,
+      26.5,
+      "sea"
+     ]
+    ],
+    "markers": [
+     [
+      "Doha",
+      51.53,
+      25.29,
+      "star"
+     ],
+     [
+      "Al Khor",
+      51.5,
+      25.68,
+      "pin"
+     ],
+     [
+      "Mesaieed",
+      51.55,
+      24.99,
+      "pin"
+     ],
+     [
+      "Dukhan",
+      50.78,
+      25.42,
+      "pin"
+     ]
+    ],
+    "countries": [
+     "Qatar",
+     "Saudi Arabia",
+     "Bahrain"
+    ],
+    "pops": [
+     [
+      "stretched",
+      "fluent-3d:left-right-arrow"
+     ],
+     [
+      "oil",
+      "fluent-3d:oil-drum"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "ratios",
+   "text": "Line them up by width. Switzerland is as wide as it is tall. France, like most flags, is two by three. Canada is twice as wide as it is tall. And Qatar, about two and a half times. Just two square flags, one record breaker, and only one flag that is not a rectangle at all.",
+   "scene": {
+    "type": "bars",
+    "chapter": "Rule 1: a flag is a rectangle",
+    "kpis": [
+     {
+      "label": "Square national flags",
+      "value": 2,
+      "fmt": "int",
+      "cue": "square"
+     },
+     {
+      "label": "Not a rectangle",
+      "value": 1,
+      "fmt": "int",
+      "cue": "not"
+     }
+    ],
+    "bars": {
+     "title": "How wide is the flag? (width ÷ height)",
+     "items": [
+      [
+       "Switzerland",
+       1.0
+      ],
+      [
+       "France",
+       1.5
+      ],
+      [
+       "Canada",
+       2.0
+      ],
+      [
+       "Qatar",
+       2.55
+      ]
+     ],
+     "cue": "Switzerland"
+    },
+    "note": "Guinness World Records, Britannica"
+   }
+  },
+  {
+   "id": "paraguay",
+   "text": "Rule two: a flag looks the same from both sides. Not in Paraguay. Wave it over Asunción and you see the national arms, a gold star in a wreath. But walk around it, in Encarnación or Ciudad del Este, and the back shows something else: the treasury seal, a lion under a cap of liberty.",
+   "scene": {
+    "type": "map",
+    "chapter": "Rule 2: same on both sides",
+    "view": {
+     "lon": -57.8,
+     "lat": -23.8,
+     "span": 20
+    },
+    "markers": [
+     [
+      "Asunción",
+      -57.58,
+      -25.26,
+      "star"
+     ],
+     [
+      "Encarnación",
+      -55.87,
+      -27.33,
+      "pin"
+     ],
+     [
+      "Ciudad del Este",
+      -54.61,
+      -25.51,
+      "pin"
+     ]
+    ],
+    "countries": [
+     "Paraguay"
+    ],
+    "pops": [
+     [
+      "wreath",
+      "lib:kings-004"
+     ],
+     [
+      "lion",
+      "fluent-3d:lion"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "two-sides",
+   "text": "Under the lion are the words Paz y Justicia, peace and justice. Saudi Arabia solves the problem differently. Its flag carries the Muslim declaration of faith, so it must read correctly from both sides. And because of those holy words, it is never lowered to half-mast.",
+   "scene": {
+    "type": "split",
+    "chapter": "Rule 2: same on both sides",
+    "vs": "≠",
+    "left": {
+     "title": "Paraguay",
+     "sub": "Front: national arms · Back: treasury seal",
+     "icon": "circle-flags:py",
+     "value": "2 faces",
+     "cue": "Paz"
+    },
+    "right": {
+     "title": "Saudi Arabia",
+     "sub": "Reads correctly from both sides · never at half-mast",
+     "icon": "circle-flags:sa",
+     "value": "Never lowered",
+     "cue": "Saudi"
+    }
+   }
+  },
+  {
+   "id": "maps",
+   "text": "Rule three: never put a map on a flag. Two countries did anyway. In Cyprus, from Nicosia to Limassol, the flag shows the whole island in copper orange above two olive branches. In Kosovo, from Pristina to Prizren, a gold map sits under six white stars. They are the only two national flags with a map of their own country.",
+   "scene": {
+    "type": "map",
+    "chapter": "Rule 3: no maps, no weapons",
+    "view": {
+     "lon": 27.5,
+     "lat": 38.8,
+     "span": 26
+    },
+    "labels": [
+     [
+      "Mediterranean Sea",
+      22.5,
+      34.5,
+      "sea"
+     ]
+    ],
+    "markers": [
+     [
+      "Nicosia",
+      33.36,
+      35.17,
+      "star"
+     ],
+     [
+      "Limassol",
+      33.04,
+      34.71,
+      "pin"
+     ],
+     [
+      "Pristina",
+      21.17,
+      42.66,
+      "star"
+     ],
+     [
+      "Prizren",
+      20.74,
+      42.21,
+      "pin"
+     ]
+    ],
+    "countries": [
+     "Cyprus",
+     "Kosovo"
+    ],
+    "pops": [
+     [
+      "map",
+      "fluent-3d:world-map"
+     ],
+     [
+      "olive",
+      "fluent-3d:dove"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "mozambique",
+   "text": "And no weapons, please. Mozambique's flag, flying from Maputo to Beira, Nampula and Pemba, shows a hoe crossed with a rifle, widely recognised as an AK-forty-seven, on an open book. The constitution says they stand for production, defence and study. No other national flag shows a modern assault rifle.",
+   "scene": {
+    "type": "map",
+    "chapter": "Rule 3: no maps, no weapons",
+    "view": {
+     "lon": 36.5,
+     "lat": -18.5,
+     "span": 26
+    },
+    "labels": [
+     [
+      "Indian Ocean",
+      42.5,
+      -22.5,
+      "sea"
+     ]
+    ],
+    "markers": [
+     [
+      "Maputo",
+      32.57,
+      -25.97,
+      "star"
+     ],
+     [
+      "Beira",
+      34.84,
+      -19.84,
+      "pin"
+     ],
+     [
+      "Nampula",
+      39.27,
+      -15.12,
+      "pin"
+     ],
+     [
+      "Pemba",
+      40.52,
+      -12.97,
+      "pin"
+     ]
+    ],
+    "countries": [
+     "Mozambique"
+    ],
+    "pops": [
+     [
+      "hoe",
+      "fluent-3d:hammer-and-pick"
+     ],
+     [
+      "book",
+      "fluent-3d:open-book"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "pictures",
+   "text": "Other flags break this rule with pictures. Belize is the only country with people as a main part of its flag: two woodcutters. Cambodia shows a building, the temple of Angkor Wat. Guatemala crosses two old rifles. And from nineteen seventy-seven to twenty eleven, Libya flew plain green, with nothing on it at all.",
+   "scene": {
+    "type": "cards",
+    "chapter": "Rule 3: no maps, no weapons",
+    "cards": [
+     [
+      "fluent-3d:people-hugging",
+      "Belize",
+      "two men: the only flag with people",
+      "Belize"
+     ],
+     [
+      "fluent-3d:hindu-temple",
+      "Cambodia",
+      "the temple of Angkor Wat",
+      "Cambodia"
+     ],
+     [
+      "fluent-3d:crossed-swords",
+      "Guatemala",
+      "two crossed old rifles",
+      "Guatemala"
+     ],
+     [
+      "fluent-3d:green-square",
+      "Libya 1977–2011",
+      "plain green, nothing else",
+      "Libya"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "purple",
+   "text": "Rule four: no purple. For centuries purple dye came from sea snails, roughly ten thousand of them for a single gram, a colour for emperors. So flags avoided it, and it is still the rarest colour. Dominica, whose capital is Roseau, shows it best: a purple sisserou parrot. Nicaragua, from Managua, hides a tiny rainbow in its emblem. And Belize City flies those two woodcutters.",
+   "scene": {
+    "type": "map",
+    "chapter": "Rule 4: no purple",
+    "view": {
+     "lon": -75.5,
+     "lat": 15.2,
+     "span": 34
+    },
+    "labels": [
+     [
+      "Caribbean Sea",
+      -76,
+      14.5,
+      "sea"
+     ]
+    ],
+    "markers": [
+     [
+      "Roseau",
+      -61.39,
+      15.3,
+      "star"
+     ],
+     [
+      "Managua",
+      -86.25,
+      12.13,
+      "star"
+     ],
+     [
+      "Belize City",
+      -88.2,
+      17.5,
+      "pin"
+     ]
+    ],
+    "countries": [
+     "Dominica",
+     "Nicaragua",
+     "Belize"
+    ],
+    "pops": [
+     [
+      "snails",
+      "fluent-3d:snail"
+     ],
+     [
+      "parrot",
+      "fluent-3d:parrot"
+     ],
+     [
+      "rainbow",
+      "fluent-3d:rainbow"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "stars",
+   "text": "Rule five: keep it simple. Some flags count. The United States carries fifty stars, Brazil twenty-seven, Cape Verde ten for its main islands, Tuvalu nine for its islands, and Australia six. And the US flag has officially changed twenty-seven times. The fifty-star version first flew in nineteen sixty.",
+   "scene": {
+    "type": "map",
+    "chapter": "Rule 5: keep it simple",
+    "view": {
+     "lon": 25,
+     "lat": -14,
+     "span": 360
+    },
+    "bubbles": [
+     [
+      "United States",
+      -98,
+      39,
+      50,
+      "us",
+      "United"
+     ],
+     [
+      "Brazil",
+      -52,
+      -3,
+      27,
+      "br",
+      "Brazil"
+     ],
+     [
+      "Cape Verde",
+      -24,
+      16,
+      10,
+      "cv",
+      "Cape"
+     ],
+     [
+      "Tuvalu",
+      172,
+      -8.5,
+      9,
+      "tv",
+      "Tuvalu"
+     ],
+     [
+      "Australia",
+      134,
+      -25,
+      6,
+      "au",
+      "Australia"
+     ]
+    ],
+    "bubbleFmt": "{v} ★",
+    "pops": [
+     [
+      "count",
+      "fluent-3d:glowing-star"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "brazil",
+   "text": "Brazil's stars are not random. They show the real sky over Rio de Janeiro at eight thirty in the morning on the fifteenth of November, eighteen eighty-nine, the day Brazil became a republic. Each star is a state, from São Paulo to Manaus, plus the federal district of Brasília. Across the sky runs the motto: order and progress.",
+   "scene": {
+    "type": "map",
+    "chapter": "Rule 5: keep it simple",
+    "view": {
+     "lon": -51,
+     "lat": -14.5,
+     "span": 46
+    },
+    "labels": [
+     [
+      "Atlantic Ocean",
+      -33,
+      -20,
+      "sea"
+     ]
+    ],
+    "markers": [
+     [
+      "Rio de Janeiro",
+      -43.2,
+      -22.9,
+      "star"
+     ],
+     [
+      "São Paulo",
+      -46.63,
+      -23.55,
+      "pin"
+     ],
+     [
+      "Manaus",
+      -60.02,
+      -3.12,
+      "pin"
+     ],
+     [
+      "Brasília",
+      -47.88,
+      -15.79,
+      "star"
+     ]
+    ],
+    "pops": [
+     [
+      "sky",
+      "fluent-3d:milky-way"
+     ],
+     [
+      "Rio",
+      "lib:landmarks-002"
+     ],
+     [
+      "republic",
+      "fluent-3d:classical-building"
+     ]
+    ],
+    "countries": [
+     "Brazil"
+    ]
+   }
+  },
+  {
+   "id": "twins",
+   "text": "Rule six: be unique. Romania and Chad fly almost the same blue, yellow and red stripes; only the shade of blue differs. Indonesia and Monaco are both red over white, just in different proportions. And Ireland and Côte d'Ivoire use the same three colours in mirror order.",
+   "scene": {
+    "type": "morph",
+    "chapter": "Rule 6: be unique",
+    "shapes": [
+     [
+      "Romania",
+      "642",
+      "ro",
+      "Blue · yellow · red",
+      "Romania"
+     ],
+     [
+      "Chad",
+      "148",
+      "td",
+      "Same stripes, darker blue",
+      "Chad"
+     ],
+     [
+      "Indonesia",
+      "360",
+      "id",
+      "Red over white · 2:3",
+      "Indonesia"
+     ],
+     [
+      "Monaco",
+      "492",
+      "mc",
+      "Red over white · 4:5",
+      "Monaco"
+     ],
+     [
+      "Ireland",
+      "372",
+      "ie",
+      "Green · white · orange",
+      "Ireland"
+     ],
+     [
+      "Côte d'Ivoire",
+      "384",
+      "ci",
+      "Orange · white · green",
+      "Côte"
+     ]
+    ],
+    "note": "Britannica"
+   }
+  },
+  {
+   "id": "denmark",
+   "text": "Rule seven: flags change. Denmark's never did. Guinness World Records calls it the oldest national flag in continuous use. Legend says it fell from the sky in twelve nineteen, during a battle near today's Tallinn in Estonia. Its cross then spread north: to Sweden, Norway, Finland and Iceland.",
+   "scene": {
+    "type": "map",
+    "chapter": "Rule 7: flags change",
+    "view": {
+     "lon": 6,
+     "lat": 60.5,
+     "span": 62
+    },
+    "arcs": [
+     {
+      "from": [
+       12.57,
+       55.68
+      ],
+      "to": [
+       24.75,
+       59.44
+      ],
+      "label": "1219 legend",
+      "cue": "Tallinn"
+     },
+     {
+      "from": [
+       12.57,
+       55.68
+      ],
+      "to": [
+       18.07,
+       59.33
+      ],
+      "cue": "Sweden"
+     },
+     {
+      "from": [
+       12.57,
+       55.68
+      ],
+      "to": [
+       10.75,
+       59.91
+      ],
+      "cue": "Norway"
+     },
+     {
+      "from": [
+       12.57,
+       55.68
+      ],
+      "to": [
+       24.94,
+       60.17
+      ],
+      "cue": "Finland"
+     },
+     {
+      "from": [
+       12.57,
+       55.68
+      ],
+      "to": [
+       -21.94,
+       64.15
+      ],
+      "cue": "Iceland"
+     }
+    ],
+    "countries": [
+     "Denmark",
+     "Estonia",
+     "Sweden",
+     "Norway",
+     "Finland",
+     "Iceland"
+    ],
+    "pops": [
+     [
+      "sky",
+      "lib:kings-048"
+     ],
+     [
+      "oldest",
+      "fluent-3d:hourglass-done"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "philippines",
+   "text": "And rule eight, the strangest: never fly a flag upside down. In the Philippines, from Manila to Cebu to Davao, the law says blue goes on top in peace. But in a time of war, the flag is flipped, red on top. A national flag that changes its message with a single turn.",
+   "scene": {
+    "type": "map",
+    "chapter": "Rule 8: never upside down",
+    "view": {
+     "lon": 122.6,
+     "lat": 11.8,
+     "span": 22
+    },
+    "labels": [
+     [
+      "South China Sea",
+      116.5,
+      13.5,
+      "sea"
+     ],
+     [
+      "Philippine Sea",
+      128,
+      14.5,
+      "sea"
+     ]
+    ],
+    "markers": [
+     [
+      "Manila",
+      120.98,
+      14.6,
+      "star"
+     ],
+     [
+      "Cebu",
+      123.89,
+      10.32,
+      "pin"
+     ],
+     [
+      "Davao",
+      125.61,
+      7.07,
+      "pin"
+     ]
+    ],
+    "pops": [
+     [
+      "peace",
+      "fluent-3d:dove"
+     ],
+     [
+      "war",
+      "lib:kings-047"
+     ],
+     [
+      "flipped",
+      "fluent-3d:counterclockwise-arrows-button"
+     ]
+    ],
+    "countries": [
+     "Philippines"
+    ]
+   }
+  },
+  {
+   "id": "recap",
+   "text": "So that's the rulebook, broken. Nepal's triangles. Qatar's stretched maroon. Paraguay's two faces. The maps of Cyprus and Kosovo. Dominica's purple parrot. Brazil's sky. Denmark's eight centuries. And the Philippine flag that flips for war.",
+   "scene": {
+    "type": "journey",
+    "stops": [
+     [
+      "Shape",
+      "Nepal & Qatar",
+      "circle-flags:np",
+      "triangles"
+     ],
+     [
+      "2 sides",
+      "Paraguay",
+      "circle-flags:py",
+      "faces"
+     ],
+     [
+      "Maps",
+      "Cyprus & Kosovo",
+      "circle-flags:cy",
+      "maps"
+     ],
+     [
+      "Purple",
+      "Dominica",
+      "circle-flags:dm",
+      "purple"
+     ],
+     [
+      "Stars",
+      "Brazil",
+      "circle-flags:br",
+      "sky"
+     ],
+     [
+      "Upside down",
+      "Philippines",
+      "circle-flags:ph",
+      "flips"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "outro",
+   "text": "Which rule breaker surprised you most? Tell us in the comments. Next, watch the things that exist in only one country on Earth. Subscribe to Zoom World Travel, and join us for the next country.",
+   "scene": {
+    "type": "outro"
+   }
+  }
+ ]
+}

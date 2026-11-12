@@ -72,8 +72,9 @@ const flagFS = `
 uniform sampler2D uMap; uniform float uOpacity; varying vec2 vUv; varying float vShade;
 void main(){
   vec4 c = texture2D(uMap, vUv);
+  if (c.a < 0.04) discard; // non-rectangular flags (Nepal): keep the transparent parts see-through
   float l = clamp(0.92 + 0.4*vShade, 0.55, 1.3);
-  gl_FragColor = vec4(c.rgb * l + vec3(1.0,0.96,0.88) * pow(max(vShade,0.0),2.0) * 0.16, uOpacity);
+  gl_FragColor = vec4(c.rgb * l + vec3(1.0,0.96,0.88) * pow(max(vShade,0.0),2.0) * 0.16, uOpacity * c.a);
 }`;
 const FlagMesh: React.FC<{ t: number; amp: number }> = ({ t, amp }) => {
   const tex = TEX['flag.png'];

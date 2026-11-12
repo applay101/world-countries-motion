@@ -10,6 +10,7 @@ import { SvgIcon } from '../lib/Icon';
 
 const FC: any = feature(world as any, (world as any).objects.countries);
 const FEATS: any[] = FC.features;
+FEATS.forEach((f) => { if (f.id == null && f.properties?.name === 'Kosovo') f.id = 'XKX'; }); // Kosovo has no ISO numeric code in world-atlas
 const TARGET = FEATS.find((f) => String(f.id).padStart(3, '0') === EP.country.isoNum);
 // largest polygon of the target (mainland) -> where the flag image is anchored
 const MAIN: any = (() => {

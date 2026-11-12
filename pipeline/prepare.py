@@ -33,15 +33,16 @@ ALIAS = {'unitedstates': 'United States of America', 'usa': 'United States of Am
          'uk': 'United Kingdom', 'britain': 'United Kingdom', 'greatbritain': 'United Kingdom', 'england': 'United Kingdom', 'czechia': 'Czechia', 'czechrepublic': 'Czechia',
          'uae': 'United Arab Emirates', 'emirates': 'United Arab Emirates', 'holland': 'Netherlands', 'turkiye': 'Turkey', 'ivorycoast': "Côte d'Ivoire",
          'congo': 'Dem. Rep. Congo', 'drc': 'Dem. Rep. Congo', 'bosnia': 'Bosnia and Herz.', 'southsudan': 'S. Sudan', 'dominicanrepublic': 'Dominican Rep.',
-         'centralafricanrepublic': 'Central African Rep.', 'northkorea': 'North Korea', 'korea': 'South Korea', 'burma': 'Myanmar', 'eswatini': 'eSwatini'}
+         'centralafricanrepublic': 'Central African Rep.', 'northkorea': 'North Korea', 'korea': 'South Korea', 'burma': 'Myanmar', 'eswatini': 'eSwatini', 'vaticancity': 'Vatican', 'holysee': 'Vatican'}
 FIX_CODE = {'unitedstatesofamerica': 'us', 'unitedkingdom': 'gb', 'russia': 'ru', 'southkorea': 'kr', 'northkorea': 'kp', 'czechia': 'cz', 'demrepcongo': 'cd', 'congo': 'cg',
             'bosniaandherz': 'ba', 'ssudan': 'ss', 'dominicanrep': 'do', 'centralafricanrep': 'cf', 'cotedivoire': 'ci', 'eswatini': 'sz', 'turkey': 'tr', 'iran': 'ir', 'syria': 'sy',
             'vietnam': 'vn', 'laos': 'la', 'bolivia': 'bo', 'venezuela': 've', 'tanzania': 'tz', 'moldova': 'md', 'macedonia': 'mk', 'northmacedonia': 'mk', 'taiwan': 'tw', 'palestine': 'ps',
-            'eqguinea': 'gq', 'solomonis': 'sb', 'wsahara': 'eh', 'falklandis': 'fk', 'fraso': 'tf', 'brunei': 'bn', 'capeverde': 'cv', 'cabo verde': 'cv', 'timorleste': 'tl', 'micronesia': 'fm'}
+            'eqguinea': 'gq', 'solomonis': 'sb', 'wsahara': 'eh', 'falklandis': 'fk', 'fraso': 'tf', 'brunei': 'bn', 'capeverde': 'cv', 'cabo verde': 'cv', 'timorleste': 'tl', 'micronesia': 'fm', 'kosovo': 'xk', 'vatican': 'va'}
 _byname = {}
 for g in _wa:
     n = _norm(g['properties']['name']); cid = str(g.get('id', '')).zfill(3)
-    if not g.get('id'): continue
+    if not g.get('id') and n == 'kosovo': cid = 'XKX'  # no ISO numeric code in world-atlas (MapLayer uses the same id)
+    elif not g.get('id'): continue
     code = FIX_CODE.get(n) or _code.get(n)
     if code: _byname[n] = (cid, code, g['properties']['name'])
 os.makedirs(os.path.join(ROOT, 'public', 'flags'), exist_ok=True)
