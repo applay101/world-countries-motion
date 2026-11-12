@@ -1,7 +1,7 @@
 # Episode ideas
 
 Write one idea per line, starting with "- [ ]". The automatic run takes the first unchecked idea before looking for trending topics, then marks it "- [x]".
-Ideas can be in Persian or English. Lines tagged [tutorial] are used by the 14:47 run; the other runs (08:47, 11:47, 17:47, 21:47) use the others. Every number must be verified from official or reputable sources at production time.
+Ideas can be in Persian or English. Since 11 Nov 2026 there are 2 runs a day (09:47 and 16:47 Madrid), each taking the FIRST unchecked line, tutorials included, in queue order. Every number must be verified from official or reputable sources at production time.
 
 ## Production queue: proven million-view topics (Manifold YouTube research, 11 Nov 2026). Use from the top.
 Views in brackets are the competitor video that proves the topic. Copy the topic and title pattern only, never their script. Every rule, visa and number must be checked on official sources at production time (government, EU, Henley/IATA, OECD, World Bank, UN).
@@ -9,8 +9,8 @@ Views in brackets are the competitor video that proves the topic. Copy the topic
 - [x] FOLLOW-UP (same "only countries" theme): The ONLY Countries Whose Flags Break the Rules: Nepal's non-rectangular flag, the square flags of Switzerland and Vatican City and other one-of-a-kind flags, on a world map (110K in 6 days "If Your Flag Has This, Your Country Is Deleted" map animation, Nov 2026; 258K Coca-Cola "ONLY countries" format; verify every flag fact on official/reputable sources)
 - [x] HISTORY: The ENTIRE History of Rome in 12 Minutes (10.6M; parchment, frames timelapse of Roman territory, era cards, street scene "a day in Rome")
 - [ ] Countries You Can Move to in 24 Hours: no visa in advance, no income proof (2.3M "5 countries Americans can move in 24 hours"; say which passports, e.g. US/EU/UK; long visa-free stays like Georgia, Albania, Mexico, Panama; official immigration sites only)
-- [ ] [tutorial] Schengen visa: how to apply step by step (home-affairs.ec.europa.eu + the embassy site; documents checklist, 90/180 rule)
 - [ ] Why No Other Country Is Like Switzerland (3.4M Johnny Harris / 1.7M Chile: mountains, 4 languages, 26 cantons, neutrality; map-heavy, blueprint look)
+- [ ] [tutorial] Schengen visa: how to apply step by step (home-affairs.ec.europa.eu + the embassy site; documents checklist, 90/180 rule) (Manifold 12 Nov: Schengen how-to videos this year reach 62K–94K, Europe visa guides up to 326K; solid but smaller than the million-view formats, so it runs after Switzerland; title it for a global audience, e.g. "Schengen Visa 2026: How to Apply Step by Step")
 - [ ] The World's Most Powerful Passports 2026: All 199 Countries Ranked (1.3M; latest Henley Passport Index; `morph` countdown #5→#1 + world `bubbles`)
 - [ ] The Bizarre Geography of Indonesia (~1M format: 17,000+ islands, Ring of Fire, Wallace Line)
 - [ ] [tutorial] EES explained: the EU's new entry/exit system and what changes at the border (travel-europe.europa.eu/ees; 443K "Why the EU is tightening Schengen rules")
