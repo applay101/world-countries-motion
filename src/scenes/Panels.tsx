@@ -177,7 +177,7 @@ export const Bars: React.FC<{ t: number; seg: Seg; i: number }> = ({ t, seg, i }
         <div style={{ flex: 1, display: 'flex', alignItems: 'flex-end', gap: 50, padding: '20px 20px 0' }}>
           {bars.items.map(([lab, v], j) => { const p = pr(t, bt + 0.2 + j * 0.45, 1.2, E('power3.out')); const last = j === bars.items.length - 1;
             return (<div key={j} style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-end', height: '100%' }}>
-              <div style={{ fontFamily: TITLE, fontWeight: 800, fontSize: 44, color: last ? GOLD : '#fff', opacity: cl(p * 2), marginBottom: 10 }}>{(v * p).toFixed(1)}</div>
+              <div style={{ fontFamily: TITLE, fontWeight: 800, fontSize: 44, color: last ? GOLD : '#fff', opacity: cl(p * 2), marginBottom: 10 }}>{bars.items.every((x) => Number.isInteger(x[1])) ? Math.round(v * p).toLocaleString('en-US') : (v * p).toFixed(1)}</div>
               <div style={{ width: '100%', height: `${(v / max) * 74 * p}%`, borderRadius: '14px 14px 0 0', background: last ? `linear-gradient(180deg, #ffe08a, ${GOLD} 40%, #d9951a)` : 'linear-gradient(180deg, #7fd3ff, #2e7fc0)',
                 boxShadow: last ? '0 0 40px rgba(255,201,74,.45)' : 'none' }} />
               <div style={{ fontFamily: BODY, fontWeight: 700, fontSize: 30, color: '#cfe0f4', marginTop: 14 }}>{lab}</div>

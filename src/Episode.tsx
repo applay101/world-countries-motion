@@ -99,7 +99,7 @@ const RankBadge: React.FC<{ t: number }> = ({ t }) => {
   return (
     <div style={{ position: 'absolute', right: 70, top: 50, width: 200, height: 200, borderRadius: 200, background: GOLD, display: 'flex', alignItems: 'center', justifyContent: 'center',
       transform: `scale(${p}) rotate(${(1 - p) * 90}deg)`, boxShadow: '0 0 0 8px rgba(0,0,0,.5), 0 20px 60px rgba(0,0,0,.5)' }}>
-      <span style={{ fontFamily: TITLE, fontWeight: 800, fontSize: 110, color: INK }}>#{s.scene.rank}</span>
+      <span style={{ fontFamily: TITLE, fontWeight: 800, fontSize: String(s.scene.rank).length > 1 ? 82 : 110, letterSpacing: String(s.scene.rank).length > 1 ? -3 : 0, color: INK }}>#{s.scene.rank}</span>
     </div>
   );
 };

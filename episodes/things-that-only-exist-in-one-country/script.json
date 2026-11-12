@@ -1,0 +1,1175 @@
+{
+  "id": "things-that-only-exist-in-one-country",
+  "country": {
+    "name": "Earth",
+    "iso2": "un",
+    "isoNum": "000",
+    "lon": 30,
+    "lat": 10,
+    "capital": ""
+  },
+  "voice": "af_heart",
+  "speed": 1.0,
+  "music": "pulse",
+  "theme": {
+    "map": "emerald",
+    "accent": "#7CFFB2"
+  },
+  "flagOnMap": false,
+  "thumb": {
+    "style": "rank",
+    "rank": "#1",
+    "top": "1 COUNTRY EACH",
+    "big": "ONLY HERE",
+    "sub": "10 world wonders",
+    "badge": "10 countries",
+    "emoji": "fluent-emoji-flat:exploding-head"
+  },
+  "short": {
+    "title": "ONLY HERE",
+    "sub": "1 country each",
+    "segments": [
+      "intro",
+      "darvaza",
+      "platypus"
+    ]
+  },
+  "segments": [
+    {
+      "id": "intro",
+      "text": "A blue gem, the world's tiniest bird, and a fire burning for decades. Each exists in just one country on Earth.",
+      "scene": {
+        "type": "dive",
+        "pops": [
+          [
+            "gem",
+            "fluent-3d:gem-stone"
+          ],
+          [
+            "bird",
+            "fluent-3d:bird"
+          ],
+          [
+            "fire",
+            "fluent-3d:fire"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "overview",
+      "text": "This countdown crosses the whole planet: from the forests of Madagascar to the desert of Turkmenistan, from the canals of Mexico City to the Arctic islands of Norway, and all the way to Australia. Ten countries. Ten things you will not find anywhere else. Let's count down.",
+      "scene": {
+        "type": "map",
+        "chapter": "Ten one-of-a-kind wonders",
+        "view": {
+          "lon": 20,
+          "lat": 12,
+          "span": 300
+        },
+        "markers": [
+          [
+            "Madagascar",
+            46.9,
+            -18.8,
+            "pin"
+          ],
+          [
+            "Turkmenistan",
+            58.4,
+            40.2,
+            "pin"
+          ],
+          [
+            "Mexico City",
+            -99.13,
+            19.43,
+            "pin"
+          ],
+          [
+            "Norway",
+            15.6,
+            68.5,
+            "pin"
+          ],
+          [
+            "Australia",
+            134,
+            -25.5,
+            "pin"
+          ]
+        ],
+        "pops": [
+          [
+            "planet",
+            "lib:culture-044"
+          ],
+          [
+            "Ten",
+            "fluent-3d:world-map"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "tanzanite",
+      "text": "Number ten: a gem. In northern Tanzania, between the city of Arusha and Mount Kilimanjaro, lie the Merelani Hills. This patch of land, about fifty square kilometres, is the only place on Earth where tanzanite is mined. Turn the stone, and it flashes blue, then violet.",
+      "scene": {
+        "type": "map",
+        "rank": 10,
+        "chapter": "#10 Tanzania: a gem from one hill",
+        "view": {
+          "lon": 37.0,
+          "lat": -3.4,
+          "span": 14
+        },
+        "markers": [
+          [
+            "Arusha",
+            36.68,
+            -3.37,
+            "pin"
+          ],
+          [
+            "Mount Kilimanjaro",
+            37.35,
+            -3.07,
+            "peak"
+          ],
+          [
+            "Merelani Hills",
+            36.98,
+            -3.56,
+            "star"
+          ]
+        ],
+        "countries": [
+          "Tanzania"
+        ],
+        "pops": [
+          [
+            "tanzanite",
+            "fluent-3d:gem-stone"
+          ],
+          [
+            "mined",
+            "fluent-emoji-flat:pick"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "tanzanite-story",
+      "text": "It was discovered in nineteen sixty-seven. A year later, the jeweller Tiffany and Company named it tanzanite, after the country, and made it famous. In two thousand two it became a birthstone for December. And more than fifty years on, every natural tanzanite still comes from these same few hills.",
+      "scene": {
+        "type": "timeline",
+        "rank": 10,
+        "chapter": "#10 Tanzania: a gem from one hill",
+        "events": [
+          [
+            "1967",
+            "Discovered in the Merelani Hills"
+          ],
+          [
+            "1968",
+            "Tiffany & Co. names it tanzanite"
+          ],
+          [
+            "2002",
+            "Becomes a December birthstone"
+          ],
+          [
+            "Today",
+            "Still mined only here"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "seedvault",
+      "text": "Number nine is a vault for the end of the world. Fly north from Oslo, past Tromsø, to the Arctic island of Spitsbergen. Outside the town of Longyearbyen, a tunnel runs deep into a frozen mountain. Inside is the Svalbard Global Seed Vault, the world's largest backup of the crops that feed us.",
+      "scene": {
+        "type": "map",
+        "rank": 9,
+        "chapter": "#9 Norway: the doomsday vault",
+        "view": {
+          "lon": 16,
+          "lat": 71,
+          "span": 34
+        },
+        "labels": [
+          [
+            "Norwegian Sea",
+            3,
+            68,
+            "sea"
+          ],
+          [
+            "Barents Sea",
+            33,
+            74,
+            "sea"
+          ]
+        ],
+        "markers": [
+          [
+            "Oslo",
+            10.75,
+            59.91,
+            "pin"
+          ],
+          [
+            "Tromsø",
+            18.96,
+            69.65,
+            "dot"
+          ],
+          [
+            "Spitsbergen",
+            17.0,
+            78.6,
+            "dot"
+          ],
+          [
+            "Longyearbyen",
+            15.63,
+            78.22,
+            "star"
+          ]
+        ],
+        "pops": [
+          [
+            "frozen",
+            "fluent-3d:snowflake"
+          ],
+          [
+            "Vault",
+            "fluent-3d:locked"
+          ],
+          [
+            "crops",
+            "fluent-3d:sheaf-of-rice"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "seedvault-world",
+      "text": "Gene banks around the world send copies here: rice from the Philippines, maize and wheat from Mexico, beans from Colombia, and crops from India and Nigeria. Today it holds about one point four million seed samples, kept at minus eighteen degrees, with room for four and a half million.",
+      "scene": {
+        "type": "map",
+        "rank": 9,
+        "chapter": "#9 Norway: the doomsday vault",
+        "view": {
+          "lon": 15,
+          "lat": 48,
+          "span": 300
+        },
+        "arcs": [
+          {
+            "from": [
+              121.25,
+              14.17
+            ],
+            "to": [
+              15.6,
+              78.2
+            ],
+            "label": "Rice",
+            "cue": "Philippines"
+          },
+          {
+            "from": [
+              -98.85,
+              19.53
+            ],
+            "to": [
+              15.6,
+              78.2
+            ],
+            "label": "Maize & wheat",
+            "cue": "Mexico"
+          },
+          {
+            "from": [
+              -76.36,
+              3.5
+            ],
+            "to": [
+              15.6,
+              78.2
+            ],
+            "label": "Beans",
+            "cue": "Colombia"
+          },
+          {
+            "from": [
+              78.27,
+              17.51
+            ],
+            "to": [
+              15.6,
+              78.2
+            ],
+            "cue": "India"
+          },
+          {
+            "from": [
+              3.9,
+              7.5
+            ],
+            "to": [
+              15.6,
+              78.2
+            ],
+            "cue": "Nigeria"
+          }
+        ],
+        "countries": [
+          "Philippines",
+          "Mexico",
+          "Colombia",
+          "India",
+          "Nigeria"
+        ],
+        "big": [
+          [
+            "1.4M",
+            "seed samples"
+          ],
+          [
+            "−18°C",
+            "storage temperature"
+          ]
+        ],
+        "pops": [
+          [
+            "seed",
+            "fluent-3d:seedling"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "axolotl",
+      "text": "Number eight lives inside one of the biggest cities on Earth. In the south of Mexico City, the old canals of Xochimilco are the last real wild home of the axolotl, a salamander that looks like it is smiling. Nearby Lake Chalco once had them too, but it is barely usable today.",
+      "scene": {
+        "type": "map",
+        "rank": 8,
+        "chapter": "#8 Mexico: the smiling salamander",
+        "view": {
+          "lon": -99.05,
+          "lat": 19.33,
+          "span": 2.4
+        },
+        "markers": [
+          [
+            "Mexico City",
+            -99.13,
+            19.43,
+            "star"
+          ],
+          [
+            "Xochimilco",
+            -99.1,
+            19.26,
+            "pin"
+          ],
+          [
+            "Lake Chalco",
+            -98.92,
+            19.25,
+            "pin"
+          ]
+        ],
+        "pops": [
+          [
+            "canals",
+            "fluent-3d:canoe"
+          ],
+          [
+            "axolotl",
+            "fluent-3d:lizard"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "axolotl-powers",
+      "text": "Lose a leg? An axolotl grows it back, with no scar. It can even repair its spinal cord and parts of its heart and brain, and it keeps its baby features all its life. But in the wild it is critically endangered: about six thousand per square kilometre in nineteen ninety-eight, just thirty-six in twenty fourteen.",
+      "scene": {
+        "type": "cards",
+        "rank": 8,
+        "chapter": "#8 Mexico: the smiling salamander",
+        "cards": [
+          [
+            "fluent-3d:leg",
+            "Regrows legs",
+            "with no scar",
+            "leg"
+          ],
+          [
+            "fluent-3d:anatomical-heart",
+            "Heart & brain",
+            "repairs parts of both",
+            "heart"
+          ],
+          [
+            "fluent-3d:baby",
+            "Forever young",
+            "keeps its baby features",
+            "baby"
+          ],
+          [
+            "fluent-3d:warning",
+            "6,000 → 36",
+            "per km², 1998 → 2014",
+            "critically"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "calendar",
+      "text": "Number seven isn't something you can touch. It's time itself. In Ethiopia, from Addis Ababa to Lalibela, Gondar and Aksum, it isn't twenty twenty-six right now. It's the year twenty nineteen. Ethiopia runs on its own calendar, and it's the country's official one.",
+      "scene": {
+        "type": "map",
+        "rank": 7,
+        "chapter": "#7 Ethiopia: a different year",
+        "view": {
+          "lon": 39.0,
+          "lat": 11.0,
+          "span": 16
+        },
+        "markers": [
+          [
+            "Addis Ababa",
+            38.75,
+            9.03,
+            "star"
+          ],
+          [
+            "Lalibela",
+            39.04,
+            12.03,
+            "pin"
+          ],
+          [
+            "Gondar",
+            37.47,
+            12.6,
+            "pin"
+          ],
+          [
+            "Aksum",
+            38.72,
+            14.13,
+            "pin"
+          ]
+        ],
+        "pops": [
+          [
+            "time",
+            "lib:culture-053"
+          ],
+          [
+            "calendar",
+            "fluent-3d:spiral-calendar"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "calendar-newyear",
+      "text": "The Ethiopian year has thirteen months: twelve months of thirty days, plus a tiny thirteenth month, Pagume, of just five or six days. New Year, called Enkutatash, falls on the eleventh of September. And because it counts from a different date for the birth of Christ, it runs about seven years and eight months behind.",
+      "scene": {
+        "type": "street",
+        "rank": 7,
+        "era": "modern",
+        "time": "sunset",
+        "title": "Happy New Year 2019!",
+        "sub": "Enkutatash · 11 September",
+        "people": [
+          [
+            "kid",
+            3
+          ],
+          [
+            "elder",
+            4
+          ],
+          [
+            "merchant",
+            3
+          ],
+          [
+            "student",
+            2
+          ],
+          [
+            "queen",
+            4
+          ],
+          [
+            "farmer",
+            3
+          ],
+          [
+            "chef",
+            2
+          ]
+        ],
+        "cue": "thirteen",
+        "pops": [
+          [
+            "thirteen",
+            "fluent-3d:calendar"
+          ],
+          [
+            "New",
+            "fluent-3d:party-popper"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "lightning",
+      "text": "Number six: a storm that almost never stops. In northwest Venezuela, where the Catatumbo River flows in from Colombia and meets Lake Maracaibo, lightning flashes on up to three hundred nights a year, often for hours. Sailors once called it the Lighthouse of Maracaibo.",
+      "scene": {
+        "type": "map",
+        "rank": 6,
+        "chapter": "#6 Venezuela: never-ending lightning",
+        "view": {
+          "lon": -71.6,
+          "lat": 9.6,
+          "span": 8
+        },
+        "labels": [
+          [
+            "Lake Maracaibo",
+            -71.55,
+            9.75,
+            "sea"
+          ]
+        ],
+        "markers": [
+          [
+            "Catatumbo",
+            -71.75,
+            9.2,
+            "star"
+          ],
+          [
+            "Colombia",
+            -72.9,
+            8.3,
+            "dot"
+          ],
+          [
+            "Maracaibo",
+            -71.64,
+            10.65,
+            "pin"
+          ]
+        ],
+        "pops": [
+          [
+            "lightning",
+            "fluent-3d:high-voltage"
+          ],
+          [
+            "Lighthouse",
+            "fluent-emoji-flat:light-bulb"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "lightning-number",
+      "text": "NASA satellites measured it: about two hundred and thirty-three flashes per square kilometre every year, more than anywhere else on the planet. Warm, wet air from the Caribbean meets cool winds from the Andes mountains right above the lake, night after night. It even holds a Guinness World Record.",
+      "scene": {
+        "type": "bignum",
+        "rank": 6,
+        "chapter": "#6 Venezuela: never-ending lightning",
+        "value": 233,
+        "fmt": "int",
+        "suffix": "",
+        "label": "lightning flashes per km² per year",
+        "note": "NASA, TRMM Lightning Imaging Sensor",
+        "chips": [
+          "Up to 300 nights a year",
+          "World's lightning capital",
+          "Guinness World Record"
+        ],
+        "cue": "two",
+        "pops": [
+          [
+            "Guinness",
+            "fluent-3d:trophy"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "hummingbird",
+      "text": "Number five weighs less than a coin. In the Zapata Swamp, southeast of Havana, and on the Isle of Youth lives the bee hummingbird, the smallest bird in the world. Look anywhere else on the planet, and you won't find one. It lives only in Cuba.",
+      "scene": {
+        "type": "map",
+        "rank": 5,
+        "chapter": "#5 Cuba: the world's smallest bird",
+        "view": {
+          "lon": -81.6,
+          "lat": 22.4,
+          "span": 7
+        },
+        "markers": [
+          [
+            "Zapata Swamp",
+            -81.4,
+            22.3,
+            "star"
+          ],
+          [
+            "Havana",
+            -82.37,
+            23.13,
+            "pin"
+          ],
+          [
+            "Isle of Youth",
+            -82.83,
+            21.75,
+            "pin"
+          ]
+        ],
+        "pops": [
+          [
+            "hummingbird",
+            "fluent-3d:bird"
+          ],
+          [
+            "smallest",
+            "fluent-emoji-flat:pinching-hand"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "hummingbird-scale",
+      "text": "A male is about five point seven centimetres long and weighs around one point six grams. That is lighter than a single US dime. It was named for its size: it's barely bigger than a bee. And like other hummingbirds, it hovers in mid-air to drink nectar from flowers.",
+      "scene": {
+        "type": "split",
+        "rank": 5,
+        "chapter": "#5 Cuba: the world's smallest bird",
+        "left": {
+          "title": "Bee hummingbird",
+          "sub": "about 5.7 cm long",
+          "icon": "fluent-3d:bird",
+          "value": "1.6 g",
+          "cue": "male"
+        },
+        "right": {
+          "title": "A US dime",
+          "sub": "the smallest US coin",
+          "icon": "lib:travel-030",
+          "value": "2.3 g",
+          "cue": "lighter"
+        },
+        "vs": "VS",
+        "pops": [
+          [
+            "flowers",
+            "fluent-3d:hibiscus"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "darvaza",
+      "text": "Number four is nicknamed the Gates of Hell. In Turkmenistan, in the middle of the Karakum Desert, about two hundred and sixty kilometres north of the capital, Ashgabat, there's a hole in the ground that has been on fire for decades. Its real name is the Darvaza gas crater.",
+      "scene": {
+        "type": "map",
+        "rank": 4,
+        "chapter": "#4 Turkmenistan: the Gates of Hell",
+        "view": {
+          "lon": 59.0,
+          "lat": 39.6,
+          "span": 15
+        },
+        "labels": [
+          [
+            "Caspian Sea",
+            51.9,
+            41.0,
+            "sea"
+          ]
+        ],
+        "countries": [
+          "Turkmenistan"
+        ],
+        "markers": [
+          [
+            "Karakum Desert",
+            60.3,
+            39.0,
+            "dot"
+          ],
+          [
+            "Ashgabat",
+            58.38,
+            37.95,
+            "pin"
+          ],
+          [
+            "Darvaza",
+            58.44,
+            40.25,
+            "star"
+          ]
+        ],
+        "pops": [
+          [
+            "Desert",
+            "fluent-3d:desert"
+          ],
+          [
+            "fire",
+            "fluent-3d:fire"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "darvaza-facts",
+      "text": "It's about seventy metres wide and thirty metres deep, fed by natural gas from below. The story goes that it was set alight on purpose, reportedly in nineteen seventy-one, to burn off the gas. In twenty twenty-five, officials said the fire had shrunk more than three times.",
+      "scene": {
+        "type": "cards",
+        "rank": 4,
+        "chapter": "#4 Turkmenistan: the Gates of Hell",
+        "cards": [
+          [
+            "fluent-3d:fire",
+            "70 m wide",
+            "a burning pit",
+            "seventy"
+          ],
+          [
+            "fluent-3d:straight-ruler",
+            "30 m deep",
+            "fed by natural gas",
+            "thirty"
+          ],
+          [
+            "fluent-3d:hourglass-not-done",
+            "Since ~1971",
+            "reportedly",
+            "story"
+          ],
+          [
+            "fluent-3d:chart-decreasing",
+            "3× smaller",
+            "official figure, 2025",
+            "twenty"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "lemurs",
+      "text": "Number three. Madagascar broke away from the other continents tens of millions of years ago, and life here went its own way. In the rainforests of Andasibe and Ranomafana, in the dry west near Morondava, and even close to the capital, Antananarivo, you'll meet lemurs.",
+      "scene": {
+        "type": "map",
+        "rank": 3,
+        "chapter": "#3 Madagascar: the island of lemurs",
+        "view": {
+          "lon": 46.8,
+          "lat": -19.5,
+          "span": 17
+        },
+        "labels": [
+          [
+            "Mozambique Channel",
+            41.5,
+            -19.0,
+            "sea"
+          ],
+          [
+            "Indian Ocean",
+            52.0,
+            -22.5,
+            "sea"
+          ]
+        ],
+        "markers": [
+          [
+            "Andasibe",
+            48.42,
+            -18.94,
+            "pin"
+          ],
+          [
+            "Ranomafana",
+            47.46,
+            -21.26,
+            "pin"
+          ],
+          [
+            "Morondava",
+            44.28,
+            -20.28,
+            "pin"
+          ],
+          [
+            "Antananarivo",
+            47.52,
+            -18.91,
+            "star"
+          ]
+        ],
+        "pops": [
+          [
+            "rainforests",
+            "fluent-3d:palm-tree"
+          ],
+          [
+            "lemurs",
+            "fluent-3d:monkey"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "lemurs-count",
+      "text": "Wild lemurs live naturally only here, apart from a few on the nearby Comoros islands. There are one hundred and seven species, from tiny mouse lemurs to the singing indri. But in twenty twenty, experts found that one hundred and three of them are threatened, and thirty-three are critically endangered.",
+      "scene": {
+        "type": "bars",
+        "rank": 3,
+        "chapter": "#3 Madagascar: the island of lemurs",
+        "note": "IUCN Red List, 2020",
+        "kpis": [
+          {
+            "label": "Lemur species",
+            "value": 107,
+            "fmt": "int",
+            "cue": "hundred"
+          },
+          {
+            "label": "Threatened",
+            "value": 103,
+            "fmt": "int",
+            "cue": "threatened"
+          }
+        ],
+        "bars": {
+          "title": "Lemur species by status (IUCN, 2020)",
+          "items": [
+            [
+              "All species",
+              107
+            ],
+            [
+              "Threatened",
+              103
+            ],
+            [
+              "Critically endangered",
+              33
+            ]
+          ],
+          "cue": "experts"
+        },
+        "pops": [
+          [
+            "Comoros",
+            "fluent-3d:desert-island"
+          ],
+          [
+            "singing",
+            "fluent-3d:musical-notes"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "komodo",
+      "text": "Number two is a real dragon. East of Bali, past the island of Sumbawa, lie the small islands of Komodo and Rinca, next to the much bigger Flores. Here, and nowhere else on Earth, lives the Komodo dragon, the largest lizard in the world.",
+      "scene": {
+        "type": "map",
+        "rank": 2,
+        "chapter": "#2 Indonesia: real dragons",
+        "view": {
+          "lon": 118.5,
+          "lat": -8.4,
+          "span": 10
+        },
+        "labels": [
+          [
+            "Flores Sea",
+            120.5,
+            -7.2,
+            "sea"
+          ]
+        ],
+        "markers": [
+          [
+            "Bali",
+            115.19,
+            -8.41,
+            "pin"
+          ],
+          [
+            "Sumbawa",
+            117.9,
+            -8.7,
+            "dot"
+          ],
+          [
+            "Komodo",
+            119.49,
+            -8.55,
+            "star"
+          ],
+          [
+            "Rinca",
+            119.7,
+            -8.68,
+            "pin"
+          ],
+          [
+            "Flores",
+            121.0,
+            -8.65,
+            "pin"
+          ]
+        ],
+        "countries": [
+          "Indonesia"
+        ],
+        "pops": [
+          [
+            "dragon",
+            "fluent-3d:dragon"
+          ],
+          [
+            "lizard",
+            "fluent-3d:lizard"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "komodo-park",
+      "text": "Adults can grow up to three metres long and usually weigh around seventy kilograms. They hunt deer and wild pigs, and their bite carries venom. Komodo, Rinca and Padar form a national park, a UNESCO World Heritage Site since nineteen ninety-one, reached by boat from Labuan Bajo. Only about fourteen hundred adult dragons remain.",
+      "scene": {
+        "type": "map",
+        "rank": 2,
+        "chapter": "#2 Indonesia: real dragons",
+        "view": {
+          "lon": 119.55,
+          "lat": -8.55,
+          "span": 2.2
+        },
+        "markers": [
+          [
+            "Padar",
+            119.59,
+            -8.65,
+            "pin"
+          ],
+          [
+            "Labuan Bajo",
+            119.89,
+            -8.49,
+            "pin"
+          ]
+        ],
+        "big": [
+          [
+            "3 m",
+            "the largest lizard"
+          ],
+          [
+            "1991",
+            "UNESCO World Heritage"
+          ],
+          [
+            "~1,400",
+            "adults left"
+          ]
+        ],
+        "pops": [
+          [
+            "deer",
+            "fluent-3d:deer"
+          ],
+          [
+            "boat",
+            "lib:transport-077"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "reveal",
+      "text": "Before number one, a quick recap. Cuba, with its tiny bird. Turkmenistan, with its burning crater. Madagascar, with its lemurs. Indonesia, with its dragons. And number one comes from a country famous for strange animals: Australia.",
+      "scene": {
+        "type": "morph",
+        "rank": 1,
+        "chapter": "#1 Australia: the impossible animal",
+        "shapes": [
+          [
+            "Cuba",
+            "192",
+            "cu",
+            "#5 · bee hummingbird",
+            "Cuba"
+          ],
+          [
+            "Turkmenistan",
+            "795",
+            "tm",
+            "#4 · Gates of Hell",
+            "Turkmenistan"
+          ],
+          [
+            "Madagascar",
+            "450",
+            "mg",
+            "#3 · lemurs",
+            "Madagascar"
+          ],
+          [
+            "Indonesia",
+            "360",
+            "id",
+            "#2 · Komodo dragon",
+            "Indonesia"
+          ],
+          [
+            "Australia",
+            "036",
+            "au",
+            "#1 · ???",
+            "Australia"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "platypus",
+      "text": "In rivers and streams of eastern Australia, from Brisbane past Sydney and Melbourne, all the way down to Tasmania, lives an animal so strange that when the first specimen reached Britain, scientists thought it was a hoax. It's the platypus, and it lives nowhere else.",
+      "scene": {
+        "type": "map",
+        "rank": 1,
+        "chapter": "#1 Australia: the impossible animal",
+        "view": {
+          "lon": 148,
+          "lat": -33,
+          "span": 24
+        },
+        "labels": [
+          [
+            "Tasman Sea",
+            156,
+            -38,
+            "sea"
+          ]
+        ],
+        "markers": [
+          [
+            "Brisbane",
+            153.03,
+            -27.47,
+            "pin"
+          ],
+          [
+            "Sydney",
+            151.21,
+            -33.87,
+            "pin"
+          ],
+          [
+            "Melbourne",
+            144.96,
+            -37.81,
+            "pin"
+          ],
+          [
+            "Tasmania",
+            146.6,
+            -42.0,
+            "star"
+          ]
+        ],
+        "pops": [
+          [
+            "rivers",
+            "fluent-3d:droplet"
+          ],
+          [
+            "hoax",
+            "fluent-3d:thinking-face"
+          ],
+          [
+            "platypus",
+            "fluent-3d:duck"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "platypus-facts",
+      "text": "It has a bill like a duck and it lays eggs, yet it's a mammal that feeds its babies milk. Males have venom spurs on their back legs. It has no stomach at all. And under ultraviolet light, its fur glows blue-green. No wonder Australia put it on its twenty-cent coin.",
+      "scene": {
+        "type": "cards",
+        "rank": 1,
+        "chapter": "#1 Australia: the impossible animal",
+        "cards": [
+          [
+            "fluent-3d:egg",
+            "Lays eggs",
+            "yet it's a mammal",
+            "eggs"
+          ],
+          [
+            "fluent-3d:syringe",
+            "Venom spurs",
+            "males only",
+            "Males"
+          ],
+          [
+            "fluent-3d:no-entry",
+            "No stomach",
+            "none at all",
+            "stomach"
+          ],
+          [
+            "fluent-3d:sparkles",
+            "Glows under UV",
+            "blue-green fur",
+            "ultraviolet"
+          ]
+        ],
+        "pops": [
+          [
+            "coin",
+            "lib:travel-052"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "outro",
+      "text": "Which one would you travel to see first? Tell us in the comments. Next, watch the only three countries where Coca-Cola is not sold. And subscribe to join us for the next country on our journey around the world.",
+      "scene": {
+        "type": "outro",
+        "pops": [
+          [
+            "comments",
+            "fluent-emoji-flat:speech-balloon"
+          ]
+        ]
+      }
+    }
+  ]
+}
