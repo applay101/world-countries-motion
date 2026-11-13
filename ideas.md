@@ -8,6 +8,8 @@ Views in brackets are the competitor video that proves the topic. Copy the topic
 - [x] FOLLOW-UP (best performer 11 Nov: Coca-Cola, 21 views in 9 h, top of the channel): Things That ONLY Exist in ONE Country: a world-map countdown of unique things, one country per segment, `rank` badges (1.15M "Cool Things That ONLY Exist In Other Countries", 2026; 258K "The ONLY Countries Where Coca-Cola Is NOT Sold")
 - [x] FOLLOW-UP (same "only countries" theme): The ONLY Countries Whose Flags Break the Rules: Nepal's non-rectangular flag, the square flags of Switzerland and Vatican City and other one-of-a-kind flags, on a world map (110K in 6 days "If Your Flag Has This, Your Country Is Deleted" map animation, Nov 2026; 258K Coca-Cola "ONLY countries" format; verify every flag fact on official/reputable sources)
 - [x] HISTORY: The ENTIRE History of Rome in 12 Minutes (10.6M; parchment, frames timelapse of Roman territory, era cards, street scene "a day in Rome")
+- [ ] FOLLOW-UP (best performer 11–13 Nov: "The ENTIRE History of the World in 10 Minutes", 85 views in 2.5 days, about 3× the channel median of ~25): The Largest Empire in the World, Every Year (3400 BC – 2026): one world map, `frames` timelapse of the biggest empire of each era + a year counter, `morph` of the top 5 by area, `race` of empire size; parchment look, link to the World History video in "Watch next" (3.2M "History of the World: Every Year"; 500K "The Biggest Empires Then Vs Now"; 139K "The Largest Empire in the World, Every Year Since 3400 BCE", Oct 2026; Manifold 13 Nov; areas from Britannica/academic sources, always "(approx.)")
+- [ ] FOLLOW-UP (same world-history theme): Countries That No Longer Exist: 10 lost countries on a map (USSR, Yugoslavia, Czechoslovakia, East Germany, Prussia, Austria-Hungary, Ottoman Empire, Zanzibar, Gran Colombia…; pick only historically settled cases): era card + map with `areas` per country and what replaced it, countdown `rank` badges; neutral wording, nothing about present-day disputes (337K "Why Does Czechoslovakia No Longer Exist?"; 331K "Countries That Died and Countries That Were Born"; 124K "Every Country That Doesn't Exist Anymore"; Manifold 13 Nov)
 - [ ] Countries You Can Move to in 24 Hours: no visa in advance, no income proof (2.3M "5 countries Americans can move in 24 hours"; say which passports, e.g. US/EU/UK; long visa-free stays like Georgia, Albania, Mexico, Panama; official immigration sites only)
 - [ ] Why No Other Country Is Like Switzerland (3.4M Johnny Harris / 1.7M Chile: mountains, 4 languages, 26 cantons, neutrality; map-heavy, blueprint look)
 - [ ] [tutorial] Schengen visa: how to apply step by step (home-affairs.ec.europa.eu + the embassy site; documents checklist, 90/180 rule) (Manifold 12 Nov: Schengen how-to videos this year reach 62K–94K, Europe visa guides up to 326K; solid but smaller than the million-view formats, so it runs after Switzerland; title it for a global audience, e.g. "Schengen Visa 2026: How to Apply Step by Step")
@@ -42,9 +44,9 @@ Views in brackets are the competitor video that proves the topic. Copy the topic
 
 - [x] HISTORY: The ENTIRE History of the World in 10 Minutes (world map; frames timelapse of the great empires + era cards + street scenes; the biggest proven format)
 - [x] The ONLY countries where you can't buy Coca-Cola (world map highlight; verify with reputable sources)
-- [ ] The World: Every Era (3000 BC – 2026): every great empire on one map timelapse (frames), biggest to smallest
+- [x] The World: Every Era (3000 BC – 2026) (moved to the top as the "Largest Empire, Every Year" follow-up, 13 Nov)
 - [ ] POV: You live in ancient Rome for a day (street + crowd scenes, history facts)
-- [ ] Countries that no longer exist (world map + era cards)
+- [x] Countries that no longer exist (moved to the top as a follow-up, 13 Nov)
 - [ ] How old is every country? (world ranking, map timelapse)
 - [x] [tutorial] Spain: how to book a police appointment (cita previa) for fingerprints and the TIE card, step by step
 - [ ] [tutorial] Spain: how to get an NIE number as a foreigner
