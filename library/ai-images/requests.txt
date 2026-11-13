@@ -1,0 +1,5 @@
+# New stickers with the OpenAI image API (GPT Image). One per line:  category | what to draw | count (1-4)
+# Saving this file on main runs the "Make AI stickers" workflow. Results: lib:<category>-<number> in library/stickers/.
+# Each line is made once (remembered in log.json). Max 20 images per run.
+# Example:
+# transport | a red double-decker London bus | 2

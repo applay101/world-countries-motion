@@ -1,0 +1,44 @@
+name: Make AI stickers
+
+# Generates new library stickers with the OpenAI image API from library/ai-images/requests.txt
+# ("category | what to draw | count"). Saves lib:<category>-<number> PNGs in library/stickers/ with the white
+# die-cut border, refreshes the preview sheet, and commits. Needs the repo secret OPENAI_API_KEY (paid per image).
+# Optional repo variables: OPENAI_IMAGE_MODEL (default: newest gpt-image model), OPENAI_IMAGE_QUALITY (low|medium|high).
+on:
+  push:
+    branches: [main]
+    paths: ['library/ai-images/requests.txt']
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: ai-stickers
+  cancel-in-progress: false
+
+jobs:
+  stickers:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.12' }
+      - name: Tools
+        run: |
+          pip install -q pillow numpy "rembg[cpu]"
+          sudo apt-get install -y -qq fonts-dejavu-core > /dev/null || true
+      - name: Generate
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          OPENAI_IMAGE_MODEL: ${{ vars.OPENAI_IMAGE_MODEL }}
+          OPENAI_IMAGE_QUALITY: ${{ vars.OPENAI_IMAGE_QUALITY }}
+        run: python pipeline/make_images.py
+      - name: Commit stickers
+        run: |
+          git config user.name "sticker-bot"; git config user.email "sticker-bot@users.noreply.github.com"
+          git add library/stickers library/ai-images
+          git diff --cached --quiet && exit 0
+          git commit -q -m "library: new AI stickers [skip ci]"
+          for i in 1 2 3 4 5; do git pull -q --rebase origin main && git push -q origin HEAD:main && break; sleep $((i * 5)); done
