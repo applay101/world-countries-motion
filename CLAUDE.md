@@ -1,5 +1,7 @@
 # How to make an episode (for Claude sessions working in this repo)
 
+> **PUBLISHING STOPPED (Hossein, 13 Nov 2026): put NOTHING on the YouTube channel.** Do not schedule or publish any video or Short (no Metricool createScheduledPost, no vidIQ upload or draft), do not push new episodes to render, until Hossein himself says to start again.
+
 Channel: **Zoom World Travel** (@zoomworldtravel), English. Every video is about one country, or a ranking/comparison of countries (then `country` is the main one, e.g. #1, and the others appear as map markers). The video itself and everything published with it (script, captions, title, description, tags) are in English. Messages to the owner (Hossein) are in **Persian**.
 
 ## YouTube agent checklist (Hossein: apply in EVERY video)
