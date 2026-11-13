@@ -1,0 +1,64 @@
+name: Fetch b-roll footage
+
+# Adds real footage (Pexels + Pixabay, free licences) to the digital library.
+# Trigger: edit library/broll/requests.txt (one query per line, optional "| count"), or run it by hand with queries.
+# Clips go to the "library-broll" release; metadata + credits to library/broll/index.json; contact sheets to library/broll/previews/.
+# Needs repo secrets PEXELS_API_KEY and/or PIXABAY_API_KEY. Never renders or publishes anything.
+on:
+  push:
+    branches: [main]
+    paths: ['library/broll/requests.txt']
+  workflow_dispatch:
+    inputs:
+      queries:
+        description: 'Queries separated by ; (e.g. Kyoto temple; Swiss Alps; Lisbon tram)'
+        required: true
+      count:
+        description: 'Clips per query (max 12)'
+        default: '6'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: broll
+  cancel-in-progress: false
+
+jobs:
+  broll:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.12' }
+      - name: Tools
+        run: |
+          if ! timeout 240 bash -c 'sudo apt-get update -qq && sudo DEBIAN_FRONTEND=noninteractive apt-get install -y -qq ffmpeg fonts-dejavu-core > /dev/null'; then
+            pip install -q imageio-ffmpeg
+            sudo ln -sf "$(python -c 'import imageio_ffmpeg as f; print(f.get_ffmpeg_exe())')" /usr/local/bin/ffmpeg
+          fi
+          pip install -q pillow
+          ffmpeg -version | head -1
+      - name: Fetch
+        env:
+          PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
+          PIXABAY_API_KEY: ${{ secrets.PIXABAY_API_KEY }}
+          GH_TOKEN: ${{ github.token }}
+          QUERIES: ${{ github.event.inputs.queries }}
+          COUNT: ${{ github.event.inputs.count }}
+        run: |
+          if [ -n "$QUERIES" ]; then
+            IFS=';' read -ra Q <<< "$QUERIES"; ARGS=()
+            for q in "${Q[@]}"; do q="$(echo "$q" | xargs)"; [ -n "$q" ] && ARGS+=("$q"); done
+            python pipeline/fetch_broll.py "${ARGS[@]}" --count "${COUNT:-6}"
+          else
+            python pipeline/fetch_broll.py --file library/broll/requests.txt
+          fi
+      - name: Commit library index
+        run: |
+          git config user.name "broll-bot"; git config user.email "broll-bot@users.noreply.github.com"
+          git add library/broll/index.json library/broll/previews
+          git diff --cached --quiet && exit 0
+          git commit -q -m "library: b-roll footage update [skip ci]"
+          for i in 1 2 3 4 5; do git pull -q --rebase origin main && git push -q origin HEAD:main && break; sleep $((i * 5)); done

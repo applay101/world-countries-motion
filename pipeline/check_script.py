@@ -83,6 +83,14 @@ if tutorial:
 
 # ---- packaging + variety vs the last 3 episodes ----
 th = ep.get('thumb') or {}
+_bi = os.path.join(ROOT, 'library', 'broll', 'index.json')
+_have = {e['id'] for e in json.load(open(_bi))} if os.path.exists(_bi) else set()
+for x in sc:
+    if x.get('type') == 'footage':
+        ids = x.get('clips') or ([x['clip']] if x.get('clip') else [])
+        miss = [c for c in ids if c not in _have]
+        check(bool(ids) and not miss and len(ids) <= 3, f'footage clips in the library ({", ".join(ids)})', f'footage scene needs 1–3 clip ids from library/broll/index.json (missing: {miss or "none given"})')
+
 check(bool(th.get('style') and th.get('big')), 'thumb has style + big', 'add a thumb {style, top, big, sub, badge}')
 check(len((th.get('big') or '').split()) <= 2 and len((th.get('sub') or '').split()) <= 3, 'thumb text short', 'thumb: big ≤ 2 words, sub ≤ 3 words')
 mine = os.path.abspath(os.path.dirname(p))

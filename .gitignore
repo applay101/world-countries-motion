@@ -9,3 +9,4 @@ out/
 __pycache__/
 src/data/icons.json
 public/flags
+public/broll/

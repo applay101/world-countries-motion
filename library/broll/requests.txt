@@ -1,0 +1,4 @@
+# b-roll requests: one search per line, optional "| clips" (max 12). Saving this file on main runs the
+# "Fetch b-roll footage" workflow (Pexels + Pixabay). Lines already in the library are skipped.
+# Example:
+# Swiss Alps village | 6

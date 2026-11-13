@@ -7,6 +7,7 @@ import { EP, W, H, GOLD, INK, TITLE, BODY, cl, pr, eBack, eOut, eIO, segIndexAt,
 import { FlagIntro, HookIntro } from './scenes/Intros';
 import { MapLayer } from './scenes/MapLayer';
 import { Morph } from './scenes/Morph';
+import { Footage } from './scenes/Footage';
 import { Globe, usePreload, DustLayer } from './scenes/Three';
 import { ChapterHero, LightSweep, Progress, shake } from './scenes/Fx';
 import { Stats, BigChips, Timeline, Cards, BigNum, Bars, Outro, Captions, Chapter, Steps, Checklist, Era, Split, Journey, Race } from './scenes/Panels';
@@ -193,6 +194,7 @@ export const Episode: React.FC = () => {
             {ty === 'race' ? <Race t={t} seg={s} i={k} /> : null}
             {ty === 'crowd' ? <Crowd t={t} seg={s} i={k} /> : null}
             {ty === 'morph' ? <Morph t={t} seg={s} i={k} /> : null}
+            {ty === 'footage' ? <Footage t={t} seg={s} i={k} /> : null}
             {s.scene.frames ? <YearTicker t={t} seg={s} i={k} /> : null}
             <Chapter t={t} seg={s} i={k} />
           </React.Fragment>

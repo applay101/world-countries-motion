@@ -134,15 +134,15 @@ jobs:
           import json, sys, os
           ep, status, size, url = sys.argv[1:5]
           log = open('build.log').read().splitlines()[-80:] if os.path.exists('build.log') else []
-          chapters = []
+          chapters = []; fcred = []
           if os.path.exists('src/data/episode.json'):
-              d = json.load(open('src/data/episode.json'))
+              d = json.load(open('src/data/episode.json')); fcred = d.get('footageCredits', [])
               chapters = ['0:00 Intro'] + ['%d:%02d %s' % (int(max(0, s['start'] - 0.4)) // 60, int(max(0, s['start'] - 0.4)) % 60, s['scene']['chapter'])
                                            for s in d['segments'] if s['scene'].get('chapter')]
               if d['segments'][-1]['scene']['type'] == 'outro':
                   o = int(d['segments'][-1]['start']); chapters.append('%d:%02d Outro' % (o // 60, o % 60))
           json.dump({'episode': ep, 'status': status, 'size_bytes': int(size), 'video_url': url if int(size) else None, 'thumbnail_url': url.replace('.mp4', '-thumb.jpg') if int(size) else None, 'short_url': url.replace('.mp4', '-short.mp4') if os.path.exists(f'out/{ep}-short.mp4') else None,
-                     'run': '${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}', 'chapters': chapters, 'log_tail': log},
+                     'run': '${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}', 'chapters': chapters, 'footage_credits': fcred, 'log_tail': log},
                     open(f'episodes/{ep}/status.json', 'w'), indent=1)
           PY
           git config user.name "render-bot"; git config user.email "render-bot@users.noreply.github.com"

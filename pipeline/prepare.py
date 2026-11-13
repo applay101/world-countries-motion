@@ -60,6 +60,34 @@ for sg in data['segments']:
         if os.path.exists(src): shutil.copy(src, os.path.join(ROOT, 'public', 'flags', hit[1] + '.svg'))
     if found: sc['_countries'] = found
 
+# ---- footage scenes: real b-roll from the digital library (library/broll/index.json, clips on the "library-broll" release) ----
+_bidx = os.path.join(ROOT, 'library', 'broll', 'index.json')
+_broll = {e['id']: e for e in json.load(open(_bidx))} if os.path.exists(_bidx) else {}
+credits = []
+for sg in data['segments']:
+    sc = sg['scene']
+    if sc.get('type') != 'footage': continue
+    ids = sc.get('clips') or ([sc['clip']] if sc.get('clip') else [])
+    out = []
+    for cid in ids:
+        e = _broll.get(cid)
+        if not e: print('WARNING: footage clip not in library/broll/index.json:', cid); continue
+        dst = os.path.join(ROOT, 'public', 'broll', e['file']); os.makedirs(os.path.dirname(dst), exist_ok=True)
+        local = os.path.join(ROOT, 'build', 'broll', e['file'])
+        if not os.path.exists(dst):
+            if os.path.exists(local): shutil.copy(local, dst)
+            else:
+                import urllib.request
+                urllib.request.urlretrieve(e['url'], dst)
+        src = {'pexels': 'Pexels', 'pixabay': 'Pixabay'}.get(e['source'], e['source'])
+        out.append({'src': 'broll/' + e['file'], 'credit': '%s / %s' % (e['author'], src) if e.get('author') else src, 'dur': e['duration']})
+        credits.append('%s by %s on %s: %s' % (cid, e.get('author') or 'unknown', src, e.get('page_url', '')))
+    if not out: raise SystemExit('footage scene %s has no usable clips' % sg['id'])
+    sc['_clips'] = out
+if credits:
+    data['footageCredits'] = credits
+    print('footage credits:', *credits, sep='\n  ')
+
 # ---- automatic icon pops: every map/cities/stats segment gets 2-3 icons on spoken keywords (3D emoji first) ----
 AUTO = [  # (spoken word prefixes, icon)
     (['plane', 'flight', 'fly', 'flew', 'airport', 'airline'], 'airplane'), (['train', 'rail', 'shinkansen'], 'high-speed-train'),
