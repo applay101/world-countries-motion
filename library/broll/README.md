@@ -10,7 +10,8 @@ Real, free footage of cities, landscapes and landmarks from **Pexels** and **Pix
 - Add a line to `requests.txt` (e.g. `Kyoto temple | 6`) and push, or
 - Actions → "Fetch b-roll footage" → Run workflow → queries separated by `;`.
 
-Needs the repo secrets `PEXELS_API_KEY` (pexels.com/api) and/or `PIXABAY_API_KEY` (pixabay.com/api/docs). Both are free.
+Needs the repo secrets `PIXABAY_API_KEY` (pixabay.com/api/docs) and/or `PEXELS_API_KEY` (pexels.com/api). Both are free. Either one is enough.
+Note (13 Nov 2026): Pexels has paused new API keys, so the library runs on Pixabay alone for now; add the Pexels key later if issuance reopens.
 
 ## Licences and credits
 Pexels License and Pixabay Content License: free to use, also commercially, no attribution required, but we always credit:
